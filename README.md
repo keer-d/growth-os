@@ -6,6 +6,8 @@ creator profiles for an AI website/portfolio builder campaign.
 ## What works
 
 - Formal `RawCreatorProfile` contract with observed facts and provenance.
+- Natural-language Campaign Brief parsing into a validated, provider-neutral
+  Campaign Definition, with explicit incomplete/clarification/failure states.
 - Instagram and X profile URL normalization without overwriting source URLs.
 - Same-platform, normalized-profile deduplication; no cross-platform merging.
 - Deterministic activity, relevance, audience-size, market, actionability, and
@@ -40,6 +42,36 @@ The layers remain separate:
    Controlled Demo uses a deterministic offline provider and no credential.
 4. **Decision** assigns an explainable priority from the signals. It does not
    pretend to be a precise quality score.
+
+## Campaign Brief parsing
+
+A Campaign Brief is the Growth/GTM manager's original natural-language request:
+the outcome, markets, creator content themes, intended audience, and any explicit
+exclusions. The parser preserves that original text and produces a separate
+structured definition so later pipeline stages can consume validated fields
+instead of guessing from prose.
+
+Run the offline Campaign Demo:
+
+```bash
+python3 -m pipeline.campaign_demo
+```
+
+Try the incomplete or ambiguous synthetic fixtures:
+
+```bash
+python3 -m pipeline.campaign_demo --fixture-id campaign_demo_003
+python3 -m pipeline.campaign_demo --fixture-id campaign_demo_005
+```
+
+The default deterministic provider requires no credential. An optional
+OpenAI-compatible live provider reads its endpoint, credential, provider name,
+and model only from the environment variables documented in `.env.example`.
+Malformed provider output returns an explicit failed result; missing critical
+fields produce `incomplete` or `needs_clarification` with questions.
+
+This parser deliberately does not generate search queries, retrieve creators,
+assign priorities, infer creator audiences, or create outreach instructions.
 
 ## Run the Controlled Demo
 
@@ -77,7 +109,7 @@ queries, prompts, signals, or priority rules.
 ## Not implemented
 
 - Frontend/UI or voice input
-- Campaign Brief parser, AI Query Generator, or Human Query Review UI
+- AI Query Generator or Human Query Review UI
 - Instagram or X live connectors
 - Autonomous query diversification or agent loops
 - Outreach, email, CRM follow-up, or production deployment

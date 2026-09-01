@@ -1,0 +1,22 @@
+[
+  {
+    "campaign_id": "campaign_demo_001",
+    "original_brief": "I want active creators in the US and Canada who create content around web design, portfolios, freelancing and AI website tools. Their audiences should ideally include designers and freelancers."
+  },
+  {
+    "campaign_id": "campaign_demo_002",
+    "original_brief": "Discover creators in the UK and Ireland who discuss no-code and web design for independent makers and no-code builders."
+  },
+  {
+    "campaign_id": "campaign_demo_003",
+    "original_brief": "Find active creators who teach portfolio building to freelance designers and freelancers."
+  },
+  {
+    "campaign_id": "campaign_demo_004",
+    "original_brief": "Find US creators covering AI website tools and web design for designers. Exclude agencies and corporate brand accounts."
+  },
+  {
+    "campaign_id": "campaign_demo_005",
+    "original_brief": "Find some interesting creators for growth."
+  }
+]
