@@ -8,6 +8,8 @@ creator profiles for an AI website/portfolio builder campaign.
 - Formal `RawCreatorProfile` contract with observed facts and provenance.
 - Natural-language Campaign Brief parsing into a validated, provider-neutral
   Campaign Definition, with explicit incomplete/clarification/failure states.
+- Provider-neutral Campaign Definition to Draft Search Plan generation for
+  Instagram and X, with deterministic offline mode and explicit validation.
 - Instagram and X profile URL normalization without overwriting source URLs.
 - Same-platform, normalized-profile deduplication; no cross-platform merging.
 - Deterministic activity, relevance, audience-size, market, actionability, and
@@ -73,6 +75,31 @@ fields produce `incomplete` or `needs_clarification` with questions.
 This parser deliberately does not generate search queries, retrieve creators,
 assign priorities, infer creator audiences, or create outreach instructions.
 
+## Draft Search Plan generation
+
+A validated Campaign Definition can be converted into a small set of proposed,
+human-readable Instagram and X queries. Each query retains its Campaign link,
+platform, rationale, and a controlled search angle such as core topic, workflow,
+audience problem, adjacent tool, professional identity, or use case. Stable angle
+labels allow later retrieval history to compare like with like without changing
+queries automatically.
+
+Run the offline end-to-end Campaign-to-Plan demo:
+
+```bash
+python3 -m pipeline.search_plan_demo
+```
+
+The generator validates both platform coverage, unique query IDs, non-empty query
+text and rationale, exact-text deduplication, Campaign linkage, and search-angle
+diversity. It blocks incomplete Campaign Definitions. The mock provider is fully
+deterministic and needs no credential; the optional live LLM proposer reads only
+the `SEARCH_PLAN_LLM_*` environment variables shown in `.env.example`.
+
+Every generated plan has `status: draft`. This layer proposes queries only: it
+does not approve, execute, retrieve, score, prioritize, or autonomously diversify
+them, and it does not provide a review UI.
+
 ## Run the Controlled Demo
 
 Python 3.11 or newer is sufficient; the backend currently uses only the standard
@@ -103,13 +130,14 @@ queries, prompts, signals, or priority rules.
 
 - Relevance and market evidence use small, transparent English-language V1 rules.
 - The deterministic audience provider is a safe demo substitute, not an LLM.
-- Query definitions are fixed Controlled Demo metadata rather than AI-generated.
+- The downstream creator fixture still uses fixed Controlled Demo query metadata;
+  Draft Search Plans are not connected to retrieval yet.
 - There is no interactive human-review surface yet.
 
 ## Not implemented
 
 - Frontend/UI or voice input
-- AI Query Generator or Human Query Review UI
+- Human Query Review UI or query approval/execution workflow
 - Instagram or X live connectors
 - Autonomous query diversification or agent loops
 - Outreach, email, CRM follow-up, or production deployment
