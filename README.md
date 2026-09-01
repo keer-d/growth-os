@@ -10,6 +10,8 @@ creator profiles for an AI website/portfolio builder campaign.
   Campaign Definition, with explicit incomplete/clarification/failure states.
 - Provider-neutral Campaign Definition to Draft Search Plan generation for
   Instagram and X, with deterministic offline mode and explicit validation.
+- Immutable Human Query Review records and Approved Search Plans that preserve
+  original AI proposals, human edits, rejections, comments, and timestamps.
 - Instagram and X profile URL normalization without overwriting source URLs.
 - Same-platform, normalized-profile deduplication; no cross-platform merging.
 - Deterministic activity, relevance, audience-size, market, actionability, and
@@ -23,6 +25,13 @@ creator profiles for an AI website/portfolio builder campaign.
 ## Architecture and data flow
 
 ```text
+Campaign Brief
+  -> Campaign Definition
+  -> Draft Search Plan
+  -> Human Query Review
+  -> Approved Search Plan
+  -> [retrieval is not implemented]
+
 Controlled JSON fixture
   -> Raw Creator Profile
   -> URL normalization + dedup
@@ -97,8 +106,35 @@ deterministic and needs no credential; the optional live LLM proposer reads only
 the `SEARCH_PLAN_LLM_*` environment variables shown in `.env.example`.
 
 Every generated plan has `status: draft`. This layer proposes queries only: it
-does not approve, execute, retrieve, score, prioritize, or autonomously diversify
-them, and it does not provide a review UI.
+does not execute, retrieve, score, prioritize, or autonomously diversify them.
+
+## Human Query Review and approval
+
+**Draft ≠ permission to retrieve.** Every Draft query must receive exactly one
+human decision before an Approved Search Plan can be created:
+
+- `approved` preserves the proposed query unchanged;
+- `edited` preserves the original proposal and stores separate final query text;
+- `rejected` remains in the complete review record but never enters the Approved
+  Search Plan.
+
+The review record also keeps the optional human comment and `reviewed_at`
+timestamp. Exact duplicate final query text is rejected explicitly rather than
+silently dropping a human decision. The Draft Search Plan is immutable and is
+never overwritten.
+
+The same offline command now demonstrates the full non-retrieval flow:
+
+```bash
+python3 -m pipeline.search_plan_demo
+```
+
+Its synthetic review produces 5 approvals, 2 edits, and 1 rejection from the 8
+Draft queries, resulting in 7 queries in the Approved Search Plan. The displayed
+counts are calculated from the actual review and approved-plan objects.
+
+An Approved Search Plan is an execution-ready contract for a future layer; this
+milestone does not execute it, connect to Instagram or X, or provide a review UI.
 
 ## Run the Controlled Demo
 
@@ -121,23 +157,24 @@ python3 -m unittest discover -v
 
 ## Local data
 
-The default database is `data/controlled_demo.db` and is ignored by Git. Reviews
-support `approve`, `reject`, and `needs_review`, with a structured reason and an
-optional comment. Feedback is stored for later analysis only; it does not modify
-queries, prompts, signals, or priority rules.
+The default database is `data/controlled_demo.db` and is ignored by Git.
+Creator-record reviews support `approve`, `reject`, and `needs_review`, with a
+structured reason and an optional comment. Feedback is stored for later analysis
+only; it does not modify queries, prompts, signals, or priority rules. Human query
+decisions use the separate review contracts described above.
 
 ## Current limitations
 
 - Relevance and market evidence use small, transparent English-language V1 rules.
 - The deterministic audience provider is a safe demo substitute, not an LLM.
 - The downstream creator fixture still uses fixed Controlled Demo query metadata;
-  Draft Search Plans are not connected to retrieval yet.
+  Approved Search Plans are not connected to retrieval yet.
 - There is no interactive human-review surface yet.
 
 ## Not implemented
 
 - Frontend/UI or voice input
-- Human Query Review UI or query approval/execution workflow
+- Human Query Review UI or retrieval execution workflow
 - Instagram or X live connectors
 - Autonomous query diversification or agent loops
 - Outreach, email, CRM follow-up, or production deployment
