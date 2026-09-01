@@ -8,7 +8,7 @@ from typing import Any
 
 
 PLATFORMS = {"instagram", "x"}
-DISCOVERY_MODES = {"controlled_demo", "live"}
+DISCOVERY_MODES = {"controlled_demo", "live", "live_instagram"}
 PRIORITIES = {"P1", "P2", "P3", "Needs Review"}
 REVIEW_STATUSES = {"approve", "reject", "needs_review"}
 
@@ -60,6 +60,11 @@ class RawCreatorProfile:
     run_id: str
     query_id: str
     retrieved_at: str
+    campaign_id: str | None = None
+    approved_search_plan_id: str | None = None
+    source_query_id: str | None = None
+    query_text: str | None = None
+    search_angle: str | None = None
 
     def __post_init__(self) -> None:
         for name in (
@@ -78,6 +83,15 @@ class RawCreatorProfile:
             raise ValueError(f"discovery_mode must be one of {sorted(DISCOVERY_MODES)}")
         if self.follower_count is not None and self.follower_count < 0:
             raise ValueError("follower_count cannot be negative")
+        if self.discovery_mode == "live_instagram":
+            for name in (
+                "campaign_id",
+                "approved_search_plan_id",
+                "source_query_id",
+                "query_text",
+                "search_angle",
+            ):
+                _required_text(getattr(self, name), name)
 
     @property
     def dedup_key(self) -> tuple[str, str]:

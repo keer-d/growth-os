@@ -12,6 +12,8 @@ creator profiles for an AI website/portfolio builder campaign.
   Instagram and X, with deterministic offline mode and explicit validation.
 - Immutable Human Query Review records and Approved Search Plans that preserve
   original AI proposals, human edits, rejections, comments, and timestamps.
+- Approved Instagram query retrieval through a bounded Apify adapter that maps
+  public profile results into the existing `RawCreatorProfile` contract.
 - Instagram and X profile URL normalization without overwriting source URLs.
 - Same-platform, normalized-profile deduplication; no cross-platform merging.
 - Deterministic activity, relevance, audience-size, market, actionability, and
@@ -30,7 +32,13 @@ Campaign Brief
   -> Draft Search Plan
   -> Human Query Review
   -> Approved Search Plan
-  -> [retrieval is not implemented]
+  -> Instagram Live Retrieval Adapter
+  -> Raw Creator Profile
+  -> URL normalization + dedup
+  -> observable signal extraction
+  -> audience-only inference
+  -> transparent priority decision
+  -> SQLite system of record
 
 Controlled JSON fixture
   -> Raw Creator Profile
@@ -133,8 +141,51 @@ Its synthetic review produces 5 approvals, 2 edits, and 1 rejection from the 8
 Draft queries, resulting in 7 queries in the Approved Search Plan. The displayed
 counts are calculated from the actual review and approved-plan objects.
 
-An Approved Search Plan is an execution-ready contract for a future layer; this
-milestone does not execute it, connect to Instagram or X, or provide a review UI.
+Human approval remains backend-only; this milestone does not provide a review UI.
+
+## Instagram live retrieval
+
+**Retrieval finds candidates. It does not qualify them.** The Instagram adapter
+accepts only an `ApprovedSearchPlan`, filters it to approved Instagram queries,
+calls the Apify-maintained
+[`apify/instagram-search-scraper`](https://apify.com/apify/instagram-search-scraper),
+and maps observable public response fields into `RawCreatorProfile`. X queries
+and rejected Draft queries cannot reach the provider.
+
+The adapter preserves `campaign_id`, Approved Plan ID, approved query ID, source
+Draft query ID, final query text, search angle, and run ID on every raw record.
+The same profile returned by multiple queries remains as multiple raw retrieval
+records until deduplication, so per-query retrieved/duplicate/new yield can be
+calculated later.
+
+Each query returns a structured `succeeded` or `failed` outcome. A successful
+zero-result query remains distinguishable from authentication, timeout, network,
+quota/rate-limit, malformed-response, and invalid-profile failures. No retry loop
+is included yet.
+
+The Controlled Demo remains credentials-free:
+
+```bash
+python3 -m pipeline.demo --reset
+```
+
+Run the intentionally bounded live smoke test only when an Apify token is
+configured:
+
+```bash
+python3 -m pipeline.instagram_live_demo
+```
+
+It executes only the first approved Instagram query and defaults to at most three
+provider results. With no credential it reports `not_executed` and makes no API
+request. Configuration is read only from these environment variables:
+
+- required: `APIFY_API_TOKEN`;
+- optional: `APIFY_INSTAGRAM_ACTOR_ID`, `APIFY_INSTAGRAM_RESULTS_LIMIT`,
+  `APIFY_INSTAGRAM_TIMEOUT_SECONDS`, `APIFY_INSTAGRAM_MAX_TOTAL_CHARGE_USD`.
+
+The token is sent in the Authorization header, never in the request URL. Result
+and spending limits remain bounded, and credentials are never printed.
 
 ## Run the Controlled Demo
 
@@ -168,14 +219,14 @@ decisions use the separate review contracts described above.
 - Relevance and market evidence use small, transparent English-language V1 rules.
 - The deterministic audience provider is a safe demo substitute, not an LLM.
 - The downstream creator fixture still uses fixed Controlled Demo query metadata;
-  Approved Search Plans are not connected to retrieval yet.
+  it remains separate from the optional Instagram live adapter.
 - There is no interactive human-review surface yet.
 
 ## Not implemented
 
 - Frontend/UI or voice input
-- Human Query Review UI or retrieval execution workflow
-- Instagram or X live connectors
+- Human Query Review UI or multi-provider retrieval orchestration
+- X live connector
 - Autonomous query diversification or agent loops
 - Outreach, email, CRM follow-up, or production deployment
 - Follower growth history or cross-platform identity resolution

@@ -37,6 +37,11 @@ def load_creators(path: str | Path) -> list[RawCreatorProfile]:
                 run_id=row.get("run_id"),
                 query_id=row.get("query_id"),
                 retrieved_at=row.get("retrieved_at"),
+                campaign_id=row.get("campaign_id"),
+                approved_search_plan_id=row.get("approved_search_plan_id"),
+                source_query_id=row.get("source_query_id"),
+                query_text=row.get("query_text"),
+                search_angle=row.get("search_angle"),
             )
         )
     return creators
