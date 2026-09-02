@@ -8,6 +8,7 @@ from hashlib import sha256
 import json
 import os
 from socket import timeout as SocketTimeout
+from ssl import SSLCertVerificationError, SSLError
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlencode
@@ -20,6 +21,7 @@ from domain.retrieval import (
     InstagramRetrievalRunResult,
 )
 from pipeline.normalize import normalize_profile_url
+from pipeline.tls import trusted_ssl_context
 
 
 DEFAULT_APIFY_ACTOR_ID = "apify~instagram-search-scraper"
@@ -147,7 +149,9 @@ class ApifyInstagramSearchProvider(InstagramProfileSearchProvider):
         )
         try:
             with urlopen(
-                request, timeout=self.configuration.timeout_seconds + 10
+                request,
+                timeout=self.configuration.timeout_seconds + 10,
+                context=trusted_ssl_context(),
             ) as response:
                 body = response.read().decode("utf-8")
             data = json.loads(body)
@@ -157,10 +161,18 @@ class ApifyInstagramSearchProvider(InstagramProfileSearchProvider):
             raise InstagramProviderError(
                 "provider_timeout", "Apify Instagram request timed out"
             ) from exc
+        except SSLError as exc:
+            raise InstagramProviderError(
+                "provider_tls_failure",
+                "Apify Instagram TLS certificate validation failed",
+            ) from exc
         except URLError as exc:
             if isinstance(exc.reason, (TimeoutError, SocketTimeout)):
                 code = "provider_timeout"
                 message = "Apify Instagram request timed out"
+            elif isinstance(exc.reason, (SSLCertVerificationError, SSLError)):
+                code = "provider_tls_failure"
+                message = "Apify Instagram TLS certificate validation failed"
             else:
                 code = "provider_network_failure"
                 message = "Apify Instagram request failed due to a network error"
@@ -170,6 +182,19 @@ class ApifyInstagramSearchProvider(InstagramProfileSearchProvider):
                 "malformed_provider_response",
                 "Apify Instagram response was not valid JSON",
             ) from exc
+
+        if (
+            isinstance(data, list)
+            and len(data) == 1
+            and isinstance(data[0], dict)
+            and data[0].get("error")
+        ):
+            if data[0].get("error") == "no_items":
+                return []
+            raise InstagramProviderError(
+                "provider_http_failure",
+                "Apify Instagram Actor returned a structured provider error",
+            )
 
         if not isinstance(data, list) or any(not isinstance(item, dict) for item in data):
             raise InstagramProviderError(
@@ -333,7 +358,7 @@ class InstagramLiveRetrievalAdapter:
                 invalid_result_reasons=tuple(invalid_reasons),
                 started_at=started_at,
                 completed_at=retrieved_at,
-                error_code="no_valid_profile_results",
+                error_code="invalid_creator_record",
                 error_message="Provider returned results, but none were valid profile records",
             )
         return InstagramQueryRetrievalResult(
@@ -392,7 +417,9 @@ class InstagramLiveRetrievalAdapter:
     ) -> RawCreatorProfile:
         if not isinstance(row, dict):
             raise TypeError("result must be an object")
-        profile_url = _required_provider_text(row.get("url"), "url")
+        profile_url = _required_provider_text(
+            row.get("url") or row.get("profileUrl"), "url"
+        )
         normalized_profile_url = normalize_profile_url(profile_url, "instagram")
         record_signature = f"{run_id}|{query.query_id}|{profile_url}"
         record_id = f"ig_{sha256(record_signature.encode('utf-8')).hexdigest()[:16]}"

@@ -7,7 +7,10 @@ from datetime import datetime, timezone
 from typing import Any
 
 
-PLATFORMS = {"instagram", "x"}
+# Product-facing these are "channels"; the field name stays `platform` so the
+# frozen backend contract, its stored JSON, and the SQLite schema are unchanged.
+PLATFORMS = {"instagram", "x", "youtube", "web"}
+CHANNEL_ORDER = ("instagram", "x", "youtube", "web")
 DISCOVERY_MODES = {"controlled_demo", "live", "live_instagram"}
 PRIORITIES = {"P1", "P2", "P3", "Needs Review"}
 REVIEW_STATUSES = {"approve", "reject", "needs_review"}
@@ -83,7 +86,7 @@ class RawCreatorProfile:
             raise ValueError(f"discovery_mode must be one of {sorted(DISCOVERY_MODES)}")
         if self.follower_count is not None and self.follower_count < 0:
             raise ValueError("follower_count cannot be negative")
-        if self.discovery_mode == "live_instagram":
+        if self.discovery_mode in {"live", "live_instagram"}:
             for name in (
                 "campaign_id",
                 "approved_search_plan_id",

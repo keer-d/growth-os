@@ -4,6 +4,8 @@ import unittest
 from unittest.mock import patch
 
 from domain.campaign import CampaignDefinition
+from domain.models import CHANNEL_ORDER, PLATFORMS
+from domain.search_plan import SEARCH_ANGLES
 from pipeline.campaign_demo import load_campaign_briefs
 from pipeline.campaign_parser import CampaignBriefParser, DeterministicCampaignProvider
 from pipeline.search_plan import (
@@ -11,9 +13,11 @@ from pipeline.search_plan import (
     EnvironmentLLMSearchPlanProvider,
     IncompleteCampaignError,
     MalformedSearchPlanOutput,
+    MAX_QUERIES,
     SearchPlanGenerator,
     SearchPlanProvider,
     SearchPlanProviderConfigurationError,
+    fitting_channels,
 )
 from pipeline.search_plan_demo import run_search_plan_demo
 
@@ -46,18 +50,63 @@ class SearchPlanTests(unittest.TestCase):
         self.assertEqual(result.status, "complete")
         return SearchPlanGenerator(DeterministicSearchPlanProvider()).generate(result.definition)
 
-    def test_us_canada_campaign_generates_linked_draft_for_both_platforms(self):
+    def test_us_canada_campaign_generates_linked_multi_channel_draft(self):
         plan = self.generate_fixture("campaign_demo_001")
         self.assertEqual(plan.status, "draft")
         self.assertEqual(plan.campaign_id, "campaign_demo_001")
-        self.assertEqual(len(plan.queries), 8)
+        self.assertEqual(len(plan.queries), 14)
+        self.assertLessEqual(len(plan.queries), MAX_QUERIES)
         self.assertEqual(
             {platform: sum(query.platform == platform for query in plan.queries)
-             for platform in ("instagram", "x")},
-            {"instagram": 4, "x": 4},
+             for platform in CHANNEL_ORDER},
+            {"instagram": 4, "x": 4, "youtube": 3, "web": 3},
         )
+        self.assertTrue(all(query.platform in PLATFORMS for query in plan.queries))
         self.assertTrue(all(query.campaign_id == plan.campaign_id for query in plan.queries))
         self.assertEqual(len({query.query_id for query in plan.queries}), len(plan.queries))
+
+    def test_youtube_and_web_queries_read_as_their_own_channel(self):
+        plan = self.generate_fixture("campaign_demo_001")
+        youtube = [query.query_text.casefold() for query in plan.queries if query.platform == "youtube"]
+        web = [query.query_text.casefold() for query in plan.queries if query.platform == "web"]
+        self.assertTrue(
+            all(
+                any(word in text for word in ("tutorial", "walkthrough", "review"))
+                for text in youtube
+            ),
+            youtube,
+        )
+        self.assertTrue(
+            all(
+                any(word in text for word in ("blog", "resources", "writing about"))
+                for text in web
+            ),
+            web,
+        )
+        # A YouTube query must not be a copy of the Instagram or X query text.
+        other = {
+            query.query_text.casefold()
+            for query in plan.queries
+            if query.platform in ("instagram", "x")
+        }
+        self.assertFalse(other & set(youtube + web))
+
+    def test_channel_fit_is_read_from_the_campaign_not_hardcoded(self):
+        portfolio = self.campaign_result("campaign_demo_001").definition
+        self.assertEqual(fitting_channels(portfolio), ("instagram", "x", "youtube", "web"))
+        # Nothing in this definition implies demonstrable craft or an industry
+        # press, so the proposer must stay on the two always-on channels.
+        narrow = CampaignDefinition(
+            campaign_id="campaign_fit_001",
+            goal="Discover partners for potential collaborations",
+            target_markets=("United States",),
+            content_themes=("home cooking",),
+            target_audience=("home cooks",),
+            exclusions=(),
+        )
+        self.assertEqual(fitting_channels(narrow), ("instagram", "x"))
+        plan = SearchPlanGenerator(DeterministicSearchPlanProvider()).generate(narrow)
+        self.assertEqual({query.platform for query in plan.queries}, {"instagram", "x"})
 
     def test_plans_use_multiple_meaningful_angles_and_nonempty_explanations(self):
         plan = self.generate_fixture("campaign_demo_001")
@@ -67,6 +116,12 @@ class SearchPlanTests(unittest.TestCase):
                 query.search_angle for query in plan.queries if query.platform == platform
             }
             self.assertGreaterEqual(len(angles), 4)
+        for platform in ("youtube", "web"):
+            angles = {
+                query.search_angle for query in plan.queries if query.platform == platform
+            }
+            self.assertGreaterEqual(len(angles), 3)
+        self.assertTrue(all(query.search_angle in SEARCH_ANGLES for query in plan.queries))
         self.assertTrue(all(query.query_text.strip() for query in plan.queries))
         self.assertTrue(all(query.rationale.strip() for query in plan.queries))
 

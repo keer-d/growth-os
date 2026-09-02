@@ -91,16 +91,25 @@ class DraftSearchPlan:
         if len(normalized_texts) != len(set(normalized_texts)):
             raise ValueError("exact duplicate query_text values are not allowed")
 
+        # A campaign is not forced onto every channel: the proposer picks the
+        # channels that fit the Campaign Definition. What stays guaranteed is
+        # that a plan is never single-channel and never single-angle.
         platforms = {query.platform for query in self.queries}
-        if platforms != PLATFORMS:
-            raise ValueError(f"a draft plan must cover each platform: {sorted(PLATFORMS)}")
+        unknown = platforms - PLATFORMS
+        if unknown:
+            raise ValueError(f"unknown channels in draft plan: {sorted(unknown)}")
+        if len(platforms) < 2:
+            raise ValueError("a draft plan must cover at least two channels")
         if len({query.search_angle for query in self.queries}) < 3:
             raise ValueError("a draft plan must contain at least three distinct search angles")
-        for platform in PLATFORMS:
-            platform_angles = {
-                query.search_angle for query in self.queries if query.platform == platform
-            }
-            if len(platform_angles) < 2:
+        for platform in sorted(platforms):
+            platform_queries = [
+                query for query in self.queries if query.platform == platform
+            ]
+            # One query cannot demonstrate angle diversity; two or more must.
+            if len(platform_queries) < 2:
+                continue
+            if len({query.search_angle for query in platform_queries}) < 2:
                 raise ValueError(f"{platform} queries must use at least two search angles")
 
     def to_dict(self) -> dict[str, Any]:

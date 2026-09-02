@@ -12,8 +12,10 @@ from domain.query_review import (
     QueryReviewAction,
     SearchPlanReview,
 )
+from domain.models import CHANNEL_ORDER
 from domain.search_plan import DraftSearchPlan
 from pipeline.campaign_demo import load_campaign_briefs
+from pipeline.channels import channel_label
 from pipeline.campaign_parser import CampaignBriefParser, DeterministicCampaignProvider
 from pipeline.search_plan import (
     DeterministicSearchPlanProvider,
@@ -42,10 +44,12 @@ def run_search_plan_demo(
 
 
 def synthetic_review_actions(plan: DraftSearchPlan) -> tuple[QueryReviewAction, ...]:
-    """Return the fixed 5 approve / 2 edit / 1 reject Controlled Demo review."""
+    """Return the fixed 2 edit / 1 reject Controlled Demo review, approving the rest."""
 
-    if len(plan.queries) != 8:
-        raise ValueError("the synthetic review expects the default 8-query Draft plan")
+    # The demonstrated edits and the rejection are pinned to the first eight
+    # proposals so the story stays identical as the proposer gains channels.
+    if len(plan.queries) < 8:
+        raise ValueError("the synthetic review expects at least 8 Draft queries")
     decisions = (
         "approved",
         "approved",
@@ -54,10 +58,10 @@ def synthetic_review_actions(plan: DraftSearchPlan) -> tuple[QueryReviewAction, 
         "approved",
         "rejected",
         "edited",
-        "approved",
     )
     actions = []
-    for index, (query, decision) in enumerate(zip(plan.queries, decisions), start=1):
+    for index, query in enumerate(plan.queries, start=1):
+        decision = decisions[index - 1] if index <= len(decisions) else "approved"
         edited_query_text = None
         human_comment = None
         if index == 3:
@@ -126,9 +130,12 @@ def print_search_plan_demo(
     print(f"Search plan ID: {plan.search_plan_id}")
     print(f"Campaign ID: {plan.campaign_id}")
     print(f"Status: {plan.status}")
-    for platform in ("instagram", "x"):
+    for platform in CHANNEL_ORDER:
         platform_queries = [query for query in plan.queries if query.platform == platform]
-        print(f"\n{platform.upper()} ({len(platform_queries)} queries)")
+        # A plan only covers the channels the campaign justified; skip the rest.
+        if not platform_queries:
+            continue
+        print(f"\n{channel_label(platform).upper()} ({len(platform_queries)} queries)")
         for query in platform_queries:
             print(f"- {query.query_text}")
             print(f"  ID: {query.query_id}")
@@ -161,11 +168,13 @@ def print_search_plan_demo(
     print(f"Source Draft plan ID: {approved_plan.source_draft_search_plan_id}")
     print(f"Status: {approved_plan.status}")
     print(f"Executable queries: {len(approved_plan.queries)}")
-    for platform in ("instagram", "x"):
+    for platform in CHANNEL_ORDER:
         platform_queries = [
             query for query in approved_plan.queries if query.platform == platform
         ]
-        print(f"\n{platform.upper()} ({len(platform_queries)} executable)")
+        if not platform_queries:
+            continue
+        print(f"\n{channel_label(platform).upper()} ({len(platform_queries)} executable)")
         for query in platform_queries:
             print(f"- {query.query_text} [{query.review_decision}]")
             print(f"  ID: {query.query_id}")

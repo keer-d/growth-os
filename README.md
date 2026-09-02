@@ -1,236 +1,364 @@
-# Creator Discovery OS
+# Growth OS
 
-Backend-only V1 implementation case for discovering and prioritizing synthetic
-creator profiles for an AI website/portfolio builder campaign.
+**From a testable ICP hypothesis to evidence-backed partner discovery** / 从 ICP 假设到增长证据。
 
-## What works
+Growth OS is a public implementation case for Growth and GTM operators who need to
+decide who to target before they decide whom to source. It adds an upstream ICP
+Discovery layer to the existing partner-discovery backend, then preserves the existing
+human approval, retrieval, qualification, review, feedback, and run-evidence layers.
+All bundled hypotheses and Controlled Demo partner records are synthetic.
 
-- Formal `RawCreatorProfile` contract with observed facts and provenance.
-- Natural-language Campaign Brief parsing into a validated, provider-neutral
-  Campaign Definition, with explicit incomplete/clarification/failure states.
-- Provider-neutral Campaign Definition to Draft Search Plan generation for
-  Instagram and X, with deterministic offline mode and explicit validation.
-- Immutable Human Query Review records and Approved Search Plans that preserve
-  original AI proposals, human edits, rejections, comments, and timestamps.
-- Approved Instagram query retrieval through a bounded Apify adapter that maps
-  public profile results into the existing `RawCreatorProfile` contract.
-- Instagram and X profile URL normalization without overwriting source URLs.
-- Same-platform, normalized-profile deduplication; no cross-platform merging.
-- Deterministic activity, relevance, audience-size, market, actionability, and
-  record-quality signals with human-readable evidence.
-- Provider-agnostic audience inference plus an offline deterministic provider.
-- Explainable `P1`, `P2`, `P3`, and `Needs Review` decisions without a 0–100 score.
-- Run/query retrieval metrics and new-creator yield.
-- Local SQLite persistence for creators, processing results, reviews, and feedback.
-- One repeatable Controlled Demo using 12 fully synthetic retrieval records.
+## The two audiences are different
 
-## Architecture and data flow
+- A **Customer ICP** is a testable hypothesis about who may buy or use the product.
+- A **Partner / Creator Profile** describes who may help a Growth team reach that
+  customer audience.
+
+Growth OS never collapses those concepts. A selected Customer ICP is translated into a
+separate, human-editable Partner Discovery Criteria snapshot. Only after the human
+confirms that translation does the existing query-planning workflow begin.
+
+## What "Partner" means here
+
+**Partner** is the umbrella term for everyone this system can surface. A Partner may be a:
+
+- creator
+- KOL
+- influencer
+- micro-influencer
+- affiliate partner
+- community partner
+- media / publisher
+- industry expert
+
+Growth and GTM teams do not run eight separate searches for eight separate words, so
+V1 does not model eight separate entities. Every discovered record uses one shape and
+one qualification path; the partner type is a **presentation label derived from
+observable facts** — a bio keyword or the follower count — and it never enters
+prioritization. A label nobody can re-check in a second is worse than no label.
+
+## Growth OS V1 data flow
 
 ```text
-Campaign Brief
-  -> Campaign Definition
-  -> Draft Search Plan
+Business Context (human-confirmed)
+  -> exactly 3 testable Customer ICP Hypotheses
+  -> AI-estimated side-by-side comparison + explicit unknowns
+  -> Human selects one hypothesis to test
+  -> Partner Discovery Criteria draft
+  -> Human confirms or edits the criteria
+  -> validated Campaign Definition
+  -> AI Draft Search Plan
   -> Human Query Review
   -> Approved Search Plan
-  -> Instagram Live Retrieval Adapter
-  -> Raw Creator Profile
-  -> URL normalization + dedup
+  -> controlled fixtures OR live retrieval on Instagram / X / YouTube / Web
+  -> raw partner records
+  -> same-channel URL deduplication
   -> observable signal extraction
   -> audience-only inference
-  -> transparent priority decision
+  -> P1 / P2 / P3 / Needs Review
   -> SQLite system of record
-
-Controlled JSON fixture
-  -> Raw Creator Profile
-  -> URL normalization + dedup
-  -> observable signal extraction
-  -> audience-only inference
-  -> transparent priority decision
-  -> SQLite system of record
-  -> review + feedback storage
-  -> run/query history
+  -> human review and feedback
+  -> run/query history, New Partners, and New Partner Yield
 ```
 
-The layers remain separate:
+Users who already know their ICP can enter the existing Campaign Brief path directly.
+Users who are not confident yet can use the guided Business Context → ICP path. Both
+paths converge on the same validated Campaign and Draft Search Plan contracts.
 
-1. **Facts** are public source values such as bio text, follower count, content,
-   URLs, timestamps, query ID, and source connector.
-2. **Signals** are deterministic interpretations of those facts, each with a
-   reason and evidence.
-3. **AI inference** is limited to likely audience, evidence, and confidence. The
-   Controlled Demo uses a deterministic offline provider and no credential.
-4. **Decision** assigns an explainable priority from the signals. It does not
-   pretend to be a precise quality score.
+The boundaries are deliberate:
 
-## Campaign Brief parsing
+- An ICP is always labeled a **hypothesis**, never the “correct” market answer.
+- ICP comparison scores are AI estimates for prioritizing tests; they are not proof.
+- Editing a hypothesis creates `v2`, `v3`, and so on. Earlier versions are immutable.
+- The selected hypothesis and its exact criteria snapshot are linked to every run it
+  starts, so later evidence can be interpreted against what was actually tested.
+- The original human brief is preserved separately from its parsed definition.
+- **Draft is not permission to retrieve.** Only an `ApprovedSearchPlan` can reach
+  a controlled or live provider.
+- Retrieval observes candidate records; it does not decide partner quality.
+- Signals explain public evidence, audience inference estimates likely audience,
+  and priority remains a separate transparent decision.
+- Human feedback is stored for analysis but does not automatically change queries,
+  prompts, signals, or priority rules.
 
-A Campaign Brief is the Growth/GTM manager's original natural-language request:
-the outcome, markets, creator content themes, intended audience, and any explicit
-exclusions. The parser preserves that original text and produces a separate
-structured definition so later pipeline stages can consume validated fields
-instead of guessing from prose.
+## ICP Discovery
 
-Run the offline Campaign Demo:
+Business Context captures only information with a downstream purpose: product identity
+and description, the painful problem, strongest value, current or potential users,
+current alternatives, observable pain signals, optional geography, and company stage.
+A website URL can be recorded, but the offline demo does not pretend to have analyzed
+it; a manual product description is required in deterministic mode.
 
-```bash
-python3 -m pipeline.campaign_demo
-```
+The provider returns exactly three structured hypotheses. Each includes who, context,
+pain, why the pain matters, current alternative, value proposition, trigger event,
+intent signals, where the audience may be found, why the hypothesis may work, explicit
+unknowns, and a test-priority explanation. The comparison dimensions are:
 
-Try the incomplete or ambiguous synthetic fixtures:
+- Pain Severity
+- Problem Frequency
+- Value Proposition Strength
+- Reachability
+- Intent Signal Availability
+- Potential Commercial Value
+- Product Fit
 
-```bash
-python3 -m pipeline.campaign_demo --fixture-id campaign_demo_003
-python3 -m pipeline.campaign_demo --fixture-id campaign_demo_005
-```
+The built-in provider is deterministic and credential-free. An OpenAI-compatible live
+provider can be configured with `ICP_LLM_PROVIDER`, `ICP_LLM_BASE_URL`,
+`ICP_LLM_API_KEY`, and `ICP_LLM_MODEL`. Credentials are read from the process
+environment only. Malformed output, missing context, website-only offline input,
+unusable hypotheses, and incomplete discovery criteria all fail explicitly.
 
-The default deterministic provider requires no credential. An optional
-OpenAI-compatible live provider reads its endpoint, credential, provider name,
-and model only from the environment variables documented in `.env.example`.
-Malformed provider output returns an explicit failed result; missing critical
-fields produce `incomplete` or `needs_clarification` with questions.
+V1 stops at storing evidence. It does not yet calculate hypothesis confidence from run
+outcomes or recommend keep/refine/drop decisions automatically.
 
-This parser deliberately does not generate search queries, retrieve creators,
-assign priorities, infer creator audiences, or create outreach instructions.
+### ICP persistence and observability
 
-## Draft Search Plan generation
+SQLite adds append-oriented `business_contexts`, `icp_hypotheses`, `icp_selections`,
+`discovery_criteria`, `icp_run_links`, and `product_events` tables. A run link stores
+the hypothesis ID, immutable version, name, hypothesis creation time, human selection
+time, criteria ID, and exact criteria JSON snapshot.
 
-A validated Campaign Definition can be converted into a small set of proposed,
-human-readable Instagram and X queries. Each query retains its Campaign link,
-platform, rationale, and a controlled search angle such as core topic, workflow,
-audience problem, adjacent tool, professional identity, or use case. Stable angle
-labels allow later retrieval history to compare like with like without changing
-queries automatically.
+The product event stream records `icp_discovery_started`,
+`business_context_completed`, `icp_hypotheses_generated`,
+`icp_hypothesis_selected`, `icp_hypothesis_edited`,
+`discovery_criteria_generated`, `discovery_criteria_confirmed`, and
+`discovery_run_started_from_icp`. Generation metadata includes provider, model,
+prompt/criteria version, duration, and safe error codes; it never stores credentials.
 
-Run the offline end-to-end Campaign-to-Plan demo:
+## Channels and connectors
 
-```bash
-python3 -m pipeline.search_plan_demo
-```
+The product surface talks about **channels**. Vendor identity is an implementation
+detail that belongs in exactly two places: this section, and the collapsed Technical
+Details in the UI. It is never the primary label anywhere a business user reads.
 
-The generator validates both platform coverage, unique query IDs, non-empty query
-text and rationale, exact-text deduplication, Campaign linkage, and search-angle
-diversity. It blocks incomplete Campaign Definitions. The mock provider is fully
-deterministic and needs no credential; the optional live LLM proposer reads only
-the `SEARCH_PLAN_LLM_*` environment variables shown in `.env.example`.
+| Channel | Backed by | Environment variable names |
+| --- | --- | --- |
+| Instagram | Apify actor (`apify/instagram-search-scraper`) | `APIFY_API_TOKEN`, `APIFY_INSTAGRAM_ACTOR_ID`, `APIFY_INSTAGRAM_RESULTS_LIMIT`, `APIFY_INSTAGRAM_TIMEOUT_SECONDS`, `APIFY_INSTAGRAM_MAX_TOTAL_CHARGE_USD` |
+| X | Official X API v2 recent search | `X_BEARER_TOKEN`, `X_API_BASE_URL`, `X_API_TIMEOUT_SECONDS`, `X_RESULTS_PER_QUERY` |
+| YouTube | YouTube Data API v3 search | `YOUTUBE_API_KEY`, `YOUTUBE_API_BASE_URL`, `YOUTUBE_API_TIMEOUT_SECONDS`, `YOUTUBE_RESULTS_PER_QUERY` |
+| Web | A configurable search API | `WEB_SEARCH_API_KEY`, `WEB_SEARCH_BASE_URL`, `WEB_SEARCH_ENGINE_ID`, `WEB_SEARCH_TIMEOUT_SECONDS`, `WEB_RESULTS_PER_QUERY` |
 
-Every generated plan has `status: draft`. This layer proposes queries only: it
-does not execute, retrieve, score, prioritize, or autonomously diversify them.
+The first variable in each row is the credential that decides whether the channel can
+run live. The rest are optional bounds with defaults.
 
-## Human Query Review and approval
+### Instagram
 
-**Draft ≠ permission to retrieve.** Every Draft query must receive exactly one
-human decision before an Approved Search Plan can be created:
+Instagram uses the Apify-maintained `apify/instagram-search-scraper`. The token is sent
+only in the Authorization header. Actor timeout, result count, and maximum total charge
+remain bounded.
 
-- `approved` preserves the proposed query unchanged;
-- `edited` preserves the original proposal and stores separate final query text;
-- `rejected` remains in the complete review record but never enters the Approved
-  Search Plan.
+The bounded 2026-09-01 verification reached Apify successfully after the verified
+CA-bundle fix. The Actor returned its `no_items` sentinel (`Empty or private data
+for provided input`) for the one approved query. That provider sentinel is classified
+as a successful zero-result response instead of an invalid partner record. The paid
+call was not retried.
 
-The review record also keeps the optional human comment and `reviewed_at`
-timestamp. Exact duplicate final query text is rejected explicitly rather than
-silently dropping a human decision. The Draft Search Plan is immutable and is
-never overwritten.
-
-The same offline command now demonstrates the full non-retrieval flow:
-
-```bash
-python3 -m pipeline.search_plan_demo
-```
-
-Its synthetic review produces 5 approvals, 2 edits, and 1 rejection from the 8
-Draft queries, resulting in 7 queries in the Approved Search Plan. The displayed
-counts are calculated from the actual review and approved-plan objects.
-
-Human approval remains backend-only; this milestone does not provide a review UI.
-
-## Instagram live retrieval
-
-**Retrieval finds candidates. It does not qualify them.** The Instagram adapter
-accepts only an `ApprovedSearchPlan`, filters it to approved Instagram queries,
-calls the Apify-maintained
-[`apify/instagram-search-scraper`](https://apify.com/apify/instagram-search-scraper),
-and maps observable public response fields into `RawCreatorProfile`. X queries
-and rejected Draft queries cannot reach the provider.
-
-The adapter preserves `campaign_id`, Approved Plan ID, approved query ID, source
-Draft query ID, final query text, search angle, and run ID on every raw record.
-The same profile returned by multiple queries remains as multiple raw retrieval
-records until deduplication, so per-query retrieved/duplicate/new yield can be
-calculated later.
-
-Each query returns a structured `succeeded` or `failed` outcome. A successful
-zero-result query remains distinguishable from authentication, timeout, network,
-quota/rate-limit, malformed-response, and invalid-profile failures. No retry loop
-is included yet.
-
-The Controlled Demo remains credentials-free:
-
-```bash
-python3 -m pipeline.demo --reset
-```
-
-Run the intentionally bounded live smoke test only when an Apify token is
-configured:
+The separate one-query smoke command remains:
 
 ```bash
 python3 -m pipeline.instagram_live_demo
 ```
 
-It executes only the first approved Instagram query and defaults to at most three
-provider results. With no credential it reports `not_executed` and makes no API
-request. Configuration is read only from these environment variables:
+### X
 
-- required: `APIFY_API_TOKEN`;
-- optional: `APIFY_INSTAGRAM_ACTOR_ID`, `APIFY_INSTAGRAM_RESULTS_LIMIT`,
-  `APIFY_INSTAGRAM_TIMEOUT_SECONDS`, `APIFY_INSTAGRAM_MAX_TOTAL_CHARGE_USD`.
+X uses the official X API v2 recent-search endpoint with app-only Bearer Token
+authentication. It requests the `author_id` expansion and public user fields, then maps
+each unique author and matching public Post samples into the shared raw record
+contract. See the official
+[Recent Search guide](https://docs.x.com/x-api/posts/search/quickstart/recent-search).
 
-The token is sent in the Authorization header, never in the request URL. Result
-and spending limits remain bounded, and credentials are never printed.
+### YouTube
 
-## Run the Controlled Demo
+YouTube uses the public YouTube Data API v3 search endpoint with an API key, mapping
+each returned channel into the shared raw record contract. Google reports quota
+exhaustion as HTTP 403 — the same status as a rejected key — so the adapter reads the
+response body reason to separate `provider_rate_limit_or_quota` from
+`provider_authentication_failure`.
 
-Python 3.11 or newer is sufficient; the backend currently uses only the standard
-library.
+### Web
+
+Web is deliberately vendor-neutral: the adapter maps a generic result-list shape, so
+swapping the search vendor is a provider change rather than an adapter change. The
+default base URL targets a Google Programmable Search-compatible JSON response, which
+is why `WEB_SEARCH_ENGINE_ID` exists. URLs that belong to Instagram, X, or YouTube are
+rejected here so a channel cannot smuggle results in through Web.
+
+### Verification status, stated honestly
+
+Automated tests mock every provider response for all four channels. Only Instagram has
+been exercised against a real credential, in the single bounded call described above.
+**X, YouTube, and Web live retrieval have not been run against real credentials**; they
+are verified against mocked provider responses and their error taxonomy only.
+
+## Configuring a channel
+
+Credentials are **server-side environment variables only**. They are read by name,
+never parsed from a request, and never sent to the browser: the UI receives a presence
+boolean per channel and nothing else. No credential value is printed, logged,
+serialized, or written to a run log.
+
+An unconfigured channel is not an error and never blocks a run. It truthfully reports
+**"Not configured"** and records `SKIPPED_NOT_CONFIGURED` for each of its approved
+queries, while other configured channels continue in the same run. V1 never fabricates
+a result for a channel it could not reach.
+
+`.env.example` lists variable names with blank values only. To configure a channel,
+copy it, fill in your own values locally, and export them into the server process —
+neither the server nor the demo commands parse `.env` automatically:
 
 ```bash
-python3 -m pipeline.demo --reset
+set -a
+source .env
+set +a
+python3 -m pipeline.ui_server
 ```
 
-`--reset` removes only the selected local demo SQLite file so the documented
-first-run result is repeatable. Without it, previously stored creators count as
-existing duplicates, demonstrating saturation behavior.
+## Naming: product surface vs storage contract
 
-Run the focused automated tests:
+The internal backend still uses the name `RawCreatorProfile` and the SQLite `creators`
+table, and this is deliberate. The public product is **Growth OS** and its discovery
+entity is **Partner**; the validated raw storage contract was not renamed. Renaming a
+dataclass and a live table to match vocabulary would rewrite the system of record for a
+cosmetic reason and invalidate every stored run, so the rename stopped at the boundary
+where it earns its cost. The same reasoning keeps the `new_creator_yield` column behind the
+"New Partner Yield" metric.
+
+## Local interactive UI
+
+The UI is a thin, credential-safe application layer over the existing discovery backend. It does not
+duplicate campaign parsing, query generation, human approval, retrieval, deduplication,
+signal extraction, audience inference, priority, or SQLite history logic. The local
+browser receives partner evidence, run metrics, and channel readiness booleans; it never
+receives channel credentials.
+
+Launch the safe Controlled Demo from the repository root:
 
 ```bash
-python3 -m unittest discover -v
+python3 -m pipeline.ui_server
 ```
 
-## Local data
+Then open [http://127.0.0.1:8765](http://127.0.0.1:8765). The default database is
+`data/creator_discovery_os_v1.db`. To keep a separate demo workspace, pass
+`--database-path /absolute/path/to/demo.db`.
 
-The default database is `data/controlled_demo.db` and is ignored by Git.
-Creator-record reviews support `approve`, `reject`, and `needs_review`, with a
-structured reason and an optional comment. Feedback is stored for later analysis
-only; it does not modify queries, prompts, signals, or priority rules. Human query
-decisions use the separate review contracts described above.
+The six UI areas are:
 
-## Current limitations
+- **Overview** — current ICP, stored partner counts, transparent priority distribution,
+  latest run yield, human-review count, and channel readiness.
+- **ICP** — the two entry paths, progressive Business Context, exactly three
+  hypothesis cards, side-by-side evaluation, immutable editing, selection, and
+  human-confirmed Partner Discovery Criteria.
+- **Discovery** — Campaign Brief → real Draft Search Plan → approve/edit/reject →
+  Approved Search Plan → Controlled Demo or explicitly confirmed live execution.
+- **Review** — evidence-first partner cards plus detail sections for Observed Facts,
+  Derived Signals, AI audience inference, and Human Decision.
+- **Runs** — a business-first view of real SQLite New Partner Yield,
+  saturation, and query-level evidence. Run IDs and timestamps remain in expandable
+  technical details instead of leading the page.
+- **Data Sources** — per-channel purpose and a truthful Configured / Not configured
+  state, with vendor and variable names kept in Technical Details.
 
-- Relevance and market evidence use small, transparent English-language V1 rules.
-- The deterministic audience provider is a safe demo substitute, not an LLM.
-- The downstream creator fixture still uses fixed Controlled Demo query metadata;
-  it remains separate from the optional Instagram live adapter.
-- There is no interactive human-review surface yet.
+The interface uses a centralized English/Chinese text layer and persists the selected
+language in the browser. It also includes purpose-built light and dark themes; both
+preserve the blue/purple/pink ambient visual language and meaningful status colors.
+Partner and source content is never translated or rewritten.
 
-## Not implemented
+Instagram, X, YouTube, and Web use consistent accessible channel marks across search
+planning, partner records, evidence detail, and query performance. Motion is limited to
+interaction feedback, query entry, and actual request processing, and the UI disables
+nonessential motion when the browser requests reduced motion.
 
-- Frontend/UI or voice input
-- Human Query Review UI or multi-provider retrieval orchestration
-- X live connector
-- Autonomous query diversification or agent loops
-- Outreach, email, CRM follow-up, or production deployment
-- Follower growth history or cross-platform identity resolution
-- Automatic learning from review or feedback
+Controlled Demo is the default and requires no credentials. Live retrieval is visually
+separate and requires an explicit checkbox before the UI can call the configured
+external providers.
 
-All included creators, handles, content, reviews, and URLs are synthetic. The
-project contains no production database connection and no credentials.
+## Setup and tests
+
+Python 3.11 or newer is supported. Controlled mode uses only the standard library.
+Live HTTPS calls can use the `certifi` trust bundle declared in `requirements.txt`:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 -m unittest discover -s tests -v
+```
+
+Provider code creates a verified TLS context. It prefers a usable Python/system CA path
+and otherwise uses the installed `certifi` bundle. Hostname and certificate verification
+stay enabled; the project never uses `verify=False` or an unverified context.
+
+## Complete backend command
+
+The reliable, credential-free portfolio path is:
+
+```bash
+python3 -m pipeline.os_demo --mode controlled --reset
+```
+
+Repeat the same synthetic fixture to create real saturation evidence rather than
+hardcoded history:
+
+```bash
+python3 -m pipeline.os_demo --mode controlled --reset --runs 2
+```
+
+The command executes and displays Campaign, Draft Plan, Human Review, Approved Queries,
+Discovery, Deduplication, Signals, Audience Inference, Priority, SQLite, and Discovery
+Insights. The first fixture run retrieves 12 raw records containing two same-channel
+duplicates; subsequent runs encounter the already stored partners.
+
+Live mode is available when channel credentials are configured in the process
+environment:
+
+```bash
+python3 -m pipeline.os_demo --mode live
+```
+
+Live mode never fabricates an unavailable provider result. A missing channel is recorded
+per query as `SKIPPED_NOT_CONFIGURED`; another configured channel can continue in the
+same run.
+
+## Query outcomes and history
+
+Each approved query has exactly one execution status:
+
+- `SUCCESS_WITH_RESULTS`
+- `SUCCESS_ZERO_RESULTS`
+- `FAILED`
+- `SKIPPED_NOT_CONFIGURED`
+
+SQLite stores run ID, Campaign and Approved Plan IDs, approved query/source IDs, channel,
+connector, final query text, search angle, status, retrieved/duplicate/new counts, error
+code, timestamps, and New Partner Yield. Yield is `NULL` for a failed or skipped query,
+so it cannot be mistaken for a successful 0% yield.
+
+`get_saturation_evidence()` exposes real per-run evidence by stable query and search
+angle. V1 observes that evidence but never changes or diversifies queries autonomously.
+
+## Errors and logging
+
+V1 distinguishes configuration missing, authentication, TLS, network, timeout, provider
+quota/rate limit, malformed response, invalid partner record, and SQLite write failure.
+Provider/query failures remain local to their query where possible.
+
+The OS command writes lightweight JSON run logs containing IDs, channel, connector,
+status, counts, error code, and duration. Credentials and partner contact/profile
+content are not logged.
+
+## Local data and security
+
+The default database is `data/creator_discovery_os_v1.db`; SQLite artifacts and all
+`.env` variants except `.env.example` are ignored. `.env.example` contains variable
+names with blank values only. No production repository, database, prompt, rule,
+credential, or external system is imported or connected.
+
+## Deliberately outside V1
+
+- Voice input
+- Automatic outreach, CRM follow-up, or assignment
+- Follower-growth tracking or cross-channel identity resolution
+- Autonomous/infinite search, automatic learning, or query diversification
+- Billing, authentication, multi-user roles, and deployment
+
+The existing discovery, qualification, human review, feedback, and run-history logic
+remains intact. Growth OS V1 adds the upstream ICP layer and its traceability tables;
+it does not deploy or automate outreach.

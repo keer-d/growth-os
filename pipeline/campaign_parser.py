@@ -17,6 +17,7 @@ from domain.campaign import (
     CampaignParseResult,
 )
 from domain.models import utc_now_iso
+from pipeline.tls import trusted_ssl_context
 
 
 PROMPT_VERSION = "campaign-brief-v1"
@@ -80,7 +81,7 @@ class DeterministicCampaignProvider(CampaignParserProvider):
         audience = [label for label, pattern in self._AUDIENCES.items() if pattern.search(text)]
         exclusions = self._extract_exclusions(text)
         goal = (
-            "Discover creators for potential creator partnerships"
+            "Discover partners for potential collaborations"
             if re.search(r"\b(?:find|discover|want|looking for)\b", text, re.I)
             else None
         )
@@ -151,7 +152,7 @@ class EnvironmentLLMCampaignProvider(CampaignParserProvider):
             method="POST",
         )
         try:
-            with urlopen(request, timeout=60) as response:
+            with urlopen(request, timeout=60, context=trusted_ssl_context()) as response:
                 body = json.loads(response.read().decode("utf-8"))
             return body["choices"][0]["message"]["content"]
         except (HTTPError, URLError, TimeoutError, KeyError, IndexError, json.JSONDecodeError) as exc:

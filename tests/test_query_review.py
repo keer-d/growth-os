@@ -35,8 +35,12 @@ class QueryReviewTests(unittest.TestCase):
             completed_at="2026-08-15T10:00:09Z",
         )
         counts = Counter(item.decision for item in review.reviewed_queries)
-        self.assertEqual(counts, {"approved": 5, "edited": 2, "rejected": 1})
-        self.assertEqual(len(approved.queries), 7)
+        # The synthetic review pins 2 edits and 1 rejection to the first proposals
+        # and approves the rest, so the shape holds as the proposer gains channels.
+        self.assertEqual(counts["edited"], 2)
+        self.assertEqual(counts["rejected"], 1)
+        self.assertEqual(sum(counts.values()), len(draft.queries))
+        self.assertEqual(len(approved.queries), len(draft.queries) - counts["rejected"])
         self.assertEqual(review.status, "complete")
         self.assertEqual(approved.status, "approved")
 
@@ -67,7 +71,7 @@ class QueryReviewTests(unittest.TestCase):
         )
         rejected = next(item for item in review.reviewed_queries if item.decision == "rejected")
         self.assertIsNone(rejected.final_query_text)
-        self.assertEqual(len(review.reviewed_queries), 8)
+        self.assertEqual(len(review.reviewed_queries), len(draft.queries))
         self.assertNotIn(
             rejected.original_query.query_id,
             {query.source_query_id for query in approved.queries},
@@ -104,9 +108,12 @@ class QueryReviewTests(unittest.TestCase):
 
     def test_demo_counts_are_computed_from_real_review_output(self):
         _, draft, review, approved = run_reviewed_search_plan_demo(brief=self.brief)
-        self.assertEqual(len(draft.queries), 8)
-        self.assertEqual(len(review.reviewed_queries), 8)
-        self.assertEqual(len(approved.queries), 7)
+        # Four channels are proposed for this campaign; one rejection is pinned.
+        self.assertEqual(len(draft.queries), 14)
+        self.assertEqual({query.platform for query in draft.queries},
+                         {"instagram", "x", "youtube", "web"})
+        self.assertEqual(len(review.reviewed_queries), len(draft.queries))
+        self.assertEqual(len(approved.queries), len(draft.queries) - 1)
 
 
 if __name__ == "__main__":

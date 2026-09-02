@@ -8,3 +8,7 @@ __pycache__/
 !.env.example
 data/*.db
 data/*.db-*
+data/*.db.*
+
+# Local visual-QA captures are intentionally not part of the public source case.
+docs/screenshots/

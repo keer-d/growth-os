@@ -1,1 +1,1 @@
-"""Domain contracts for the Creator Discovery OS."""
+"""Domain contracts for Growth OS and its existing discovery engine."""

@@ -233,9 +233,20 @@ class InstagramRetrievalTests(unittest.TestCase):
             plan, run_id="live_run_invalid", query_limit=1
         ).query_results[0]
         self.assertEqual(invalid.status, "failed")
-        self.assertEqual(invalid.error_code, "no_valid_profile_results")
+        self.assertEqual(invalid.error_code, "invalid_creator_record")
         self.assertEqual(invalid.invalid_result_count, 1)
         self.assertTrue(invalid.invalid_result_reasons)
+
+    def test_apify_no_items_sentinel_is_a_successful_zero_result(self):
+        configuration = ApifyInstagramConfiguration(api_token="test-token")
+        provider = ApifyInstagramSearchProvider(configuration)
+        with patch(
+            "pipeline.instagram_retrieval.urlopen",
+            return_value=FakeHTTPResponse(
+                [{"error": "no_items", "errorDescription": "Synthetic empty input"}]
+            ),
+        ):
+            self.assertEqual(provider.search_profiles("AI web design creator", 1), [])
 
     def test_apify_request_uses_safe_header_and_bounded_profile_search_payload(self):
         configuration = ApifyInstagramConfiguration(
