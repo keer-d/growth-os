@@ -12,3 +12,14 @@ data/*.db.*
 
 # Local visual-QA captures are intentionally not part of the public source case.
 docs/screenshots/
+
+# Generated Sites / Vinext output. The canonical browser assets remain in ui/.
+node_modules/
+.next/
+.vinext/
+dist/
+.wrangler/
+public/growth-os.html
+public/styles.css
+public/app.js
+public/effects.js

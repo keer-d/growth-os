@@ -272,6 +272,19 @@ Controlled Demo is the default and requires no credentials. Live retrieval is vi
 separate and requires an explicit checkbox before the UI can call the configured
 external providers.
 
+### Hosted portfolio demo
+
+The deployed Sites version reuses the same browser interface and runs the deterministic
+Controlled Demo in a Cloudflare Worker-compatible application layer. D1 stores workflow,
+run, partner, review, and ICP state per browser session so a visitor can complete the
+end-to-end demo and revisit the resulting evidence. Live provider credentials are not
+shipped to the hosted case: Instagram, X, YouTube, and Web remain truthfully marked as
+not configured.
+
+The Python/SQLite implementation remains the canonical local backend. The hosted adapter
+exists only to make the public portfolio case runnable in a browser without exposing a
+local machine or copying private provider credentials.
+
 ## Setup and tests
 
 Python 3.11 or newer is supported. Controlled mode uses only the standard library.
