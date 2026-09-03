@@ -1,7 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fixture from '../fixtures/controlled_demo_minimal.json' with { type: 'json' };
-import { buildCampaignWorkflow, buildControlledRun, buildIcpGeneration, deduplicateFixture } from '../hosting/core.mjs';
+import {
+  applyHumanDecision,
+  buildCampaignWorkflow,
+  buildControlledRun,
+  buildIcpGeneration,
+  buildWorkspace,
+  deduplicateFixture,
+} from '../hosting/core.mjs';
 
 test('hosted campaign planning preserves the original brief and proposes provider-neutral queries', () => {
   const brief = 'Find active partners in the US and Canada covering AI website tools and portfolios for designers and freelancers.';
@@ -55,4 +62,28 @@ test('ICP demo returns exactly three hypotheses', () => {
   const result = buildIcpGeneration({ product_name: 'SiteSprint AI', product_description: 'AI portfolio builder', problem: 'Portfolios take too long', strongest_value: 'Publish faster', current_users: 'independent designers' });
   assert.equal(result.hypotheses.length, 3);
   assert.deepEqual(result.hypotheses.map((item) => item.recommended_order), [1, 2, 3]);
+});
+
+test('hosted workspace exposes dashboard provenance and latest human review', () => {
+  const workflow = buildCampaignWorkflow('Find partners in the US and Canada covering AI website tools and portfolios for designers.');
+  const actions = workflow.draft_search_plan.queries.map((query) => ({ query_id: query.query_id, decision: 'approved' }));
+  const run = buildControlledRun(workflow, actions, fixture, new Set());
+  const decision = {
+    status: 'approve',
+    structured_reason: 'strong_campaign_fit',
+    comment: 'Strong evidence.',
+    reviewed_at: '2026-09-03T08:00:00.000Z',
+  };
+  const reviewed = applyHumanDecision(run.creator_records[0], decision);
+  const workspace = buildWorkspace([reviewed, ...run.creator_records.slice(1)], [{ ...run, completed_at: run.run_summary.completed_at }]);
+  const summary = workspace.creators[0];
+  assert.equal(summary.run_id, run.run_summary.run_id);
+  assert.ok(summary.query_id);
+  assert.ok(summary.source_query_id);
+  assert.equal(summary.has_signals, true);
+  assert.equal(summary.has_audience_inference, true);
+  assert.equal(summary.has_priority_decision, true);
+  assert.equal(summary.review_status, 'approve');
+  assert.equal(summary.review_reason, 'strong_campaign_fit');
+  assert.equal(summary.review_comment, 'Strong evidence.');
 });

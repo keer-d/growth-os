@@ -63,6 +63,13 @@ class UIServiceTests(unittest.TestCase):
         snapshot = self.service.bootstrap()
         self.assertEqual(snapshot["overview"]["total_creators"], 10)
         self.assertEqual(len(snapshot["runs"]), 1)
+        summary = snapshot["creators"][0]
+        self.assertEqual(summary["run_id"], result["run_summary"]["run_id"])
+        self.assertIsNotNone(summary["query_id"])
+        self.assertIsNotNone(summary["source_query_id"])
+        self.assertTrue(summary["has_signals"])
+        self.assertTrue(summary["has_audience_inference"])
+        self.assertTrue(summary["has_priority_decision"])
         detail = self.service.creator_detail(snapshot["creators"][0]["record_id"])
         self.assertIsNotNone(detail["derived_signals"])
         self.assertIsNotNone(detail["ai_audience_inference"])
@@ -94,8 +101,15 @@ class UIServiceTests(unittest.TestCase):
             comment="Clear fit for the campaign.",
         )
         detail = self.service.creator_detail(record_id)
+        summary = next(
+            item for item in self.service.bootstrap()["creators"]
+            if item["record_id"] == record_id
+        )
         self.assertEqual(stored["status"], "approve")
         self.assertEqual(detail["human_decision"]["structured_reason"], "strong_campaign_fit")
+        self.assertEqual(summary["review_status"], "approve")
+        self.assertEqual(summary["review_reason"], "strong_campaign_fit")
+        self.assertEqual(summary["review_comment"], "Clear fit for the campaign.")
 
     def test_provider_status_never_returns_credential_values(self):
         with patch.dict(

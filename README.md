@@ -243,8 +243,9 @@ Then open [http://127.0.0.1:8765](http://127.0.0.1:8765). The default database i
 
 The six UI areas are:
 
-- **Overview** — current ICP, stored partner counts, transparent priority distribution,
-  latest run yield, human-review count, and channel readiness.
+- **Overview** — the Growth Command Center: current ICP and data context, a real discovery
+  funnel, source/query performance, human-review operations, system health, evidence-based
+  learnings, and one deterministic next action.
 - **ICP** — the two entry paths, progressive Business Context, exactly three
   hypothesis cards, side-by-side evaluation, immutable editing, selection, and
   human-confirmed Partner Discovery Criteria.
@@ -267,6 +268,29 @@ Instagram, X, YouTube, and Web use consistent accessible channel marks across se
 planning, partner records, evidence detail, and query performance. Motion is limited to
 interaction feedback, query entry, and actual request processing, and the UI disables
 nonessential motion when the browser requests reduced motion.
+
+### Growth Command Center metric definitions
+
+Dashboard metrics are computed from stored run, query, partner, inference, priority, and
+review records. Filters are applied to the same cohort before every module is calculated.
+
+- **Discovered** — unique stored partner records in the selected cohort.
+- **High Priority** — partners assigned P1 or P2 by the existing priority layer. This is
+  explicitly not a claim that a partner is qualified.
+- **Review Queue** — partners whose latest human-review state is missing, `unreviewed`, or
+  `needs_review`.
+- **Approved** — partners whose latest human-review decision is `approve`.
+- **Approval Rate** — approved divided by approved plus rejected. It displays `—` when no
+  approve/reject decision exists instead of implying a zero-percent rate.
+- **Latest New Partners** — new unique partner records produced by the latest selected run.
+- **New Partner Yield** — new unique partners divided by raw retrieved results.
+- **Human Reviewed** — partners with any stored human-review event, including a
+  `needs_review` outcome.
+
+The discovery funnel uses only observed stage counts: Raw Results → New Unique → Signals →
+Audience Inference → Priority → Human Reviewed → Approved. The dashboard does not invent
+qualification, agreement, conversion, revenue, outreach, latency, or cost metrics when the
+backend does not store those facts. Controlled fixtures are always labeled **Sample Data**.
 
 Controlled Demo is the default and requires no credentials. Live retrieval is visually
 separate and requires an explicit checkbox before the UI can call the configured

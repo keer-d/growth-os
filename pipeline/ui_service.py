@@ -776,7 +776,11 @@ class CreatorDiscoveryUIService:
                       (SELECT r.status FROM reviews r WHERE r.record_id = c.record_id
                        ORDER BY r.reviewed_at DESC, r.review_id DESC LIMIT 1) AS review_status,
                       (SELECT r.reviewed_at FROM reviews r WHERE r.record_id = c.record_id
-                       ORDER BY r.reviewed_at DESC, r.review_id DESC LIMIT 1) AS reviewed_at
+                       ORDER BY r.reviewed_at DESC, r.review_id DESC LIMIT 1) AS reviewed_at,
+                      (SELECT r.structured_reason FROM reviews r WHERE r.record_id = c.record_id
+                       ORDER BY r.reviewed_at DESC, r.review_id DESC LIMIT 1) AS review_reason,
+                      (SELECT r.comment FROM reviews r WHERE r.record_id = c.record_id
+                       ORDER BY r.reviewed_at DESC, r.review_id DESC LIMIT 1) AS review_comment
                FROM creators c
                LEFT JOIN creator_signals s USING(record_id)
                LEFT JOIN audience_inferences a USING(record_id)
@@ -817,6 +821,18 @@ class CreatorDiscoveryUIService:
                     "priority_reasons": json.loads(row["reasons_json"] or "[]"),
                     "review_status": row["review_status"] or "unreviewed",
                     "reviewed_at": row["reviewed_at"],
+                    "review_reason": row["review_reason"],
+                    "review_comment": row["review_comment"],
+                    "run_id": raw.get("run_id"),
+                    "query_id": raw.get("query_id"),
+                    "source_query_id": raw.get("source_query_id"),
+                    "query_text": raw.get("query_text"),
+                    "search_angle": raw.get("search_angle"),
+                    "campaign_id": raw.get("campaign_id"),
+                    "discovery_mode": raw.get("discovery_mode"),
+                    "has_signals": bool(row["signals_json"]),
+                    "has_audience_inference": bool(row["inference_json"]),
+                    "has_priority_decision": bool(row["priority"]),
                     "created_at": row["created_at"],
                 }
             )

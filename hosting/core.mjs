@@ -415,13 +415,34 @@ export function buildControlledRun(workflow, actions, rawProfiles, existingRecor
 }
 
 export function applyHumanDecision(record, decision) {
-  const summary = { ...record.summary, review_status: decision.status, reviewed_at: decision.reviewed_at };
+  const summary = {
+    ...record.summary,
+    review_status: decision.status,
+    reviewed_at: decision.reviewed_at,
+    review_reason: decision.structured_reason || null,
+    review_comment: decision.comment || null,
+  };
   const detail = { ...record.detail, human_decision: decision };
   return { ...record, summary, detail };
 }
 
 export function buildWorkspace(creators, runs, hypotheses = [], currentSelection = null) {
-  const summaries = creators.map((record) => record.summary);
+  const summaries = creators.map((record) => {
+    const observed = record.detail?.observed_facts || {};
+    return {
+      ...record.summary,
+      run_id: record.summary.run_id || observed.run_id || null,
+      query_id: record.summary.query_id || observed.query_id || null,
+      source_query_id: record.summary.source_query_id || observed.source_query_id || null,
+      query_text: record.summary.query_text || observed.query_text || null,
+      search_angle: record.summary.search_angle || observed.search_angle || null,
+      campaign_id: record.summary.campaign_id || observed.campaign_id || null,
+      discovery_mode: record.summary.discovery_mode || observed.discovery_mode || null,
+      has_signals: Boolean(record.detail?.derived_signals),
+      has_audience_inference: Boolean(record.detail?.ai_audience_inference),
+      has_priority_decision: Boolean(record.detail?.priority_decision),
+    };
+  });
   const priorityCounts = { P1: 0, P2: 0, P3: 0, 'Needs Review': 0 };
   const channelCounts = { instagram: 0, x: 0, youtube: 0, web: 0 };
   const partnerTypeCounts = { creator: 0, kol: 0, influencer: 0, micro_influencer: 0, affiliate: 0, community: 0, media: 0, industry_expert: 0 };

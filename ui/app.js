@@ -17,6 +17,7 @@ const TRANSLATIONS = {
     "execution.kicker": "03 · Choose execution mode", "execution.title": "Run only the approved plan.", "execution.explanation": "Controlled Demo is offline and repeatable. Live retrieval uses configured channels and can incur external provider costs.", "execution.modeAria": "Discovery mode", "execution.controlled": "Controlled Demo", "execution.controlledNote": "Offline fixtures · safe default", "execution.live": "Live Discovery", "execution.liveConfirm": "I understand this will call configured external providers and may incur usage costs.", "execution.locked": "Review all proposed queries to unlock execution.", "execution.runControlled": "Run Controlled Discovery",
     "pipeline.retrieval": "Retrieval", "pipeline.retrievalNote": "Approved queries only", "pipeline.dedup": "Dedup", "pipeline.dedupNote": "Same-channel identity", "pipeline.signals": "Signal Extraction", "pipeline.signalsNote": "Observed evidence", "pipeline.audience": "AI Audience Inference", "pipeline.audienceNote": "Audience hypothesis", "pipeline.priority": "Priority", "pipeline.priorityNote": "Explainable decision",
     "overview.eyebrow": "Growth operating system", "overview.titleAccent": "Hypothesis to evidence", "overview.title": "with a human at every decision gate.", "overview.lede": "Define who may matter, translate the hypothesis into partner discovery, and preserve every source, query, and decision.", "overview.start": "Start a Discovery", "overview.pulse": "Workspace Pulse", "overview.pulseTitle": "What the system knows now",
+    "dashboard.eyebrow": "Growth operations", "dashboard.title": "Growth Command Center", "dashboard.lede": "See who is being tested, where evidence is moving, and what needs a human decision.", "dashboard.sample": "Sample data", "dashboard.workspace": "Workspace data", "dashboard.currentIcp": "Current ICP", "dashboard.latestRun": "Latest run", "dashboard.systemStatus": "System status", "dashboard.lastUpdated": "Last updated", "dashboard.noIcp": "No ICP selected", "dashboard.noRun": "No run yet", "dashboard.operational": "Operational", "dashboard.attentionStatus": "Attention needed", "dashboard.viewIcp": "View ICP", "dashboard.runDiscovery": "Run discovery", "dashboard.reviewNow": "Review now", "dashboard.filterDate": "Date range", "dashboard.filterIcp": "ICP", "dashboard.filterSource": "Channel", "dashboard.filterRun": "Run", "dashboard.last30": "Last 30 days", "dashboard.last7": "Last 7 days", "dashboard.allTime": "All available data", "dashboard.allIcps": "All ICPs", "dashboard.allSources": "All channels", "dashboard.allRuns": "All runs", "dashboard.reset": "Reset", "dashboard.discovered": "Discovered", "dashboard.discoveredNote": "unique candidate records", "dashboard.highPriority": "High priority", "dashboard.highPriorityNote": "P1 + P2 · not a qualification score", "dashboard.reviewQueue": "Review queue", "dashboard.reviewQueueNote": "unresolved human decisions", "dashboard.approved": "Approved", "dashboard.approvedNote": "latest human decision", "dashboard.approvalRate": "Approval rate", "dashboard.approvalRateNote": "approved / final decisions", "dashboard.newLatest": "New in latest run", "dashboard.newLatestNote": "new unique candidates", "dashboard.noComparison": "No comparison yet", "dashboard.vsPrevious": "{value} vs previous run", "dashboard.pipelineKicker": "Current V1 pipeline", "dashboard.funnelTitle": "Where is evidence moving—or stopping?", "dashboard.rawResults": "Raw results", "dashboard.uniqueRecords": "New unique", "dashboard.signalsExtracted": "Signals extracted", "dashboard.audienceInferred": "Audience inferred", "dashboard.priorityAssigned": "Priority assigned", "dashboard.humanReviewed": "Human reviewed", "dashboard.finalApproved": "Approved", "dashboard.ofPrevious": "{value} of previous stage", "dashboard.noStageData": "No upstream records", "dashboard.biggestDrop": "Biggest drop", "dashboard.duplicateDrop": "Removed safely as duplicates.", "dashboard.reviewDrop": "Candidates are waiting for human judgment.", "dashboard.pipelineDrop": "Processing evidence is incomplete for some candidates.", "dashboard.noDrop": "No material drop is visible in this filtered cohort.", "dashboard.attentionTitle": "Needs your attention", "dashboard.whyMatters": "Why it matters", "dashboard.noAttention": "No urgent attention items in this view.", "dashboard.failedQueries": "{count} query executions failed", "dashboard.failedWhy": "Failures prevent evidence from entering the candidate pool.", "dashboard.pendingReviews": "{count} candidates need a final decision", "dashboard.pendingWhy": "Unresolved evidence cannot become an approved operating list.", "dashboard.untestedIcp": "The selected ICP has no linked discovery run", "dashboard.untestedWhy": "A hypothesis remains untested until run evidence is linked to it.", "dashboard.zeroQueries": "{count} queries returned zero results", "dashboard.zeroWhy": "These search directions produced no valid profiles in the selected period.", "dashboard.openRuns": "Open runs", "dashboard.currentIcpKicker": "Current hypothesis", "dashboard.who": "Who", "dashboard.corePain": "Core pain", "dashboard.keySignals": "Key signals", "dashboard.testPriority": "Test priority", "dashboard.discoveryRuns": "Linked runs", "dashboard.updated": "Updated", "dashboard.noLinkedRuns": "No discovery run is linked to this ICP yet.", "dashboard.hypothesisNote": "Hypothesis—not market truth.", "dashboard.qualityKicker": "Discovery quality", "dashboard.sourceTitle": "Which directions produce useful candidates?", "dashboard.qualityNote": "Discovery evidence, not customer conversion.", "dashboard.sourcePerformance": "Channel performance", "dashboard.queryPerformance": "Query performance", "dashboard.channel": "Channel", "dashboard.query": "Query", "dashboard.angle": "Angle", "dashboard.raw": "Raw", "dashboard.new": "New", "dashboard.freshYield": "Fresh yield", "dashboard.highPriorityShort": "P1/P2", "dashboard.finalDecisions": "Final decisions", "dashboard.errors": "Errors", "dashboard.insufficientReviews": "Not enough reviewed evidence", "dashboard.noSourceEvidence": "No source evidence matches these filters.", "dashboard.humanKicker": "Human operations", "dashboard.humanTitle": "Review decisions", "dashboard.pending": "Pending", "dashboard.reviewedToday": "Reviewed today", "dashboard.rejected": "Rejected", "dashboard.needsReview": "Needs review", "dashboard.timeToReview": "Time to first review", "dashboard.notDuration": "elapsed time, not active review duration", "dashboard.topRejections": "Top rejection reasons", "dashboard.noRejections": "No rejection evidence yet.", "dashboard.healthKicker": "System health", "dashboard.healthTitle": "Can the evidence pipeline run?", "dashboard.sourcesConnected": "Live sources connected", "dashboard.apiErrors": "Query errors", "dashboard.failedRuns": "Failed runs", "dashboard.llmErrors": "LLM output errors", "dashboard.dbErrors": "Database write errors", "dashboard.notTracked": "Not tracked here", "dashboard.duplicateRate": "Duplicate rate", "dashboard.lastSuccess": "Last successful run", "dashboard.trendKicker": "Quality trend", "dashboard.trendTitle": "Approval rate by run", "dashboard.trendEmpty": "No run has enough final human decisions for an approval trend.", "dashboard.trendNeedMore": "At least two comparable runs are needed for a trend.", "dashboard.runsKicker": "Execution evidence", "dashboard.runsTitle": "Recent runs", "dashboard.started": "Started", "dashboard.duration": "Duration", "dashboard.status": "Status", "dashboard.openRun": "Open run", "dashboard.lessThanSecond": "< 1 sec", "dashboard.seconds": "{count}s", "dashboard.learningsKicker": "Evidence-backed", "dashboard.learningsTitle": "Recent learnings", "dashboard.noLearnings": "More run or review evidence is needed before a defensible learning can be stated.", "dashboard.evidence": "View evidence", "dashboard.learningYield": "{channel} has the strongest fresh-result yield in this view ({value}).", "dashboard.learningSaturation": "Fresh-result yield fell from {before} to {after} in the latest run.", "dashboard.learningZero": "{count} search directions returned no valid profiles.", "dashboard.learningReject": "The most common rejection reason is “{reason}”.", "dashboard.nextKicker": "One next move", "dashboard.nextTitle": "Next best action", "dashboard.nextReview": "Review {count} unresolved candidates", "dashboard.nextFailure": "Inspect {count} failed query executions", "dashboard.nextIcp": "Run discovery for the selected ICP", "dashboard.nextRun": "Start the first discovery run", "dashboard.nextInspect": "Inspect low-yield search directions", "dashboard.nextHealthy": "Continue gathering review evidence", "dashboard.emptyTitle": "Your Growth OS is ready.", "dashboard.emptyText": "Build the first evidence loop without pretending empty data is performance.", "dashboard.emptyStep1": "Define or select an ICP", "dashboard.emptyStep2": "Run your first discovery", "dashboard.emptyStep3": "Review candidates", "dashboard.emptyStep4": "Build the first evidence loop", "dashboard.startIcp": "Start ICP discovery", "dashboard.knownIcp": "I already know my ICP", "dashboard.metricUnavailable": "—", "dashboard.demoNotice": "Controlled Demo values are sample evidence and never mixed with live provider results.",
     "partners.eyebrow": "Evidence workspace", "partners.lede": "Creators, KOLs, affiliates, communities, media and experts — compared on observed facts, derived signals, AI audience inference, and the human decision.", "partners.search": "Search partner, handle, bio…", "partners.poolKicker": "Partner pool", "partners.poolTitle": "What the pool holds now", "partners.channelFilter": "Filter by channel", "partners.allChannels": "All channels", "partners.typeFilter": "Filter by partner type", "partners.allTypes": "All partner types", "partners.priorityFilter": "Filter by priority", "partners.allPriorities": "All priorities", "partners.reviewFilter": "Filter by review state", "partners.allReviewStates": "All review states", "partners.emptyTitle": "No partners match this view.", "partners.emptyText": "Adjust the filters or run a Controlled Demo from Discover.", "partners.openDiscover": "Open Discover", "partners.total": "Total Partners", "partners.totalNote": "deduplicated records", "partners.p1": "P1 · Contact First", "partners.p1Note": "highest action priority", "partners.p2": "P2 · Worth Contacting", "partners.p2Note": "second wave", "partners.needsReview": "Needs Review", "partners.needsReviewNote": "requires human judgment", "partners.reviewed": "Human Decisions", "partners.reviewedNote": "partners reviewed", "partners.byChannel": "By channel", "partners.noChannelRecords": "No stored records on this channel yet.", "partners.demoType": "demo",
     "partnerType.creator": "Creator", "partnerType.kol": "KOL", "partnerType.influencer": "Influencer", "partnerType.micro_influencer": "Micro-influencer", "partnerType.affiliate": "Affiliate", "partnerType.community": "Community", "partnerType.media": "Media", "partnerType.industry_expert": "Industry Expert",
     "status.needsReview": "Needs Review", "status.unreviewed": "Unreviewed", "status.approved": "Approved", "status.rejected": "Rejected",
@@ -58,6 +59,7 @@ const TRANSLATIONS = {
     "execution.kicker": "03 · 选择执行模式", "execution.title": "只执行经批准的 Search Plan。", "execution.explanation": "Controlled Demo 离线且可重复。Live Discovery 会调用已连接的渠道，并可能产生费用。", "execution.modeAria": "发现模式", "execution.controlled": "Controlled Demo", "execution.controlledNote": "离线夹具 · 安全默认", "execution.live": "Live Discovery", "execution.liveConfirm": "我了解这会调用已配置的外部服务，并可能产生用量费用。", "execution.locked": "审核所有建议查询后才能执行。", "execution.runControlled": "运行 Controlled Discovery",
     "pipeline.retrieval": "检索", "pipeline.retrievalNote": "仅批准的查询", "pipeline.dedup": "去重", "pipeline.dedupNote": "同渠道身份", "pipeline.signals": "信号提取", "pipeline.signalsNote": "观察证据", "pipeline.audience": "AI 受众推断", "pipeline.audienceNote": "受众假设", "pipeline.priority": "优先级", "pipeline.priorityNote": "可解释判断",
     "overview.eyebrow": "Growth 运营系统", "overview.titleAccent": "从假设到证据", "overview.title": "每个决策门都由人工掌控。", "overview.lede": "定义谁可能重要，将假设转为合作伙伴发现，并保留每个来源、查询与决策。", "overview.start": "开始发现", "overview.pulse": "工作区脉搏", "overview.pulseTitle": "系统目前知道什么",
+    "dashboard.eyebrow": "增长运营", "dashboard.title": "增长指挥中心", "dashboard.lede": "快速看清正在验证谁、证据流向哪里，以及什么需要人工判断。", "dashboard.sample": "样本数据", "dashboard.workspace": "工作区数据", "dashboard.currentIcp": "当前 ICP", "dashboard.latestRun": "最近运行", "dashboard.systemStatus": "系统状态", "dashboard.lastUpdated": "最后更新", "dashboard.noIcp": "未选择 ICP", "dashboard.noRun": "尚无运行", "dashboard.operational": "运行正常", "dashboard.attentionStatus": "需要关注", "dashboard.viewIcp": "查看 ICP", "dashboard.runDiscovery": "运行发现", "dashboard.reviewNow": "立即审核", "dashboard.filterDate": "日期范围", "dashboard.filterIcp": "ICP", "dashboard.filterSource": "渠道", "dashboard.filterRun": "运行", "dashboard.last30": "最近 30 天", "dashboard.last7": "最近 7 天", "dashboard.allTime": "全部可用数据", "dashboard.allIcps": "全部 ICP", "dashboard.allSources": "全部渠道", "dashboard.allRuns": "全部运行", "dashboard.reset": "重置", "dashboard.discovered": "已发现", "dashboard.discoveredNote": "唯一候选记录", "dashboard.highPriority": "高优先级", "dashboard.highPriorityNote": "P1 + P2，不是资格评分", "dashboard.reviewQueue": "审核队列", "dashboard.reviewQueueNote": "尚未形成最终人工决定", "dashboard.approved": "已批准", "dashboard.approvedNote": "最近一次人工决定", "dashboard.approvalRate": "批准率", "dashboard.approvalRateNote": "已批准 / 最终决定", "dashboard.newLatest": "最近运行新增", "dashboard.newLatestNote": "新增唯一候选", "dashboard.noComparison": "暂无可比较数据", "dashboard.vsPrevious": "较上次运行 {value}", "dashboard.pipelineKicker": "当前 V1 管线", "dashboard.funnelTitle": "证据在何处流动，或在哪里停住？", "dashboard.rawResults": "原始结果", "dashboard.uniqueRecords": "新增唯一记录", "dashboard.signalsExtracted": "已提取信号", "dashboard.audienceInferred": "已推断受众", "dashboard.priorityAssigned": "已分配优先级", "dashboard.humanReviewed": "已人工审核", "dashboard.finalApproved": "已批准", "dashboard.ofPrevious": "上一阶段的 {value}", "dashboard.noStageData": "没有上游记录", "dashboard.biggestDrop": "最大流失", "dashboard.duplicateDrop": "重复记录已安全移除。", "dashboard.reviewDrop": "候选人正在等待人工判断。", "dashboard.pipelineDrop": "部分候选人的证据处理尚未完成。", "dashboard.noDrop": "当前筛选范围没有明显流失。", "dashboard.attentionTitle": "需要你的关注", "dashboard.whyMatters": "为什么重要", "dashboard.noAttention": "当前视图没有紧急事项。", "dashboard.failedQueries": "{count} 条查询执行失败", "dashboard.failedWhy": "失败会阻止证据进入候选池。", "dashboard.pendingReviews": "{count} 个候选需要最终决定", "dashboard.pendingWhy": "未决证据无法进入已批准的运营名单。", "dashboard.untestedIcp": "已选择 ICP 尚无关联发现运行", "dashboard.untestedWhy": "只有关联运行证据后，假设才算进入验证。", "dashboard.zeroQueries": "{count} 条查询返回零结果", "dashboard.zeroWhy": "这些搜索方向在所选时段没有产生有效资料。", "dashboard.openRuns": "打开运行", "dashboard.currentIcpKicker": "当前假设", "dashboard.who": "是谁", "dashboard.corePain": "核心痛点", "dashboard.keySignals": "关键信号", "dashboard.testPriority": "测试优先级", "dashboard.discoveryRuns": "关联运行", "dashboard.updated": "更新时间", "dashboard.noLinkedRuns": "尚无发现运行关联到该 ICP。", "dashboard.hypothesisNote": "这是假设，不是市场真相。", "dashboard.qualityKicker": "发现质量", "dashboard.sourceTitle": "哪些方向正在产出有用候选？", "dashboard.qualityNote": "这里展示发现证据，不是客户转化。", "dashboard.sourcePerformance": "渠道表现", "dashboard.queryPerformance": "查询表现", "dashboard.channel": "渠道", "dashboard.query": "查询", "dashboard.angle": "角度", "dashboard.raw": "原始", "dashboard.new": "新增", "dashboard.freshYield": "新增率", "dashboard.highPriorityShort": "P1/P2", "dashboard.finalDecisions": "最终决定", "dashboard.errors": "错误", "dashboard.insufficientReviews": "人工审核证据不足", "dashboard.noSourceEvidence": "没有符合当前筛选条件的来源证据。", "dashboard.humanKicker": "人工运营", "dashboard.humanTitle": "审核决定", "dashboard.pending": "待处理", "dashboard.reviewedToday": "今日审核", "dashboard.rejected": "已拒绝", "dashboard.needsReview": "待复核", "dashboard.timeToReview": "首次审核等待时间", "dashboard.notDuration": "这是经过时间，不是实际审核时长", "dashboard.topRejections": "主要拒绝原因", "dashboard.noRejections": "尚无拒绝证据。", "dashboard.healthKicker": "系统健康", "dashboard.healthTitle": "证据管线能否正常运行？", "dashboard.sourcesConnected": "已连接 Live 来源", "dashboard.apiErrors": "查询错误", "dashboard.failedRuns": "失败运行", "dashboard.llmErrors": "LLM 输出错误", "dashboard.dbErrors": "数据库写入错误", "dashboard.notTracked": "当前未跟踪", "dashboard.duplicateRate": "重复率", "dashboard.lastSuccess": "最近成功运行", "dashboard.trendKicker": "质量趋势", "dashboard.trendTitle": "按运行的人工批准率", "dashboard.trendEmpty": "没有运行具备足够的最终人工决定，无法形成批准率趋势。", "dashboard.trendNeedMore": "至少需要两次可比较运行才能形成趋势。", "dashboard.runsKicker": "执行证据", "dashboard.runsTitle": "最近运行", "dashboard.started": "开始", "dashboard.duration": "耗时", "dashboard.status": "状态", "dashboard.openRun": "打开运行", "dashboard.lessThanSecond": "少于 1 秒", "dashboard.seconds": "{count} 秒", "dashboard.learningsKicker": "证据支持", "dashboard.learningsTitle": "最近洞察", "dashboard.noLearnings": "需要更多运行或审核证据，才能形成可信结论。", "dashboard.evidence": "查看证据", "dashboard.learningYield": "当前视图中，{channel} 的新增结果率最高（{value}）。", "dashboard.learningSaturation": "最近一次运行的新增率从 {before} 降至 {after}。", "dashboard.learningZero": "{count} 个搜索方向没有返回有效资料。", "dashboard.learningReject": "最常见的拒绝原因是“{reason}”。", "dashboard.nextKicker": "一个下一步", "dashboard.nextTitle": "下一最佳行动", "dashboard.nextReview": "审核 {count} 个未决候选", "dashboard.nextFailure": "检查 {count} 条失败查询", "dashboard.nextIcp": "为当前 ICP 运行发现", "dashboard.nextRun": "开始第一次发现运行", "dashboard.nextInspect": "检查低新增率搜索方向", "dashboard.nextHealthy": "继续积累人工审核证据", "dashboard.emptyTitle": "你的 Growth OS 已准备好。", "dashboard.emptyText": "从第一条证据闭环开始，不把空数据包装成绩效。", "dashboard.emptyStep1": "定义或选择 ICP", "dashboard.emptyStep2": "运行第一次发现", "dashboard.emptyStep3": "审核候选", "dashboard.emptyStep4": "建立第一条证据闭环", "dashboard.startIcp": "开始 ICP 发现", "dashboard.knownIcp": "我已经知道 ICP", "dashboard.metricUnavailable": "—", "dashboard.demoNotice": "Controlled Demo 数值均为样本证据，不会与 Live Provider 结果混合。",
     "partners.eyebrow": "证据工作区", "partners.lede": "创作者、KOL、联盟推广、社区、媒体与行业专家——基于已观察事实、衍生信号、AI 受众推断和人工判断进行比较。", "partners.search": "搜索合作对象、账号、简介…", "partners.poolKicker": "合作对象池", "partners.poolTitle": "当前池中有什么", "partners.channelFilter": "按渠道筛选", "partners.allChannels": "所有渠道", "partners.typeFilter": "按合作类型筛选", "partners.allTypes": "所有合作类型", "partners.priorityFilter": "按优先级筛选", "partners.allPriorities": "所有优先级", "partners.reviewFilter": "按审核状态筛选", "partners.allReviewStates": "所有审核状态", "partners.emptyTitle": "这个视图中没有匹配的合作对象。", "partners.emptyText": "调整筛选条件，或从「发现」运行 Controlled Demo。", "partners.openDiscover": "打开「发现」", "partners.total": "合作对象总数", "partners.totalNote": "已去重记录", "partners.p1": "P1 · 优先联系", "partners.p1Note": "最高行动优先级", "partners.p2": "P2 · 值得联系", "partners.p2Note": "第二批", "partners.needsReview": "待审核", "partners.needsReviewNote": "需要人工判断", "partners.reviewed": "人工判断", "partners.reviewedNote": "已审核合作对象", "partners.byChannel": "按渠道分布", "partners.noChannelRecords": "该渠道尚无已存储记录。", "partners.demoType": "演示",
     "partnerType.creator": "创作者", "partnerType.kol": "KOL", "partnerType.influencer": "影响力者", "partnerType.micro_influencer": "微影响力者", "partnerType.affiliate": "联盟推广", "partnerType.community": "社区伙伴", "partnerType.media": "媒体 / 发布方", "partnerType.industry_expert": "行业专家",
     "status.needsReview": "待审核", "status.unreviewed": "未审核", "status.approved": "已批准", "status.rejected": "已拒绝",
@@ -91,6 +93,7 @@ const state = {
   bootstrap: null, lastRunSummary: null, activeCreatorId: null, activeCreatorDetail: null,
   icpGeneration: null, icpSelection: null, editingIcpId: null,
   language: "en", theme: "light", running: false,
+  dashboardFilters: { date: "30", icp: "all", source: "all", run: "all" },
 };
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -650,40 +653,257 @@ function renderPartnerPool() {
 
 /* ---- overview ------------------------------------------------------------- */
 
+const dashboardRatio = (numerator, denominator) => denominator > 0 ? numerator / denominator : null;
+const dashboardTimestamp = (value) => { const timestamp = value ? new Date(value).getTime() : NaN; return Number.isFinite(timestamp) ? timestamp : null; };
+
+function relativeTime(value) {
+  const timestamp = dashboardTimestamp(value);
+  if (timestamp == null) return t("general.notAvailable");
+  const seconds = Math.round((timestamp - Date.now()) / 1000);
+  const formatter = new Intl.RelativeTimeFormat(state.language === "zh" ? "zh-CN" : "en-US", { numeric: "auto" });
+  if (Math.abs(seconds) < 60) return formatter.format(seconds, "second");
+  const minutes = Math.round(seconds / 60);
+  if (Math.abs(minutes) < 60) return formatter.format(minutes, "minute");
+  const hours = Math.round(minutes / 60);
+  if (Math.abs(hours) < 24) return formatter.format(hours, "hour");
+  return formatter.format(Math.round(hours / 24), "day");
+}
+
+function durationLabel(startedAt, completedAt) {
+  const started = dashboardTimestamp(startedAt);
+  const completed = dashboardTimestamp(completedAt);
+  if (started == null || completed == null) return t("general.notAvailable");
+  const seconds = Math.max(0, Math.round((completed - started) / 1000));
+  return seconds < 1 ? t("dashboard.lessThanSecond") : t("dashboard.seconds", { count: seconds });
+}
+
+function dashboardMetricCard({ value, label, note, tone, delta }) {
+  const deltaClass = delta?.direction === "up" ? "positive" : delta?.direction === "down" ? "negative" : "neutral";
+  return `<article class="command-kpi tone-${tone}"><div class="metric-label">${escapeHtml(label)}</div><strong>${escapeHtml(value)}</strong><small>${escapeHtml(note)}</small><span class="metric-delta ${deltaClass}">${escapeHtml(delta?.label || t("dashboard.noComparison"))}</span></article>`;
+}
+
+function syncDashboardFilters() {
+  const data = state.bootstrap || {};
+  const current = data.icp_workspace?.current?.hypothesis;
+  const runRows = [...(data.runs || [])].sort((a, b) => (dashboardTimestamp(b.completed_at) || 0) - (dashboardTimestamp(a.completed_at) || 0));
+  const selects = {
+    icp: $('#dashboard-icp-filter'),
+    source: $('#dashboard-source-filter'),
+    run: $('#dashboard-run-filter'),
+  };
+  if (!selects.icp || !selects.source || !selects.run) return;
+  selects.icp.innerHTML = `<option value="all">${escapeHtml(t("dashboard.allIcps"))}</option>${current ? `<option value="${escapeHtml(current.hypothesis_id)}">${escapeHtml(current.name)} · ${escapeHtml(t("icp.version", { version: current.version }))}</option>` : ""}`;
+  selects.source.innerHTML = `<option value="all">${escapeHtml(t("dashboard.allSources"))}</option>${CHANNELS.map((channel) => `<option value="${channel}">${escapeHtml(channelLabel(channel))}</option>`).join("")}`;
+  selects.run.innerHTML = `<option value="all">${escapeHtml(t("dashboard.allRuns"))}</option>${runRows.map((run, index) => `<option value="${escapeHtml(run.run_id)}">${escapeHtml(t("insights.historyItem", { index: runRows.length - index }))} · ${escapeHtml(formatDate(run.completed_at))}</option>`).join("")}`;
+  Object.entries(selects).forEach(([key, select]) => {
+    const requested = state.dashboardFilters[key];
+    select.value = [...select.options].some((option) => option.value === requested) ? requested : "all";
+    state.dashboardFilters[key] = select.value;
+  });
+  $('#dashboard-date-filter').value = state.dashboardFilters.date;
+}
+
+function buildDashboardModel(data) {
+  const allRuns = [...(data.runs || [])].sort((a, b) => (dashboardTimestamp(b.completed_at) || 0) - (dashboardTimestamp(a.completed_at) || 0));
+  const allQueries = data.query_history || [];
+  const allCreators = data.creators || [];
+  const currentICP = data.icp_workspace?.current || null;
+  const filters = state.dashboardFilters;
+  const cutoff = filters.date === "all" ? null : Date.now() - Number(filters.date) * 86400000;
+  const icpRunIds = new Set((currentICP?.runs || []).map((run) => run.run_id));
+  const dateMatch = (value) => cutoff == null || (dashboardTimestamp(value) || 0) >= cutoff;
+  const icpMatch = (runId) => filters.icp === "all" || icpRunIds.has(runId);
+  const filteredRuns = allRuns.filter((run) => dateMatch(run.completed_at || run.started_at)
+    && (filters.run === "all" || run.run_id === filters.run)
+    && icpMatch(run.run_id));
+  const runIds = new Set(filteredRuns.map((run) => run.run_id));
+  const filteredQueries = allQueries.filter((row) => runIds.has(row.run_id)
+    && (filters.source === "all" || row.platform === filters.source));
+  const filteredCreators = allCreators.filter((creator) => dateMatch(creator.created_at)
+    && (filters.run === "all" ? (filters.icp === "all" || icpRunIds.has(creator.run_id)) : creator.run_id === filters.run)
+    && (filters.source === "all" || (creator.channel || creator.platform) === filters.source));
+
+  const latestRun = filteredRuns[0] || null;
+  const previousRun = filteredRuns[1] || null;
+  const reviewed = filteredCreators.filter((creator) => creator.review_status && creator.review_status !== "unreviewed");
+  const approved = filteredCreators.filter((creator) => creator.review_status === "approve");
+  const rejected = filteredCreators.filter((creator) => creator.review_status === "reject");
+  const needsReviewDecision = filteredCreators.filter((creator) => creator.review_status === "needs_review");
+  const finalDecisions = approved.length + rejected.length;
+  const queue = filteredCreators.filter((creator) => !["approve", "reject"].includes(creator.review_status)).length;
+  const highPriority = filteredCreators.filter((creator) => ["P1", "P2"].includes(creator.priority)).length;
+  const rawResults = filteredQueries.length
+    ? filteredQueries.reduce((sum, row) => sum + Number(row.retrieved || 0), 0)
+    : filteredRuns.reduce((sum, run) => sum + Number(run.retrieved || 0), 0);
+  const duplicateCount = filteredQueries.length
+    ? filteredQueries.reduce((sum, row) => sum + Number(row.duplicates || 0), 0)
+    : filteredRuns.reduce((sum, run) => sum + Number(run.duplicates || 0), 0);
+  const signalsExtracted = filteredCreators.filter((creator) => creator.has_signals !== false && creator.activity != null).length;
+  const audienceInferred = filteredCreators.filter((creator) => creator.has_audience_inference !== false && Array.isArray(creator.likely_audience)).length;
+  const priorityAssigned = filteredCreators.filter((creator) => creator.has_priority_decision !== false && creator.priority).length;
+  const failedQueries = filteredQueries.filter((row) => row.execution_status === "FAILED");
+  const zeroQueries = filteredQueries.filter((row) => row.execution_status === "SUCCESS_ZERO_RESULTS");
+  const failedRuns = filteredRuns.filter((run) => run.status && run.status !== "COMPLETED");
+  const approvalRate = dashboardRatio(approved.length, finalDecisions);
+  const duplicateRate = dashboardRatio(duplicateCount, rawResults);
+  const latestNew = Number(latestRun?.new_creators || 0);
+  let newDelta = null;
+  if (latestRun && previousRun) {
+    const previous = Number(previousRun.new_creators || 0);
+    const change = previous ? (latestNew - previous) / previous : latestNew ? 1 : 0;
+    newDelta = { direction: change > 0 ? "up" : change < 0 ? "down" : "flat", label: t("dashboard.vsPrevious", { value: `${change > 0 ? "+" : ""}${Math.round(change * 100)}%` }) };
+  }
+
+  const stages = [
+    ["raw", t("dashboard.rawResults"), rawResults],
+    ["unique", t("dashboard.uniqueRecords"), filteredCreators.length],
+    ["signals", t("dashboard.signalsExtracted"), signalsExtracted],
+    ["audience", t("dashboard.audienceInferred"), audienceInferred],
+    ["priority", t("dashboard.priorityAssigned"), priorityAssigned],
+    ["reviewed", t("dashboard.humanReviewed"), reviewed.length],
+    ["approved", t("dashboard.finalApproved"), approved.length],
+  ].map(([key, label, count], index, rows) => ({ key, label, count, conversion: index ? dashboardRatio(count, rows[index - 1][2]) : null }));
+  const drops = stages.slice(1).map((stage, index) => ({ from: stages[index], to: stage, count: Math.max(0, stages[index].count - stage.count) }));
+  const biggestDrop = drops.sort((a, b) => b.count - a.count)[0] || null;
+  const dropReason = biggestDrop?.to.key === "unique" ? t("dashboard.duplicateDrop")
+    : biggestDrop?.to.key === "reviewed" || biggestDrop?.to.key === "approved" ? t("dashboard.reviewDrop")
+      : biggestDrop?.count ? t("dashboard.pipelineDrop") : t("dashboard.noDrop");
+
+  const creatorGroups = (keyFor) => filteredCreators.reduce((groups, creator) => {
+    const key = keyFor(creator);
+    if (!key) return groups;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(creator);
+    return groups;
+  }, {});
+  const creatorsByChannel = creatorGroups((creator) => creator.channel || creator.platform);
+  const creatorsByQuery = creatorGroups((creator) => creator.query_id);
+  const sourceGroups = filteredQueries.reduce((groups, row) => {
+    const key = row.platform || "web";
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(row);
+    return groups;
+  }, {});
+  const sourcePerformance = Object.entries(sourceGroups).map(([channel, rows]) => {
+    const candidates = creatorsByChannel[channel] || [];
+    const sourceApproved = candidates.filter((creator) => creator.review_status === "approve").length;
+    const sourceRejected = candidates.filter((creator) => creator.review_status === "reject").length;
+    const sourceFinal = sourceApproved + sourceRejected;
+    const retrieved = rows.reduce((sum, row) => sum + Number(row.retrieved || 0), 0);
+    const fresh = rows.reduce((sum, row) => sum + Number(row.new_creators || 0), 0);
+    return { channel, retrieved, fresh, yield: dashboardRatio(fresh, retrieved), highPriority: candidates.filter((creator) => ["P1", "P2"].includes(creator.priority)).length, finalDecisions: sourceFinal, approved: sourceApproved, approvalRate: dashboardRatio(sourceApproved, sourceFinal), errors: rows.filter((row) => row.execution_status === "FAILED").length };
+  }).sort((a, b) => (b.yield ?? -1) - (a.yield ?? -1));
+  const queryPerformance = filteredQueries.map((row) => {
+    const candidates = creatorsByQuery[row.query_id] || [];
+    const queryApproved = candidates.filter((creator) => creator.review_status === "approve").length;
+    const queryRejected = candidates.filter((creator) => creator.review_status === "reject").length;
+    const queryFinal = queryApproved + queryRejected;
+    return { ...row, highPriority: candidates.filter((creator) => ["P1", "P2"].includes(creator.priority)).length, finalDecisions: queryFinal, approvalRate: dashboardRatio(queryApproved, queryFinal) };
+  }).sort((a, b) => (b.new_creator_yield ?? -1) - (a.new_creator_yield ?? -1)).slice(0, 8);
+
+  const today = new Date();
+  const reviewedToday = reviewed.filter((creator) => { const date = creator.reviewed_at ? new Date(creator.reviewed_at) : null; return date && date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate(); }).length;
+  const reviewWaits = reviewed.map((creator) => { const created = dashboardTimestamp(creator.created_at); const decided = dashboardTimestamp(creator.reviewed_at); return created != null && decided != null ? Math.max(0, decided - created) : null; }).filter((value) => value != null);
+  const averageReviewMinutes = reviewWaits.length ? Math.round(reviewWaits.reduce((sum, value) => sum + value, 0) / reviewWaits.length / 60000) : null;
+  const rejectionReasons = rejected.reduce((counts, creator) => { const reason = creator.review_reason || t("general.unknown"); counts[reason] = (counts[reason] || 0) + 1; return counts; }, {});
+  const topRejections = Object.entries(rejectionReasons).sort((a, b) => b[1] - a[1]);
+
+  const runTrend = filteredRuns.map((run) => {
+    const candidates = filteredCreators.filter((creator) => creator.run_id === run.run_id);
+    const runApproved = candidates.filter((creator) => creator.review_status === "approve").length;
+    const runRejected = candidates.filter((creator) => creator.review_status === "reject").length;
+    return { run, approvalRate: dashboardRatio(runApproved, runApproved + runRejected), reviewed: runApproved + runRejected };
+  }).reverse();
+
+  const currentRuns = currentICP?.runs || [];
+  const attention = [];
+  if (failedQueries.length || failedRuns.length) attention.push({ title: t("dashboard.failedQueries", { count: failedQueries.length }), why: t("dashboard.failedWhy"), page: "insights", action: t("dashboard.openRuns") });
+  if (queue) attention.push({ title: t("dashboard.pendingReviews", { count: queue }), why: t("dashboard.pendingWhy"), page: "partners", action: t("dashboard.reviewNow") });
+  if (currentICP?.hypothesis && !currentRuns.length) attention.push({ title: t("dashboard.untestedIcp"), why: t("dashboard.untestedWhy"), page: "discover", action: t("dashboard.runDiscovery") });
+  if (zeroQueries.length) attention.push({ title: t("dashboard.zeroQueries", { count: zeroQueries.length }), why: t("dashboard.zeroWhy"), page: "insights", action: t("dashboard.openRuns") });
+  const nextAction = failedQueries.length ? { title: t("dashboard.nextFailure", { count: failedQueries.length }), page: "insights", action: t("dashboard.openRuns") }
+    : queue ? { title: t("dashboard.nextReview", { count: queue }), page: "partners", action: t("dashboard.reviewNow") }
+      : currentICP?.hypothesis && !currentRuns.length ? { title: t("dashboard.nextIcp"), page: "discover", action: t("dashboard.runDiscovery") }
+        : !allRuns.length ? { title: t("dashboard.nextRun"), page: "discover", action: t("dashboard.runDiscovery") }
+          : queryPerformance.some((row) => Number(row.retrieved) > 0 && Number(row.new_creator_yield) < .2) ? { title: t("dashboard.nextInspect"), page: "insights", action: t("dashboard.openRuns") }
+            : { title: t("dashboard.nextHealthy"), page: "partners", action: t("dashboard.reviewNow") };
+
+  const learnings = [];
+  if (latestRun && previousRun && Number(latestRun.new_creator_yield) < Number(previousRun.new_creator_yield)) learnings.push({ text: t("dashboard.learningSaturation", { before: formatPercent(previousRun.new_creator_yield), after: formatPercent(latestRun.new_creator_yield) }), page: "insights" });
+  const bestSource = sourcePerformance.find((row) => row.retrieved > 0 && row.yield != null);
+  if (bestSource) learnings.push({ text: t("dashboard.learningYield", { channel: channelLabel(bestSource.channel), value: formatPercent(bestSource.yield) }), page: "insights" });
+  if (zeroQueries.length) learnings.push({ text: t("dashboard.learningZero", { count: zeroQueries.length }), page: "insights" });
+  if (topRejections.length) learnings.push({ text: t("dashboard.learningReject", { reason: topRejections[0][0] }), page: "partners" });
+
+  const latestSuccessful = filteredRuns.find((run) => run.status === "COMPLETED" && !run.error_code);
+  const connectedSources = channelRows().filter((row) => row.configured).length;
+  const updateCandidates = [latestRun?.completed_at, currentICP?.selection?.selected_at, ...reviewed.map((creator) => creator.reviewed_at)].map(dashboardTimestamp).filter((value) => value != null);
+  const lastUpdated = updateCandidates.length ? new Date(Math.max(...updateCandidates)).toISOString() : null;
+  const isDemo = allRuns.length > 0 && allRuns.every((run) => String(run.discovery_mode || "").includes("controlled"));
+  return {
+    allRuns, filteredRuns, filteredCreators, currentICP, latestRun, previousRun, reviewed, approved, rejected, needsReviewDecision,
+    queue, highPriority, rawResults, duplicateCount, duplicateRate, finalDecisions, approvalRate, latestNew, newDelta,
+    stages, biggestDrop, dropReason, sourcePerformance, queryPerformance, reviewedToday, averageReviewMinutes, topRejections,
+    failedQueries, failedRuns, zeroQueries, runTrend, attention: attention.slice(0, 3), nextAction, learnings: learnings.slice(0, 3),
+    currentRuns, connectedSources, latestSuccessful, lastUpdated, isDemo,
+  };
+}
+
+function renderDashboardEmpty(model) {
+  const hasICP = Boolean(model.currentICP?.hypothesis);
+  $('#dashboard-empty').innerHTML = `<div class="empty-command-icon">◎</div><p class="eyebrow">${t("dashboard.eyebrow")}</p><h2>${t("dashboard.emptyTitle")}</h2><p>${t("dashboard.emptyText")}</p><ol><li>${t("dashboard.emptyStep1")}</li><li>${t("dashboard.emptyStep2")}</li><li>${t("dashboard.emptyStep3")}</li><li>${t("dashboard.emptyStep4")}</li></ol><div><button class="button primary" type="button" data-go="${hasICP ? "discover" : "icp"}">${hasICP ? t("dashboard.runDiscovery") : t("dashboard.startIcp")} →</button><button class="button secondary" type="button" data-go="discover">${t("dashboard.knownIcp")}</button></div>`;
+}
+
 function renderOverview() {
   const data = state.bootstrap;
   if (!data) return;
-  const overview = data.overview || {};
-  const pool = partnerPool();
-  const latest = data.latest_discovery || overview.latest_run;
-  const yieldValue = latest ? (latest.new_partner_yield ?? latest.new_creator_yield) : null;
-  const newCount = latest ? (latest.new_partners ?? latest.new_creators) : 0;
-  $('#latest-run-spotlight').innerHTML = latest
-    ? `<span>${t("overview.latest")}</span><strong>${formatPercent(yieldValue)}</strong><small>${t("run.yield")}</small><p>${t("overview.newRecords", { count: newCount })}</p>`
-    : `<span>${t("overview.latest")}</span><strong>—</strong><small>${t("overview.noRun")}</small><p>${t("overview.noRunText")}</p>`;
-  const priority = pool.priority_counts || {};
+  syncDashboardFilters();
+  const model = buildDashboardModel(data);
+  const current = model.currentICP?.hypothesis;
+  const hasData = model.allRuns.length > 0 || (data.creators || []).length > 0;
+  $('#dashboard-data-mode').className = `data-mode-badge ${model.isDemo ? "sample" : "workspace"}`;
+  $('#dashboard-data-mode').textContent = model.isDemo ? t("dashboard.sample") : t("dashboard.workspace");
+  const statusHasIssues = model.failedQueries.length > 0 || model.failedRuns.length > 0;
+  const currentStatus = model.currentICP?.selection?.status || current?.status || t("icp.testing");
+  $('#command-context').innerHTML = `<div class="command-context-grid"><div><span>${t("dashboard.currentIcp")}</span><strong>${escapeHtml(current?.name || t("dashboard.noIcp"))}</strong><small>${current ? `${escapeHtml(t("icp.version", { version: current.version }))} · ${escapeHtml(currentStatus)}` : t("dashboard.hypothesisNote")}</small></div><div><span>${t("dashboard.latestRun")}</span><strong>${model.latestRun ? escapeHtml(t("insights.historyItem", { index: model.allRuns.length })) : t("dashboard.noRun")}</strong><small>${model.latestRun ? escapeHtml(model.latestRun.status || "COMPLETED") : t("dashboard.noComparison")}</small></div><div><span>${t("dashboard.systemStatus")}</span><strong class="${statusHasIssues ? "attention" : "healthy"}">${statusHasIssues ? t("dashboard.attentionStatus") : t("dashboard.operational")}</strong><small>${model.failedQueries.length ? t("dashboard.failedQueries", { count: model.failedQueries.length }) : t("workspace.guardrail")}</small></div><div><span>${t("dashboard.lastUpdated")}</span><strong>${escapeHtml(relativeTime(model.lastUpdated))}</strong><small>${escapeHtml(formatDate(model.lastUpdated))}</small></div></div><div class="command-actions"><button class="button primary" type="button" data-go="${model.queue ? "partners" : "discover"}">${model.queue ? t("dashboard.reviewNow") : t("dashboard.runDiscovery")} →</button><button class="button mini" type="button" data-go="icp">${t("dashboard.viewIcp")}</button></div>`;
+  $('#dashboard-empty').hidden = hasData;
+  $('#dashboard-content').hidden = !hasData;
+  if (!hasData) { renderDashboardEmpty(model); return; }
+
   const metrics = [
-    [formatNumber(pool.total || 0), t("overview.partnerRecords"), t("overview.partnerRecordsNote"), "blue"],
-    [formatNumber(priority.P1 || 0), t("overview.p1"), t("overview.p1Note"), "pink"],
-    [formatNumber(priority["Needs Review"] || 0), t("overview.needsReview"), t("overview.needsReviewNote"), "purple"],
-    [formatNumber(pool.reviewed ?? overview.review_count ?? 0), t("overview.humanDecisions"), t("overview.humanDecisionsNote"), "green"],
-    [latest ? formatPercent(yieldValue) : "—", t("overview.latestYield"), t("overview.latestYieldNote"), latest && Number(yieldValue) > .35 ? "green" : "amber"],
+    { value: formatNumber(model.filteredCreators.length), label: t("dashboard.discovered"), note: t("dashboard.discoveredNote"), tone: "blue" },
+    { value: formatNumber(model.highPriority), label: t("dashboard.highPriority"), note: t("dashboard.highPriorityNote"), tone: "pink" },
+    { value: formatNumber(model.queue), label: t("dashboard.reviewQueue"), note: t("dashboard.reviewQueueNote"), tone: "purple" },
+    { value: formatNumber(model.approved.length), label: t("dashboard.approved"), note: t("dashboard.approvedNote"), tone: "green" },
+    { value: model.approvalRate == null ? t("dashboard.metricUnavailable") : formatPercent(model.approvalRate), label: t("dashboard.approvalRate"), note: model.approvalRate == null ? t("dashboard.insufficientReviews") : t("dashboard.approvalRateNote"), tone: model.approvalRate == null ? "amber" : "green" },
+    { value: formatNumber(model.latestNew), label: t("dashboard.newLatest"), note: t("dashboard.newLatestNote"), tone: "blue", delta: model.newDelta },
   ];
-  $('#overview-metrics').innerHTML = metrics.map(([value, label, note, tone]) => metricCard(value, label, note, tone)).join("");
+  $('#command-kpis').innerHTML = metrics.map(dashboardMetricCard).join("");
 
-  const currentICP = data.icp_workspace?.current;
-  $('#current-icp-overview').innerHTML = currentICP?.hypothesis
-    ? `<div class="campaign-summary-heading"><div><p class="section-kicker">${t("icp.currentKicker")}</p><h2>${escapeHtml(currentICP.hypothesis.name)} <small>${t("icp.version", { version: currentICP.hypothesis.version })}</small></h2></div><span class="icp-status">${t("icp.testing")}</span></div><p class="campaign-preservation">${escapeHtml(currentICP.hypothesis.who)}</p><div class="campaign-summary-chips">${(currentICP.hypothesis.intent_signals || []).slice(0, 3).map((item) => `<i>${escapeHtml(item)}</i>`).join("")}</div><button class="button mini" type="button" data-go="icp">${t("icp.viewWorkspace")} →</button>`
-    : `<div class="campaign-summary-heading"><div><p class="section-kicker">${t("icp.currentKicker")}</p><h2>${t("icp.noCurrent")}</h2></div><button class="button secondary" type="button" data-go="icp">${t("icp.start")} →</button></div><p class="campaign-preservation">${t("icp.noCurrentText")}</p>`;
+  const maxStage = Math.max(1, ...model.stages.map((stage) => stage.count));
+  $('#dashboard-funnel').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("dashboard.pipelineKicker")}</p><h2>${t("dashboard.funnelTitle")}</h2></div></div><div class="honest-funnel">${model.stages.map((stage, index) => `<div class="funnel-stage stage-${stage.key}"><div class="funnel-label"><span>${escapeHtml(stage.label)}</span><strong>${formatNumber(stage.count)}</strong></div><div class="funnel-track"><i style="width:${Math.max(stage.count ? 5 : 0, stage.count / maxStage * 100)}%"></i></div>${index ? `<small>${stage.conversion == null ? t("dashboard.noStageData") : t("dashboard.ofPrevious", { value: formatPercent(stage.conversion) })}</small>` : ""}</div>`).join("")}</div><div class="dropoff-callout"><span>↓</span><div><small>${t("dashboard.biggestDrop")}</small><strong>${model.biggestDrop?.count ? `${escapeHtml(model.biggestDrop.from.label)} → ${escapeHtml(model.biggestDrop.to.label)} · ${formatNumber(model.biggestDrop.count)}` : t("dashboard.noDrop")}</strong><p>${escapeHtml(model.dropReason)}</p></div></div>`;
 
-  const definition = state.workflow?.campaign_parse?.definition;
-  const brief = state.workflow?.original_brief || $('#campaign-brief')?.value.trim();
-  $('#current-campaign').innerHTML = `<div class="campaign-summary-heading"><div><p class="section-kicker">${t("campaign.current")}</p><h2>${definition ? escapeHtml(definition.goal) : t("campaign.ready")}</h2></div><button class="button secondary" type="button" data-go="discover">${t("overview.openDiscover")} →</button></div><p class="campaign-preservation">${t("campaign.currentNote")}</p><blockquote><span>${t("campaign.original")}</span>${escapeHtml(brief || t("campaign.notGenerated"))}</blockquote>${definition ? `<div class="campaign-summary-chips">${[...(definition.target_markets || []), ...(definition.content_themes || [])].map((item) => `<i>${escapeHtml(item)}</i>`).join("")}</div>` : ""}`;
+  $('#dashboard-attention').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("dashboard.attentionTitle")}</p><h2>${t("dashboard.attentionTitle")}</h2></div><span class="attention-count">${model.attention.length}</span></div><div class="attention-list">${model.attention.length ? model.attention.map((item) => `<article><strong>${escapeHtml(item.title)}</strong><span>${t("dashboard.whyMatters")}</span><p>${escapeHtml(item.why)}</p><button class="button mini" type="button" data-go="${item.page}">${escapeHtml(item.action)} →</button></article>`).join("") : `<div class="quiet-state"><span>✓</span><p>${t("dashboard.noAttention")}</p></div>`}</div>`;
 
-  $('#priority-overview').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("overview.decisionQueue")}</p><h2>${t("overview.decisionQueueTitle")}</h2></div></div><div class="priority-bars">${["P1", "P2", "P3", "Needs Review"].map((key) => `<div><span>${escapeHtml(priorityLabel(key))}</span><div><i class="bar-${key.replace(" ", "-").toLowerCase()}" style="width:${pool.total ? Math.max(4, ((priority[key] || 0) / pool.total) * 100) : 0}%"></i></div><b>${formatNumber(priority[key] || 0)}</b></div>`).join("")}</div>`;
+  $('#dashboard-current-icp').innerHTML = current
+    ? `<div class="icp-command-heading"><div><p class="section-kicker">${t("dashboard.currentIcpKicker")}</p><h2>${escapeHtml(current.name)}</h2><span>${escapeHtml(t("icp.version", { version: current.version }))} · ${escapeHtml(currentStatus)}</span></div><p>${t("dashboard.hypothesisNote")}</p></div><div class="icp-command-grid"><div><span>${t("dashboard.who")}</span><p>${escapeHtml(current.who)}</p></div><div><span>${t("dashboard.corePain")}</span><p>${escapeHtml(current.core_pain)}</p></div><div><span>${t("dashboard.keySignals")}</span><div class="campaign-summary-chips">${(current.intent_signals || []).slice(0, 4).map((item) => `<i>${escapeHtml(item)}</i>`).join("")}</div></div><div><span>${t("dashboard.testPriority")}</span><p>${escapeHtml(current.test_priority_reason)}</p></div><div class="icp-run-proof"><span>${t("dashboard.discoveryRuns")}</span><strong>${formatNumber(model.currentRuns.length)}</strong><small>${model.currentRuns.length ? formatDate(model.currentRuns[0].completed_at) : t("dashboard.noLinkedRuns")}</small></div></div><div class="icp-command-actions"><button class="button mini" type="button" data-go="icp">${t("dashboard.viewIcp")}</button><button class="button primary" type="button" data-go="discover">${t("dashboard.runDiscovery")} →</button></div>`
+    : `<div class="quiet-state icp-quiet"><span>◎</span><div><h2>${t("icp.noCurrent")}</h2><p>${t("icp.noCurrentText")}</p><button class="button mini" type="button" data-go="icp">${t("dashboard.startIcp")} →</button></div></div>`;
 
-  const rows = channelRows();
-  $('#channel-overview').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("overview.channelReadiness")}</p><h2>${t("overview.channelReadinessTitle")}</h2></div></div><p class="panel-note">${t("overview.channelNote")}</p><div class="provider-list"><div><span class="provider-symbol controlled">${CHANNEL_SVG.controlled}</span><strong>${t("channel.controlled")}</strong><i class="healthy">${t("overview.ready")}</i></div>${rows.map((row) => `<div><span class="provider-symbol">${channelIcon(row.channel)}</span><strong>${escapeHtml(row.label || channelLabel(row.channel))}</strong><i class="${row.configured ? "healthy" : "muted"}">${row.configured ? t("overview.configured") : t("overview.notConfigured")}</i></div>`).join("")}</div><button class="button mini" type="button" data-go="sources">${t("nav.sources")} →</button>`;
+  $('#dashboard-source-performance').innerHTML = `<div class="table-panel-heading"><div><p class="section-kicker">${t("dashboard.sourcePerformance")}</p><h3>${t("dashboard.sourcePerformance")}</h3></div><span>${t("dashboard.qualityNote")}</span></div>${model.sourcePerformance.length ? `<div class="command-table-scroll"><table class="command-table"><thead><tr><th>${t("dashboard.channel")}</th><th>${t("dashboard.raw")}</th><th>${t("dashboard.new")}</th><th>${t("dashboard.freshYield")}</th><th>${t("dashboard.highPriorityShort")}</th><th>${t("dashboard.finalDecisions")}</th><th>${t("dashboard.approvalRate")}</th><th>${t("dashboard.errors")}</th></tr></thead><tbody>${model.sourcePerformance.map((row) => `<tr><td><span class="table-channel">${channelIcon(row.channel)}<b>${escapeHtml(channelLabel(row.channel))}</b></span></td><td>${formatNumber(row.retrieved)}</td><td>${formatNumber(row.fresh)}</td><td><span class="yield-cell ${row.yield != null && row.yield < .2 ? "low" : ""}"><i style="width:${(row.yield || 0) * 100}%"></i><b>${row.yield == null ? "—" : formatPercent(row.yield)}</b></span></td><td>${formatNumber(row.highPriority)}</td><td>${formatNumber(row.finalDecisions)}</td><td>${row.approvalRate == null ? `<span class="unavailable-cell">—</span>` : formatPercent(row.approvalRate)}</td><td>${formatNumber(row.errors)}</td></tr>`).join("")}</tbody></table></div>` : `<div class="table-empty">${t("dashboard.noSourceEvidence")}</div>`}`;
+
+  $('#dashboard-query-performance').innerHTML = `<div class="table-panel-heading"><div><p class="section-kicker">${t("dashboard.queryPerformance")}</p><h3>${t("dashboard.queryPerformance")}</h3></div><button class="button mini" type="button" data-go="insights">${t("dashboard.evidence")} →</button></div>${model.queryPerformance.length ? `<div class="command-table-scroll"><table class="command-table query-table"><thead><tr><th>${t("dashboard.query")}</th><th>${t("dashboard.angle")}</th><th>${t("dashboard.raw")}</th><th>${t("dashboard.new")}</th><th>${t("dashboard.freshYield")}</th><th>${t("dashboard.highPriorityShort")}</th><th>${t("dashboard.approvalRate")}</th></tr></thead><tbody>${model.queryPerformance.map((row) => `<tr><td><div class="query-cell">${channelIcon(row.platform)}<span><b>${escapeHtml(row.query_text)}</b><small>${escapeHtml(channelLabel(row.platform))}</small></span></div></td><td>${escapeHtml(t(`angle.${row.search_angle}`) === `angle.${row.search_angle}` ? humanize(row.search_angle) : t(`angle.${row.search_angle}`))}</td><td>${formatNumber(row.retrieved)}</td><td>${formatNumber(row.new_creators)}</td><td>${row.new_creator_yield == null ? "—" : formatPercent(row.new_creator_yield)}</td><td>${formatNumber(row.highPriority)}</td><td>${row.approvalRate == null ? `<span class="unavailable-cell">—</span>` : formatPercent(row.approvalRate)}</td></tr>`).join("")}</tbody></table></div>` : `<div class="table-empty">${t("dashboard.noSourceEvidence")}</div>`}`;
+
+  $('#dashboard-human-review').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("dashboard.humanKicker")}</p><h2>${t("dashboard.humanTitle")}</h2></div><button class="button mini" type="button" data-go="partners">${t("dashboard.reviewNow")} →</button></div><div class="review-ops-grid"><div><span>${t("dashboard.pending")}</span><strong>${formatNumber(model.queue)}</strong></div><div><span>${t("dashboard.reviewedToday")}</span><strong>${formatNumber(model.reviewedToday)}</strong></div><div><span>${t("dashboard.approved")}</span><strong class="good">${formatNumber(model.approved.length)}</strong></div><div><span>${t("dashboard.rejected")}</span><strong class="danger">${formatNumber(model.rejected.length)}</strong></div><div><span>${t("dashboard.needsReview")}</span><strong class="purple">${formatNumber(model.needsReviewDecision.length)}</strong></div><div><span>${t("dashboard.timeToReview")}</span><strong>${model.averageReviewMinutes == null ? "—" : `${formatNumber(model.averageReviewMinutes)}m`}</strong><small>${t("dashboard.notDuration")}</small></div></div><div class="reason-list"><strong>${t("dashboard.topRejections")}</strong>${model.topRejections.length ? model.topRejections.slice(0, 3).map(([reason, count]) => `<span><i>${escapeHtml(reason)}</i><b>${formatNumber(count)}</b></span>`).join("") : `<p>${t("dashboard.noRejections")}</p>`}</div>`;
+
+  $('#dashboard-system-health').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("dashboard.healthKicker")}</p><h2>${t("dashboard.healthTitle")}</h2></div><button class="button mini" type="button" data-go="sources">${t("nav.sources")} →</button></div><dl class="health-list"><div><dt>${t("dashboard.sourcesConnected")}</dt><dd>${formatNumber(model.connectedSources)} / ${CHANNELS.length}</dd></div><div><dt>${t("dashboard.apiErrors")}</dt><dd class="${model.failedQueries.length ? "danger" : "good"}">${formatNumber(model.failedQueries.length)}</dd></div><div><dt>${t("dashboard.failedRuns")}</dt><dd class="${model.failedRuns.length ? "danger" : "good"}">${formatNumber(model.failedRuns.length)}</dd></div><div><dt>${t("dashboard.llmErrors")}</dt><dd class="muted">${t("dashboard.notTracked")}</dd></div><div><dt>${t("dashboard.dbErrors")}</dt><dd class="muted">${t("dashboard.notTracked")}</dd></div><div><dt>${t("dashboard.duplicateRate")}</dt><dd>${model.duplicateRate == null ? "—" : formatPercent(model.duplicateRate)}</dd></div><div><dt>${t("dashboard.lastSuccess")}</dt><dd>${model.latestSuccessful ? escapeHtml(relativeTime(model.latestSuccessful.completed_at)) : "—"}</dd></div></dl>${model.isDemo ? `<p class="demo-truth">${t("dashboard.demoNotice")}</p>` : ""}`;
+
+  const trendWithEvidence = model.runTrend.filter((point) => point.approvalRate != null);
+  $('#dashboard-trend').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("dashboard.trendKicker")}</p><h2>${t("dashboard.trendTitle")}</h2></div></div>${trendWithEvidence.length ? `<div class="approval-trend">${trendWithEvidence.map((point, index) => `<div><span>${escapeHtml(t("insights.historyItem", { index: index + 1 }))}</span><div><i style="height:${Math.max(4, point.approvalRate * 100)}%"></i></div><strong>${formatPercent(point.approvalRate)}</strong></div>`).join("")}</div>${trendWithEvidence.length < 2 ? `<p class="trend-note">${t("dashboard.trendNeedMore")}</p>` : ""}` : `<div class="quiet-state"><span>↗</span><p>${t("dashboard.trendEmpty")}</p></div>`}`;
+
+  $('#dashboard-recent-runs').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("dashboard.runsKicker")}</p><h2>${t("dashboard.runsTitle")}</h2></div><button class="button mini" type="button" data-go="insights">${t("dashboard.openRuns")} →</button></div><div class="recent-run-list">${model.filteredRuns.slice(0, 5).map((run, index) => `<article><div><strong>${escapeHtml(t("insights.historyItem", { index: model.filteredRuns.length - index }))}</strong><span class="run-status ${run.status === "COMPLETED" ? "good" : "danger"}">${escapeHtml(run.status || "COMPLETED")}</span></div><dl><div><dt>${t("dashboard.started")}</dt><dd>${escapeHtml(formatDate(run.started_at))}</dd></div><div><dt>${t("dashboard.duration")}</dt><dd>${escapeHtml(durationLabel(run.started_at, run.completed_at))}</dd></div><div><dt>${t("dashboard.raw")}</dt><dd>${formatNumber(run.retrieved)}</dd></div><div><dt>${t("dashboard.new")}</dt><dd>${formatNumber(run.new_creators)}</dd></div></dl><details><summary>${t("insights.technical")}</summary><code>${escapeHtml(run.run_id)}</code></details></article>`).join("")}</div>`;
+
+  $('#dashboard-learnings').innerHTML = `<div class="panel-heading"><div><p class="section-kicker">${t("dashboard.learningsKicker")}</p><h2>${t("dashboard.learningsTitle")}</h2></div></div><div class="learning-list">${model.learnings.length ? model.learnings.map((learning) => `<article><span>↗</span><p>${escapeHtml(learning.text)}</p><button type="button" data-go="${learning.page}">${t("dashboard.evidence")} →</button></article>`).join("") : `<div class="quiet-state"><span>◎</span><p>${t("dashboard.noLearnings")}</p></div>`}</div>`;
+  $('#dashboard-next-action').innerHTML = `<p class="section-kicker">${t("dashboard.nextKicker")}</p><h2>${t("dashboard.nextTitle")}</h2><strong>${escapeHtml(model.nextAction.title)}</strong><p>${model.nextAction.page === "partners" ? t("dashboard.pendingWhy") : model.nextAction.page === "insights" ? t("dashboard.failedWhy") : t("dashboard.untestedWhy")}</p><button class="button primary" type="button" data-go="${model.nextAction.page}">${escapeHtml(model.nextAction.action)} →</button>`;
 }
 
 /* ---- partners ------------------------------------------------------------- */
@@ -1006,6 +1226,8 @@ function bindEvents() {
   $$('input[name="discovery-mode"]').forEach((input) => input.addEventListener("change", () => { $$('.mode-card').forEach((card) => card.classList.toggle("selected", $('input', card).checked)); const live = input.value === "live" && input.checked; $('#live-confirmation').hidden = !live; if (!live) $('#confirm-live').checked = false; updateReviewState(); }));
   $('#confirm-live').addEventListener("change", updateReviewState);
   ['creator-search', 'platform-filter', 'type-filter', 'priority-filter', 'review-filter'].forEach((id) => $(`#${id}`)?.addEventListener(id === 'creator-search' ? 'input' : 'change', renderPartners));
+  ['date', 'icp', 'source', 'run'].forEach((key) => $(`#dashboard-${key}-filter`)?.addEventListener('change', (event) => { state.dashboardFilters[key] = event.target.value; renderOverview(); }));
+  $('#dashboard-filter-reset')?.addEventListener('click', () => { state.dashboardFilters = { date: '30', icp: 'all', source: 'all', run: 'all' }; renderOverview(); });
   $('#close-dialog').addEventListener("click", () => $('#creator-dialog').close());
   $('#creator-dialog').addEventListener("click", (event) => { if (event.target === $('#creator-dialog')) $('#creator-dialog').close(); });
   $('#detail-content').addEventListener("submit", (event) => { if (event.target.id === "review-form") submitReview(event); });

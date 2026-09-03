@@ -165,27 +165,59 @@
         </section>
 
         <section class="page" id="page-overview" aria-labelledby="overview-title">
-          <header class="overview-hero operational-surface">
-            <div>
-              <p class="eyebrow" data-i18n="overview.eyebrow">Partner operating system</p>
-              <h1 id="overview-title"><span class="gradient-text" data-i18n="overview.titleAccent">Evidence-first</span> <span data-i18n="overview.title">partner discovery, ready for human judgment.</span></h1>
-              <p class="lede" data-i18n="overview.lede">Move from a campaign idea to reviewed partner evidence without hiding the source, the query, or the decision.</p>
-              <button class="button primary overview-start" type="button" data-go="discover"><span data-i18n="overview.start">Start a Discovery</span><span aria-hidden="true">→</span></button>
+          <header class="command-header operational-surface">
+            <div class="command-title">
+              <div class="command-title-row">
+                <p class="eyebrow" data-i18n="dashboard.eyebrow">Growth operations</p>
+                <span class="data-mode-badge" id="dashboard-data-mode"></span>
+              </div>
+              <h1 id="overview-title" data-i18n="dashboard.title">Growth Command Center</h1>
+              <p class="lede" data-i18n="dashboard.lede">See who is being tested, where evidence is moving, and what needs a human decision.</p>
             </div>
-            <div class="latest-run-spotlight" id="latest-run-spotlight"></div>
+            <div class="command-context" id="command-context"></div>
           </header>
 
-          <section class="overview-section">
-            <div class="section-heading compact"><div><p class="section-kicker" data-i18n="overview.pulse">Workspace Pulse</p><h2 data-i18n="overview.pulseTitle">What the system knows now</h2></div></div>
-            <div class="metric-grid" id="overview-metrics"></div>
-          </section>
+          <section class="dashboard-empty operational-surface" id="dashboard-empty" hidden></section>
 
-          <section class="current-icp-overview operational-surface" id="current-icp-overview"></section>
-          <section class="current-campaign operational-surface" id="current-campaign"></section>
-          <section class="overview-grid">
-            <article class="surface-panel" id="priority-overview"></article>
-            <article class="surface-panel" id="channel-overview"></article>
-          </section>
+          <div id="dashboard-content" hidden>
+            <section class="dashboard-filterbar operational-surface" aria-label="Dashboard filters">
+              <label><span data-i18n="dashboard.filterDate">Date range</span><select id="dashboard-date-filter"><option value="30" data-i18n="dashboard.last30">Last 30 days</option><option value="7" data-i18n="dashboard.last7">Last 7 days</option><option value="all" data-i18n="dashboard.allTime">All available data</option></select></label>
+              <label><span data-i18n="dashboard.filterIcp">ICP</span><select id="dashboard-icp-filter"></select></label>
+              <label><span data-i18n="dashboard.filterSource">Channel</span><select id="dashboard-source-filter"></select></label>
+              <label><span data-i18n="dashboard.filterRun">Run</span><select id="dashboard-run-filter"></select></label>
+              <button class="filter-reset" id="dashboard-filter-reset" type="button" data-i18n="dashboard.reset">Reset</button>
+            </section>
+
+            <section class="command-kpis" id="command-kpis" aria-label="Growth operations metrics"></section>
+
+            <section class="command-primary-grid">
+              <article class="command-panel funnel-panel" id="dashboard-funnel"></article>
+              <aside class="command-panel attention-panel" id="dashboard-attention"></aside>
+            </section>
+
+            <section class="command-panel current-icp-command" id="dashboard-current-icp"></section>
+
+            <section class="command-section">
+              <div class="command-section-heading"><div><p class="section-kicker" data-i18n="dashboard.qualityKicker">Discovery quality</p><h2 data-i18n="dashboard.sourceTitle">Which directions produce useful candidates?</h2></div><p data-i18n="dashboard.qualityNote">Discovery evidence, not customer conversion.</p></div>
+              <article class="command-panel table-panel" id="dashboard-source-performance"></article>
+              <article class="command-panel table-panel" id="dashboard-query-performance"></article>
+            </section>
+
+            <section class="command-dual-grid">
+              <article class="command-panel" id="dashboard-human-review"></article>
+              <article class="command-panel" id="dashboard-system-health"></article>
+            </section>
+
+            <section class="command-dual-grid trend-run-grid">
+              <article class="command-panel" id="dashboard-trend"></article>
+              <article class="command-panel" id="dashboard-recent-runs"></article>
+            </section>
+
+            <section class="command-dual-grid closing-grid">
+              <article class="command-panel" id="dashboard-learnings"></article>
+              <article class="next-action-panel" id="dashboard-next-action"></article>
+            </section>
+          </div>
         </section>
 
         <section class="page" id="page-icp" aria-labelledby="icp-title">
