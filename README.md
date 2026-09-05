@@ -296,6 +296,11 @@ Controlled Demo is the default and requires no credentials. Live retrieval is vi
 separate and requires an explicit checkbox before the UI can call the configured
 external providers.
 
+Controlled Demo partner names, handles, profile URLs, and content are synthetic. The UI
+therefore labels them as **Sample records** and does not expose their intentionally
+nonexistent social URLs as clickable profiles. Records produced by configured live
+providers continue to show their source-observed external profile link.
+
 ### Hosted portfolio demo
 
 The deployed Sites version reuses the same browser interface and runs the deterministic
