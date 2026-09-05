@@ -35,7 +35,7 @@ const TRANSLATIONS = {
     "signalField.activity": "Activity", "signalField.relevance": "Relevance", "signalField.content_relevance": "Relevance", "signalField.audience": "Audience", "signalField.audience_size": "Audience", "signalField.market": "Market", "signalField.actionability": "Actionability", "signalField.record_quality": "Record quality",
     "signalValue.high": "High", "signalValue.moderate": "Moderate", "signalValue.low": "Low", "signalValue.target": "Target", "signalValue.outside": "Outside target", "signalValue.available": "Available", "signalValue.missing": "Not observed", "signalValue.unavailable": "Unavailable", "signalValue.usable": "Usable", "signalValue.insufficient": "Insufficient", "signalValue.incomplete": "Incomplete", "signalValue.conflicting": "Conflicting", "signalValue.spam": "Spam signals", "signalValue.small": "Small", "signalValue.medium": "Medium", "signalValue.large": "Large", "signalValue.unknown": "Unknown",
     "executionStatus.SUCCESS_WITH_RESULTS": "Success with results", "executionStatus.SUCCESS_ZERO_RESULTS": "Successful zero results", "executionStatus.FAILED": "Failed", "executionStatus.SKIPPED_NOT_CONFIGURED": "Skipped · not configured",
-    "partner.market": "Market", "partner.followers": "Audience", "partner.channel": "Channel", "partner.type": "Partner type", "partner.activity": "Activity", "partner.relevance": "Relevance", "partner.audience": "Likely audience", "partner.viewEvidence": "View Evidence", "partner.review": "Review", "partner.openProfile": "Open Profile", "partner.demoRecord": "Sample record", "partner.demoProfileNote": "Controlled Demo records are synthetic, so no external social profile exists.", "partner.profileUnavailable": "Profile unavailable", "partner.audienceUnknown": "Audience unclear", "partner.contactAvailable": "Contact Available",
+    "partner.market": "Market", "partner.followers": "Audience", "partner.channel": "Channel", "partner.type": "Partner type", "partner.activity": "Activity", "partner.relevance": "Relevance", "partner.audience": "Likely audience", "partner.viewEvidence": "View Evidence", "partner.review": "Review", "partner.openProfile": "Open Profile", "partner.demoRecord": "Controlled Demo sample", "partner.demoProfileNote": "This opens a verified public profile for reference only. The sample metrics, signals, and decisions do not describe that person or organization.", "partner.demoPublicExample": "Open public example", "partner.demoReferenceFor": "Public reference: {name}", "partner.demoNoReference": "Intentional synthetic test case", "partner.profileUnavailable": "Profile unavailable", "partner.audienceUnknown": "Audience unclear", "partner.contactAvailable": "Contact Available",
     "detail.title": "Partner Evidence", "detail.close": "Close partner evidence", "detail.loading": "Loading partner evidence…",
     "detail.whyPriority": "WHY THIS PRIORITY?", "detail.keySignals": "KEY SIGNALS", "detail.aiAudienceTitle": "AI AUDIENCE", "detail.likelyAudience": "Likely Audience", "detail.confidence": "Confidence", "detail.whyAi": "Why? View AI evidence", "detail.hideAi": "Hide AI evidence", "detail.viewEvidence": "View evidence", "detail.hideEvidence": "Hide evidence", "detail.observedContent": "OBSERVED CONTENT", "detail.showMore": "Show more", "detail.showLess": "Show less", "detail.noEvidence": "No stored evidence for this signal.",
     "detail.observed": "Observed Facts", "detail.observedDesc": "What the source actually returned.", "detail.sourceObserved": "Source-observed", "detail.platform": "Channel", "detail.followers": "Audience", "detail.retrieved": "Retrieved", "detail.mode": "Discovery mode", "detail.bioEmpty": "No bio was returned.", "detail.samplesEmpty": "No content samples were returned.", "detail.dateUnknown": "Date not observed", "detail.query": "Source query", "detail.angle": "Search angle", "detail.connector": "Source connector", "detail.runId": "Run ID", "detail.provenance": "Provenance", "detail.derived": "Derived Signals", "detail.derivedDesc": "Deterministic interpretation of observed evidence.", "detail.systemDerived": "System-derived", "detail.ai": "AI Inference", "detail.aiDesc": "Audience hypothesis, kept separate from facts.", "detail.aiDerived": "AI-derived", "detail.modelUnavailable": "Model unavailable", "detail.audienceUnclear": "Audience remains unclear", "detail.human": "Human Decision", "detail.humanDesc": "The decision that controls operational use.", "detail.humanOwned": "Human-owned", "detail.decision": "Decision", "detail.reason": "Structured reason", "detail.reasonNone": "No structured reason", "detail.comment": "Optional comment", "detail.commentPlaceholder": "Add the context the system cannot know…", "detail.lastDecision": "Latest saved decision", "detail.noDecision": "No human decision stored yet.", "detail.save": "Save Decision", "detail.saved": "Human decision saved.", "detail.reasonStrong": "Strong evidence fit", "detail.reasonFollowup": "Needs evidence follow-up", "detail.reasonOut": "Outside campaign fit", "detail.contentSamples": "Content evidence", "detail.noSignals": "No derived signals are stored for this record.", "detail.fullEvidence": "Full evidence & provenance", "detail.fullEvidenceNote": "Every stored fact behind this partner, kept for traceability.",
@@ -77,7 +77,7 @@ const TRANSLATIONS = {
     "signalField.activity": "活跃度", "signalField.relevance": "相关度", "signalField.content_relevance": "相关度", "signalField.audience": "受众", "signalField.audience_size": "受众", "signalField.market": "市场", "signalField.actionability": "可行动性", "signalField.record_quality": "记录质量",
     "signalValue.high": "高", "signalValue.moderate": "中等", "signalValue.low": "低", "signalValue.target": "目标市场", "signalValue.outside": "目标市场外", "signalValue.available": "可用", "signalValue.missing": "未观察到", "signalValue.unavailable": "不可用", "signalValue.usable": "可用", "signalValue.insufficient": "证据不足", "signalValue.incomplete": "不完整", "signalValue.conflicting": "冲突", "signalValue.spam": "疑似垃圾信号", "signalValue.small": "小", "signalValue.medium": "中", "signalValue.large": "大", "signalValue.unknown": "未知",
     "executionStatus.SUCCESS_WITH_RESULTS": "成功返回结果", "executionStatus.SUCCESS_ZERO_RESULTS": "成功但无结果", "executionStatus.FAILED": "失败", "executionStatus.SKIPPED_NOT_CONFIGURED": "已跳过 · 未配置",
-    "partner.market": "市场", "partner.followers": "受众规模", "partner.channel": "渠道", "partner.type": "合作类型", "partner.activity": "活跃度", "partner.relevance": "相关度", "partner.audience": "可能受众", "partner.viewEvidence": "查看证据", "partner.review": "审核", "partner.openProfile": "打开主页", "partner.demoRecord": "样本记录", "partner.demoProfileNote": "Controlled Demo 使用合成数据，因此不存在可打开的外部社媒主页。", "partner.profileUnavailable": "主页不可用", "partner.audienceUnknown": "受众不明确", "partner.contactAvailable": "可联系",
+    "partner.market": "市场", "partner.followers": "受众规模", "partner.channel": "渠道", "partner.type": "合作类型", "partner.activity": "活跃度", "partner.relevance": "相关度", "partner.audience": "可能受众", "partner.viewEvidence": "查看证据", "partner.review": "审核", "partner.openProfile": "打开主页", "partner.demoRecord": "Controlled Demo 样本", "partner.demoProfileNote": "这里打开的是经过验证的公开主页，仅供参考。样本指标、信号和判断并不描述该真人或机构。", "partner.demoPublicExample": "打开公开参考账号", "partner.demoReferenceFor": "公开参考：{name}", "partner.demoNoReference": "特意保留的合成测试案例", "partner.profileUnavailable": "主页不可用", "partner.audienceUnknown": "受众不明确", "partner.contactAvailable": "可联系",
     "detail.title": "合作对象证据", "detail.close": "关闭合作对象证据", "detail.loading": "正在加载合作对象证据…",
     "detail.whyPriority": "为什么是这个优先级？", "detail.keySignals": "关键信号", "detail.aiAudienceTitle": "AI 受众推断", "detail.likelyAudience": "可能受众", "detail.confidence": "置信度", "detail.whyAi": "为什么？查看 AI 证据", "detail.hideAi": "收起 AI 证据", "detail.viewEvidence": "查看证据", "detail.hideEvidence": "收起证据", "detail.observedContent": "已观察内容", "detail.showMore": "显示更多", "detail.showLess": "收起", "detail.noEvidence": "该信号没有已存储的证据。",
     "detail.observed": "已观察事实", "detail.observedDesc": "来源实际返回的内容。", "detail.sourceObserved": "来源观察", "detail.platform": "渠道", "detail.followers": "受众规模", "detail.retrieved": "检索时间", "detail.mode": "发现模式", "detail.bioEmpty": "来源未返回简介。", "detail.samplesEmpty": "来源未返回内容样本。", "detail.dateUnknown": "未观察到日期", "detail.query": "来源查询", "detail.angle": "搜索角度", "detail.connector": "来源连接器", "detail.runId": "运行 ID", "detail.provenance": "来源溯源", "detail.derived": "衍生信号", "detail.derivedDesc": "对已观察证据的确定性解释。", "detail.systemDerived": "系统衍生", "detail.ai": "AI 推断", "detail.aiDesc": "受众假设，与事实分开保存。", "detail.aiDerived": "AI 衍生", "detail.modelUnavailable": "模型不可用", "detail.audienceUnclear": "受众仍不明确", "detail.human": "人工判断", "detail.humanDesc": "控制后续运营使用的决定。", "detail.humanOwned": "人工所有", "detail.decision": "决定", "detail.reason": "结构化原因", "detail.reasonNone": "无结构化原因", "detail.comment": "可选备注", "detail.commentPlaceholder": "补充系统无法知道的背景…", "detail.lastDecision": "最近保存的决定", "detail.noDecision": "尚未存储人工决定。", "detail.save": "保存决定", "detail.saved": "人工决定已保存。", "detail.reasonStrong": "证据匹配强", "detail.reasonFollowup": "需要补充证据", "detail.reasonOut": "不符合 Campaign", "detail.contentSamples": "内容证据", "detail.noSignals": "这条记录尚未存储衍生信号。", "detail.fullEvidence": "完整证据与溯源", "detail.fullEvidenceNote": "这个合作对象背后的每一条已存储事实，保留用于追溯。",
@@ -122,6 +122,22 @@ const CHANNEL_SVG = {
   web: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9h17M3.5 15h17" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>',
   controlled: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 2.3L6 8.7v6.6l6 3.4 6-3.4V8.7l-6-3.4Z"/></svg>',
 };
+
+// Controlled Demo records remain synthetic. These verified public profiles are
+// reference destinations only, so the UI never presents sample metrics as facts
+// about a real person or organization. The spam-quality test deliberately has no
+// public reference.
+const CONTROLLED_DEMO_PUBLIC_REFERENCES = Object.freeze({
+  "instagram:demo_astra_canvas_9f2a": { name: "Jesse Showalter", url: "https://www.instagram.com/imjesseshow/" },
+  "x:demo_pixel_workshop_3c8b": { name: "Jesse Showalter", url: "https://x.com/imjesseshow" },
+  "instagram:demo_trend_mammoth_7a4d": { name: "Abduzeedo", url: "https://www.instagram.com/abduzeedo/" },
+  "x:demo_tiny_canvas_5e1c": { name: "Charli Marie", url: "https://x.com/charliprangley" },
+  "instagram:demo_archive_craft_8b6f": { name: "Femke", url: "https://www.instagram.com/femkedotdesign/" },
+  "x:demo_sao_bright_2d9e": { name: "Mizko", url: "https://x.com/mizko" },
+  "x:demo_foggy_evidence_4f0a": { name: "Ran Segall", url: "https://x.com/ransegall" },
+  "instagram:demo_dual_maker_1a7e": { name: "Dann Petty", url: "https://www.instagram.com/dannpetty/" },
+  "x:demo_dual_maker_1a7e": { name: "Dann Petty", url: "https://x.com/DannPetty" },
+});
 
 const channelLabel = (channel) => t(`channel.${channel}`) === `channel.${channel}` ? humanize(channel) : t(`channel.${channel}`);
 const partnerTypeLabel = (type) => t(`partnerType.${type}`) === `partnerType.${type}` ? humanize(type) : t(`partnerType.${type}`);
@@ -924,13 +940,26 @@ function isControlledDemoRecord(record) {
   return mode.includes("controlled") || connector.includes("controlled_fixture") || record?.partner_type_confidence === "demo";
 }
 
+function controlledDemoReference(record) {
+  if (!record?.profile_url || !record?.platform) return null;
+  try {
+    const handle = new URL(record.profile_url).pathname.split("/").filter(Boolean).at(-1)?.toLowerCase();
+    return handle ? CONTROLLED_DEMO_PUBLIC_REFERENCES[`${String(record.platform).toLowerCase()}:${handle}`] || null : null;
+  } catch {
+    return null;
+  }
+}
+
 function profileAction(record, detail = false) {
   if (isControlledDemoRecord(record)) {
-    if (detail) return `<div class="demo-profile-note detail" role="note"><strong>${t("partner.demoRecord")}</strong><span>${t("partner.demoProfileNote")}</span></div>`;
-    return `<span class="demo-profile-note" role="note" title="${escapeHtml(t("partner.demoProfileNote"))}">◇ ${t("partner.demoRecord")}</span>`;
+    const reference = controlledDemoReference(record);
+    if (!reference) return `<span class="demo-profile-note" role="note" title="${escapeHtml(t("partner.demoNoReference"))}">◇ ${t("partner.demoNoReference")}</span>`;
+    const label = t("partner.demoReferenceFor", { name: reference.name });
+    if (detail) return `<div class="demo-profile-reference" role="note"><div class="demo-profile-note detail"><strong>${escapeHtml(label)}</strong><span>${escapeHtml(t("partner.demoProfileNote"))}</span></div><a class="button mini profile-link" href="${escapeHtml(reference.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(`${t("partner.demoPublicExample")}: ${reference.name}`)}">${t("partner.demoPublicExample")} ↗</a></div>`;
+    return `<a class="button mini profile-link demo-public-reference" href="${escapeHtml(reference.url)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(`${label}. ${t("partner.demoProfileNote")}`)}" aria-label="${escapeHtml(`${t("partner.demoPublicExample")}: ${reference.name}`)}">${t("partner.demoPublicExample")} ↗</a>`;
   }
   if (!record?.profile_url) return `<span class="demo-profile-note unavailable" role="note">${t("partner.profileUnavailable")}</span>`;
-  return `<a class="button mini profile-link" href="${escapeHtml(record.profile_url)}" target="_blank" rel="noreferrer">${t("partner.openProfile")} ↗</a>`;
+  return `<a class="button mini profile-link" href="${escapeHtml(record.profile_url)}" target="_blank" rel="noopener noreferrer">${t("partner.openProfile")} ↗</a>`;
 }
 
 function syncTypeFilterOptions() {

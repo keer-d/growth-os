@@ -360,6 +360,7 @@ textarea:focus, input:focus, select:focus { border-color: var(--g-blue); box-sha
   color: var(--accent); box-shadow: inset 0 0 0 1px var(--rule); }
 .button.mini:hover { transform: translateY(-1px); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent-line); }
 .profile-link { color: var(--body) !important; }
+.demo-public-reference { color: var(--accent) !important; background:color-mix(in srgb,var(--g-blue) 7%,transparent) !important; }
 .demo-profile-note { display:inline-flex; align-items:center; min-height:30px; padding:0 12px; border-radius:100px;
   background:color-mix(in srgb,var(--g-yellow) 13%,var(--surface-2)); color:var(--gold);
   box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--g-yellow) 28%,var(--rule));
@@ -369,6 +370,14 @@ textarea:focus, input:focus, select:focus { border-color: var(--g-blue); box-sha
   padding:10px 12px; border-radius:12px; }
 .demo-profile-note.detail strong { color:var(--gold); font-size:11.5px; }
 .demo-profile-note.detail span { color:var(--muted); font-size:11px; font-weight:550; line-height:1.45; }
+.demo-profile-reference { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:11px; }
+.demo-profile-reference .demo-profile-note.detail { flex:1; margin-top:0; }
+.demo-profile-reference .profile-link { flex:0 0 auto; }
+
+@media (max-width: 620px) {
+  .demo-profile-reference { align-items:stretch; flex-direction:column; }
+  .demo-profile-reference .profile-link { width:100%; }
+}
 
 .inline-alert { margin-top: 13px; padding: 10px 13px; border-radius: 12px; font-size: 12.5px; font-weight: 650; line-height: 1.5; }
 .inline-alert.error { border: 1px solid color-mix(in srgb, var(--g-red) 32%, transparent); background: var(--danger-soft); color: var(--danger); }

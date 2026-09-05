@@ -297,9 +297,13 @@ separate and requires an explicit checkbox before the UI can call the configured
 external providers.
 
 Controlled Demo partner names, handles, profile URLs, and content are synthetic. The UI
-therefore labels them as **Sample records** and does not expose their intentionally
-nonexistent social URLs as clickable profiles. Records produced by configured live
-providers continue to show their source-observed external profile link.
+therefore labels them as **Sample records** and never exposes their intentionally
+nonexistent social URLs as clickable profiles. Selected sample records include a
+separate **public profile example** link, verified from the creator's own website or
+public account. That link is reference-only: sample metrics, signals, and decisions do
+not describe the linked person or organization. The synthetic spam/quality-control case
+deliberately has no real-person reference. Records produced by configured live providers
+continue to show their source-observed external profile link.
 
 ### Hosted portfolio demo
 

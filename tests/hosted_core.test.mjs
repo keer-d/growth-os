@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import fixture from '../fixtures/controlled_demo_minimal.json' with { type: 'json' };
 import {
@@ -86,4 +87,15 @@ test('hosted workspace exposes dashboard provenance and latest human review', ()
   assert.equal(summary.review_status, 'approve');
   assert.equal(summary.review_reason, 'strong_campaign_fit');
   assert.equal(summary.review_comment, 'Strong evidence.');
+});
+
+test('controlled demo UI uses real public references without linking synthetic profiles', async () => {
+  const source = await readFile(new URL('../ui/app.js', import.meta.url), 'utf8');
+  const referenceBlock = source.match(/const CONTROLLED_DEMO_PUBLIC_REFERENCES = Object\.freeze\(\{([\s\S]*?)\n\}\);/)?.[1] || '';
+  const urls = [...referenceBlock.matchAll(/url: "([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(urls.length, 9);
+  assert.equal(urls.every((url) => /^https:\/\/(?:www\.)?(?:instagram\.com|x\.com)\//.test(url)), true);
+  assert.equal(urls.some((url) => url.includes('demo_')), false);
+  assert.match(source, /const reference = controlledDemoReference\(record\)/);
+  assert.match(source, /href="\$\{escapeHtml\(reference\.url\)\}"/);
 });
