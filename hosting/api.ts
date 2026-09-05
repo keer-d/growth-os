@@ -11,6 +11,7 @@ import {
   criteriaToWorkflow,
   makeId,
   nowIso,
+  refreshControlledDemoRecord,
 } from './core.mjs';
 
 const SESSION_COOKIE = 'growth_os_session';
@@ -126,7 +127,9 @@ async function loadCreators(database: D1Database, sessionId: string) {
   const creatorRows = await rows<{ payload_json: string }>(database.prepare('SELECT payload_json FROM creators WHERE session_id = ? ORDER BY created_at ASC').bind(sessionId));
   const reviewRows = await rows<{ record_id: string; status: string; structured_reason: string | null; comment: string | null; reviewed_at: string }>(database.prepare('SELECT record_id, status, structured_reason, comment, reviewed_at FROM creator_reviews WHERE session_id = ? ORDER BY reviewed_at ASC').bind(sessionId));
   const latest = new Map(reviewRows.map((review) => [review.record_id, review]));
-  return creatorRows.map((row) => parsed<any>(row.payload_json)).map((record) => latest.has(record.record_id) ? applyHumanDecision(record, latest.get(record.record_id)) : record);
+  return creatorRows
+    .map((row) => refreshControlledDemoRecord(parsed<any>(row.payload_json), fixture))
+    .map((record) => latest.has(record.record_id) ? applyHumanDecision(record, latest.get(record.record_id)) : record);
 }
 
 async function loadRuns(database: D1Database, sessionId: string) {
@@ -163,7 +166,7 @@ async function routeGet(database: D1Database, sessionId: string, segments: strin
   if (segments.length === 2 && segments[0] === 'creators') {
     const result = await database.prepare('SELECT payload_json FROM creators WHERE record_id = ? AND session_id = ?').bind(segments[1], sessionId).first<{ payload_json: string }>();
     if (!result) throw Object.assign(new Error('Partner record not found.'), { code: 'creator_not_found', status: 404 });
-    const record = parsed<any>(result.payload_json);
+    const record = refreshControlledDemoRecord(parsed<any>(result.payload_json), fixture);
     const review = await database.prepare('SELECT status, structured_reason, comment, reviewed_at FROM creator_reviews WHERE record_id = ? AND session_id = ? ORDER BY reviewed_at DESC LIMIT 1').bind(segments[1], sessionId).first<any>();
     return { status: 200, payload: review ? applyHumanDecision(record, review).detail : record.detail };
   }

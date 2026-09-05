@@ -78,7 +78,7 @@ class DiscoveryAndOSTests(unittest.TestCase):
             first, second = result["runs"]
             self.assertEqual((first["retrieved"], first["duplicates"], first["new_creators"]), (12, 2, 10))
             self.assertEqual((second["retrieved"], second["duplicates"], second["new_creators"]), (12, 12, 0))
-            self.assertEqual(first["priority_counts"], {"P1": 4, "P2": 3, "P3": 1, "Needs Review": 2})
+            self.assertEqual(first["priority_counts"], {"P1": 0, "P2": 2, "P3": 2, "Needs Review": 6})
             with SQLiteStore(database) as store:
                 self.assertEqual(store.count("runs"), 2)
                 self.assertEqual(store.count("query_executions"), 26)

@@ -1,16 +1,21 @@
 const CHANNELS = ['instagram', 'x', 'youtube', 'web'];
 
 const PRIORITY_BY_RECORD = {
-  creator_001: 'P1', creator_003: 'P2', creator_004: 'P3', creator_005: 'P1',
-  creator_007: 'P2', creator_008: 'P2', creator_009: 'Needs Review',
-  creator_010: 'Needs Review', creator_011: 'P1', creator_012: 'P1',
+  creator_001: 'P2', creator_003: 'P2', creator_004: 'P3', creator_005: 'P3',
+  creator_007: 'Needs Review', creator_008: 'Needs Review', creator_009: 'Needs Review',
+  creator_010: 'Needs Review', creator_011: 'Needs Review', creator_012: 'Needs Review',
 };
 
-const ACTIVITY_BY_RECORD = { creator_007: 'low', creator_009: 'unknown' };
+const ACTIVITY_BY_RECORD = {};
 const RELEVANCE_BY_RECORD = {
-  creator_001: 'high', creator_003: 'moderate', creator_004: 'low', creator_005: 'high',
-  creator_007: 'high', creator_008: 'high', creator_009: 'low', creator_010: 'low',
-  creator_011: 'high', creator_012: 'high',
+  creator_001: 'high', creator_003: 'high', creator_004: 'moderate', creator_005: 'moderate',
+  creator_007: 'low', creator_008: 'low', creator_009: 'low', creator_010: 'low',
+  creator_011: 'moderate', creator_012: 'moderate',
+};
+const AUDIENCE_CONFIDENCE_BY_RECORD = {
+  creator_001: 'high', creator_003: 'high', creator_004: 'high', creator_005: 'high',
+  creator_007: 'low', creator_008: 'low', creator_009: 'low', creator_010: 'low',
+  creator_011: 'low', creator_012: 'low',
 };
 
 export function makeId(prefix) {
@@ -23,7 +28,7 @@ export function nowIso() {
 
 export function channelStatuses() {
   return [
-    { channel: 'controlled', label: 'Controlled Demo', purpose: 'Offline fixture records, always available', configured: true, status: 'connected', environment_variables: [], credential_variable: null },
+    { channel: 'controlled', label: 'Controlled Demo', purpose: 'Curated public profile snapshots, always available offline', configured: true, status: 'connected', environment_variables: [], credential_variable: null },
     { channel: 'instagram', label: 'Instagram', purpose: 'Creator profiles & public content', configured: false, status: 'not_configured', environment_variables: ['APIFY_API_TOKEN'], credential_variable: 'APIFY_API_TOKEN' },
     { channel: 'x', label: 'X', purpose: 'Public posts & author profiles', configured: false, status: 'not_configured', environment_variables: ['X_BEARER_TOKEN'], credential_variable: 'X_BEARER_TOKEN' },
     { channel: 'youtube', label: 'YouTube', purpose: 'Channels & creator content', configured: false, status: 'not_configured', environment_variables: ['YOUTUBE_API_KEY'], credential_variable: 'YOUTUBE_API_KEY' },
@@ -252,8 +257,8 @@ export function deduplicateFixture(rawProfiles) {
 function marketSignals(raw) {
   const text = `${raw.bio_text || ''} ${(raw.content_samples || []).map((item) => item.text).join(' ')}`;
   const lower = text.toLowerCase();
-  if (raw.record_id === 'creator_009') return { market: 'US', fit: 'conflicting', evidence: ['Public text contains conflicting market references.'] };
   if (lower.includes('são paulo')) return { market: 'São Paulo', fit: 'outside', evidence: ['Observed market term: São Paulo.'] };
+  if (lower.includes('sydney')) return { market: 'Sydney', fit: 'outside', evidence: ['Observed market term: Sydney.'] };
   for (const [needle, label] of [['seattle', 'Seattle'], ['vancouver', 'Vancouver'], ['toronto', 'Toronto'], ['canadian', 'Canada'], ['canada', 'Canada'], ['us ', 'US']]) {
     if (lower.includes(needle)) return { market: label, fit: 'target', evidence: [`Observed market term: ${label}.`] };
   }
@@ -282,7 +287,7 @@ function signal(value, reason, evidence = []) { return { value, reason, evidence
 
 export function buildCreatorRecord(raw, provenance) {
   const recordId = `demo_${raw.record_id}`;
-  const activity = ACTIVITY_BY_RECORD[raw.record_id] || 'high';
+  const activity = ACTIVITY_BY_RECORD[raw.record_id] || 'unknown';
   const relevance = RELEVANCE_BY_RECORD[raw.record_id] || 'low';
   const market = marketSignals(raw);
   const actionAvailable = Boolean(raw.external_urls?.length) || /collab|contact|partnership|media kit|sponsor/i.test(raw.bio_text || '');
@@ -295,7 +300,7 @@ export function buildCreatorRecord(raw, provenance) {
       ? [relevance === 'high' ? 'Strong relevance supports outreach with a small evidence caveat.' : 'Strong publishing momentum raises a moderately relevant partner\'s priority.', market.fit === 'outside' ? 'The partner is outside the primary market, so priority is reduced but not rejected.' : (actionAvailable ? 'A public collaboration/contact path improves actionability.' : 'No contact path was observed.'), followerLabel]
       : priority === 'P3'
         ? ['The partner is usable but currently offers weaker campaign relevance.', 'A public collaboration/contact path improves actionability.', followerLabel]
-        : [raw.record_id === 'creator_010' ? 'The public text contains obvious spam-style claims.' : 'Market evidence conflicts and needs a human decision.', actionAvailable ? 'A public collaboration/contact path improves actionability.' : 'No contact path was observed; partner quality and priority were not penalized for it.', followerLabel];
+        : ['Available public evidence needs a human decision.', actionAvailable ? 'A public collaboration/contact path improves actionability.' : 'No contact path was observed; partner quality and priority were not penalized for it.', followerLabel];
   const audienceSize = raw.follower_count == null ? 'unknown' : raw.follower_count >= 100000 ? 'large' : raw.follower_count >= 10000 ? 'medium' : 'small';
   const derived = {
     record_id: recordId,
@@ -304,14 +309,14 @@ export function buildCreatorRecord(raw, provenance) {
     audience_size: signal(audienceSize, followerLabel),
     market: signal(market.fit, market.fit === 'target' ? 'Public text contains target-market evidence.' : market.fit === 'outside' ? 'Public text points outside the primary market.' : market.fit === 'conflicting' ? 'Public market evidence conflicts.' : 'No reliable market evidence was observed.', market.evidence),
     actionability: signal(actionAvailable ? 'available' : 'not_observed', actionAvailable ? 'A public path for further partnership research is visible.' : 'No public contact path was observed.', actionAvailable ? ['Public contact or collaboration evidence is visible.'] : []),
-    record_quality: signal(raw.record_id === 'creator_010' ? 'needs_review' : 'usable', raw.record_id === 'creator_010' ? 'Spam-style claims require human review.' : 'The record has a valid profile identity and usable public evidence.'),
+    record_quality: signal('usable', 'The record has a valid profile identity and usable public evidence.'),
     extracted_at: provenance.completedAt,
   };
   const aiEvidence = relevance === 'low' ? ['Available public evidence does not support a narrow audience conclusion.'] : [
-    'Public content explicitly discusses portfolios, websites, freelance work, or creator workflows.',
-    'The audience description is inferred from observed public content and remains a hypothesis.',
+    'Public profile text explicitly discusses portfolios, websites, freelance work, or creator workflows.',
+    'The audience description is inferred from observed public profile text and remains a hypothesis.',
   ];
-  const inference = { record_id: recordId, likely_audience: audience, evidence: aiEvidence, confidence: relevance === 'low' ? 'low' : 'high', provider: 'mock', model: 'deterministic-audience-v1', prompt_version: 'audience-only-v1', inferred_at: provenance.completedAt };
+  const inference = { record_id: recordId, likely_audience: audience, evidence: aiEvidence, confidence: AUDIENCE_CONFIDENCE_BY_RECORD[raw.record_id] || 'low', provider: 'mock', model: 'deterministic-audience-v1', prompt_version: 'audience-only-v1', inferred_at: provenance.completedAt };
   const type = partnerType(raw.follower_count);
   const observed = {
     ...raw, record_id: recordId, normalized_profile_url: normalizedProfileUrl(raw),
@@ -338,6 +343,28 @@ export function buildCreatorRecord(raw, provenance) {
     priority, priority_reasons: reasons, review_status: 'unreviewed', reviewed_at: null, created_at: provenance.completedAt,
   };
   return { record_id: recordId, summary, detail };
+}
+
+export function refreshControlledDemoRecord(record, rawProfiles) {
+  const observed = record?.detail?.observed_facts || {};
+  const isControlled = observed.discovery_mode === 'controlled_demo'
+    || String(observed.source_connector || '').includes('controlled_fixture')
+    || String(observed.source_connector || '').includes('curated_public_fixture');
+  const sourceRecordId = String(record?.record_id || '').match(/^demo_(creator_\d+)$/)?.[1];
+  if (!isControlled || !sourceRecordId) return record;
+  const raw = rawProfiles.find((candidate) => candidate.record_id === sourceRecordId);
+  if (!raw) return record;
+  const refreshed = buildCreatorRecord(raw, {
+    runId: observed.run_id || null,
+    queryId: observed.query_id || null,
+    completedAt: observed.retrieved_at || record.summary?.created_at || nowIso(),
+    campaignId: observed.campaign_id || null,
+    approvedPlanId: observed.approved_search_plan_id || null,
+    sourceQueryId: observed.source_query_id || null,
+    queryText: observed.query_text || null,
+    searchAngle: observed.search_angle || null,
+  });
+  return record.detail?.human_decision ? applyHumanDecision(refreshed, record.detail.human_decision) : refreshed;
 }
 
 function reviewApprovedQueries(workflow, actions) {
@@ -391,7 +418,7 @@ export function buildControlledRun(workflow, actions, rawProfiles, existingRecor
     newByPlatform[query.platform] -= fresh;
     return {
       run_id: runId, campaign_id: workflow.campaign_parse.definition.campaign_id, approved_search_plan_id: approvedPlanId,
-      query_id: query.query_id, platform: query.platform, source_connector: 'controlled_fixture_v1', query_text: query.query_text,
+      query_id: query.query_id, platform: query.platform, source_connector: 'curated_public_fixture_v1', query_text: query.query_text,
       search_angle: query.search_angle, execution_status: retrieved ? 'SUCCESS_WITH_RESULTS' : 'SUCCESS_ZERO_RESULTS',
       retrieved, duplicates: retrieved - fresh, new_creators: fresh, new_creator_yield: retrieved ? fresh / retrieved : 0,
       error_code: null, started_at: completedAt, completed_at: completedAt,
@@ -438,6 +465,7 @@ export function buildWorkspace(creators, runs, hypotheses = [], currentSelection
       search_angle: record.summary.search_angle || observed.search_angle || null,
       campaign_id: record.summary.campaign_id || observed.campaign_id || null,
       discovery_mode: record.summary.discovery_mode || observed.discovery_mode || null,
+      source_connector: record.summary.source_connector || observed.source_connector || null,
       has_signals: Boolean(record.detail?.derived_signals),
       has_audience_inference: Boolean(record.detail?.ai_audience_inference),
       has_priority_decision: Boolean(record.detail?.priority_decision),
@@ -458,7 +486,7 @@ export function buildWorkspace(creators, runs, hypotheses = [], currentSelection
     query_history: runs.flatMap((run) => run.run_summary.query_history || []).reverse(),
     creators: summaries,
     icp_workspace: { current: currentHypothesis ? { hypothesis: currentHypothesis, selection: currentSelection.selection, criteria: currentSelection.criteria, runs: runRows.filter((row) => row.icp_hypothesis_id === currentHypothesis.hypothesis_id) } : null, hypotheses },
-    workspace: { database_name: 'growth-os-sites-d1', providers: { controlled: { configured: true, label: 'Offline fixtures' }, instagram: { configured: false, label: 'Apify Instagram' }, x: { configured: false, label: 'X API recent search' } }, channels: channelStatuses() },
+    workspace: { database_name: 'growth-os-sites-d1', providers: { controlled: { configured: true, label: 'Curated public snapshots' }, instagram: { configured: false, label: 'Apify Instagram' }, x: { configured: false, label: 'X API recent search' } }, channels: channelStatuses() },
   };
 }
 

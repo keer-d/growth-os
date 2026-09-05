@@ -6,7 +6,9 @@ Growth OS is a public implementation case for Growth and GTM operators who need 
 decide who to target before they decide whom to source. It adds an upstream ICP
 Discovery layer to the existing partner-discovery backend, then preserves the existing
 human approval, retrieval, qualification, review, feedback, and run-evidence layers.
-All bundled hypotheses and Controlled Demo partner records are synthetic.
+Bundled ICP hypotheses and workflow decisions are synthetic. Controlled Demo partner
+identities are curated snapshots of public profiles so each displayed name, handle,
+summary, and profile URL refers to the same account.
 
 ## The two audiences are different
 
@@ -296,13 +298,13 @@ Controlled Demo is the default and requires no credentials. Live retrieval is vi
 separate and requires an explicit checkbox before the UI can call the configured
 external providers.
 
-Controlled Demo partner names, handles, profile URLs, and content are synthetic. The UI
-therefore labels them as **Sample records** and never exposes their intentionally
-nonexistent social URLs as clickable profiles. Selected sample records include a
-separate **public profile example** link, verified from the creator's own website or
-public account. That link is reference-only: sample metrics, signals, and decisions do
-not describe the linked person or organization. The synthetic spam/quality-control case
-deliberately has no real-person reference. Records produced by configured live providers
+Controlled Demo uses a small curated snapshot of public Instagram and X profiles. A
+record's displayed name, handle, summary, and external profile URL describe the same
+public account; the profile button opens that exact account. The snapshot deliberately
+does not claim live retrieval, current follower counts, or observed posting recency.
+Derived signals remain conservative when the stored evidence is incomplete. Synthetic
+edge cases used to test scoring policy live in a separate test-only fixture and never
+appear as clickable partner records. Records produced by configured live providers
 continue to show their source-observed external profile link.
 
 ### Hosted portfolio demo
@@ -340,7 +342,7 @@ The reliable, credential-free portfolio path is:
 python3 -m pipeline.os_demo --mode controlled --reset
 ```
 
-Repeat the same synthetic fixture to create real saturation evidence rather than
+Repeat the same curated snapshot fixture to create real saturation evidence rather than
 hardcoded history:
 
 ```bash

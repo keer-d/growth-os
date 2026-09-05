@@ -9,7 +9,7 @@ from pipeline.read_creators import load_creators
 from pipeline.signals import extract_signals
 
 
-FIXTURE = Path(__file__).resolve().parents[1] / "fixtures" / "controlled_demo_minimal.json"
+FIXTURE = Path(__file__).resolve().parents[1] / "fixtures" / "signal_policy_cases.json"
 
 
 class SignalsAndPriorityTests(unittest.TestCase):

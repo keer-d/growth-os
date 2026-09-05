@@ -21,7 +21,7 @@ class ControlledDemoTests(unittest.TestCase):
             self.assertAlmostEqual(summary["new_creator_yield"], 10 / 12)
             self.assertEqual(
                 summary["priority_counts"],
-                {"P1": 4, "P2": 3, "P3": 1, "Needs Review": 2},
+                {"P1": 0, "P2": 2, "P3": 2, "Needs Review": 6},
             )
             self.assertEqual(summary["reviews_stored"], 1)
             self.assertEqual(summary["feedback_stored"], 1)

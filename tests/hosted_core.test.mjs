@@ -1,14 +1,15 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import fixture from '../fixtures/controlled_demo_minimal.json' with { type: 'json' };
 import {
   applyHumanDecision,
   buildCampaignWorkflow,
   buildControlledRun,
+  buildCreatorRecord,
   buildIcpGeneration,
   buildWorkspace,
   deduplicateFixture,
+  refreshControlledDemoRecord,
 } from '../hosting/core.mjs';
 
 test('hosted campaign planning preserves the original brief and proposes provider-neutral queries', () => {
@@ -30,7 +31,7 @@ test('hosted campaign planning requires a target market instead of inventing one
 test('controlled fixture dedup keeps same handle on different platforms', () => {
   const records = deduplicateFixture(fixture);
   assert.equal(records.length, 10);
-  assert.equal(records.filter((row) => row.display_name.includes('Dual Maker')).length, 2);
+  assert.deepEqual(records.filter((row) => row.display_name === 'Dann Petty').map((row) => row.platform).sort(), ['instagram', 'x']);
 });
 
 test('controlled run stores only approved or edited executable queries', () => {
@@ -89,13 +90,45 @@ test('hosted workspace exposes dashboard provenance and latest human review', ()
   assert.equal(summary.review_comment, 'Strong evidence.');
 });
 
-test('controlled demo UI uses real public references without linking synthetic profiles', async () => {
-  const source = await readFile(new URL('../ui/app.js', import.meta.url), 'utf8');
-  const referenceBlock = source.match(/const CONTROLLED_DEMO_PUBLIC_REFERENCES = Object\.freeze\(\{([\s\S]*?)\n\}\);/)?.[1] || '';
-  const urls = [...referenceBlock.matchAll(/url: "([^"]+)"/g)].map((match) => match[1]);
-  assert.equal(urls.length, 9);
-  assert.equal(urls.every((url) => /^https:\/\/(?:www\.)?(?:instagram\.com|x\.com)\//.test(url)), true);
-  assert.equal(urls.some((url) => url.includes('demo_')), false);
-  assert.match(source, /const reference = controlledDemoReference\(record\)/);
-  assert.match(source, /href="\$\{escapeHtml\(reference\.url\)\}"/);
+test('controlled demo identities and profile URLs describe the same public accounts', () => {
+  const expected = new Map([
+    ['creator_001', ['Jesse Showalter', 'imjesseshow']],
+    ['creator_003', ['Jesse Showalter', 'imjesseshow']],
+    ['creator_004', ['Charli Marie', 'charliprangley']],
+    ['creator_005', ['Charli Marie', 'charliprangley']],
+    ['creator_007', ['Femke', 'femkedotdesign']],
+    ['creator_008', ['Mizko', 'mizko']],
+    ['creator_009', ['Ran Segall', 'ransegall']],
+    ['creator_010', ['Abduzeedo', 'abduzeedo']],
+    ['creator_011', ['Dann Petty', 'dannpetty']],
+    ['creator_012', ['Dann Petty', 'dannpetty']],
+  ]);
+  const records = deduplicateFixture(fixture);
+  assert.equal(records.every((row) => row.source_connector === 'curated_public_fixture_v1'), true);
+  assert.equal(records.every((row) => /^https:\/\/(?:www\.)?(?:instagram\.com|x\.com)\//i.test(row.profile_url)), true);
+  assert.equal(records.every((row) => !row.profile_url.includes('demo_')), true);
+  for (const row of records) {
+    const handle = new URL(row.profile_url).pathname.split('/').filter(Boolean).at(-1).toLowerCase();
+    assert.deepEqual([row.display_name, handle], expected.get(row.record_id));
+  }
+});
+
+test('stored legacy demo records refresh to the matching curated public identity', () => {
+  const legacyRaw = {
+    ...fixture[0],
+    profile_url: 'https://www.instagram.com/demo_astra_canvas_9f2a/',
+    display_name: 'Astra Canvas Demo',
+    source_connector: 'controlled_fixture_v1',
+  };
+  const provenance = {
+    runId: 'run_original', queryId: 'query_original', completedAt: '2026-09-01T09:30:00Z',
+    campaignId: 'campaign_original', approvedPlanId: 'plan_original', sourceQueryId: 'source_original',
+    queryText: 'portfolio creators', searchAngle: 'core_topic',
+  };
+  const refreshed = refreshControlledDemoRecord(buildCreatorRecord(legacyRaw, provenance), fixture);
+  assert.equal(refreshed.summary.display_name, 'Jesse Showalter');
+  assert.equal(refreshed.summary.handle, '@imjesseshow');
+  assert.equal(refreshed.summary.profile_url, 'https://www.instagram.com/imjesseshow/');
+  assert.equal(refreshed.detail.observed_facts.run_id, 'run_original');
+  assert.equal(refreshed.detail.observed_facts.query_text, 'portfolio creators');
 });

@@ -61,9 +61,9 @@ _CHANNEL_CONNECTOR: dict[str, str] = {
 
 
 class ControlledFixtureRetrievalAdapter:
-    """Offline adapter that assigns synthetic records only to approved queries."""
+    """Offline adapter that assigns curated public snapshots only to approved queries."""
 
-    connector_name = "controlled_fixture_v1"
+    connector_name = "curated_public_fixture_v1"
 
     def __init__(self, fixture_path: str | Path = DEFAULT_CONTROLLED_FIXTURE):
         self.fixture_path = Path(fixture_path)

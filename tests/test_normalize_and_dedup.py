@@ -41,7 +41,7 @@ class NormalizeAndDedupTests(unittest.TestCase):
             {item.record.record_id for item in result.duplicate_records},
             {"creator_002", "creator_006"},
         )
-        dual_records = [item for item in result.new_records if "demo_dual_maker" in item.profile_url]
+        dual_records = [item for item in result.new_records if "dannpetty" in item.profile_url.lower()]
         self.assertEqual({item.platform for item in dual_records}, {"instagram", "x"})
         self.assertTrue(all(item.record.query_id for item in result.duplicate_records))
 

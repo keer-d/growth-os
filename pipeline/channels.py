@@ -86,6 +86,7 @@ CHANNEL_ENV_VARS: dict[str, tuple[str, ...]] = {
 # Internal connector identity, surfaced only in Technical Details.
 CONNECTOR_TO_CHANNEL: dict[str, str] = {
     "controlled_fixture_v1": "controlled",
+    "curated_public_fixture_v1": "controlled",
     "apify_instagram_search_scraper": "instagram",
     "x_api_v2_recent_search": "x",
     "youtube_data_api_v3_search": "youtube",
