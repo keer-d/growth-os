@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eaf3ff" />
+    <title>Growth OS</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <span class="spectrum-bar" aria-hidden="true"></span>
+
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#overview" aria-label="Growth OS home">
+          <span class="brand-mark" aria-hidden="true">GO</span>
+          <span>
+            <strong>Growth OS</strong>
+            <small>Operating System</small>
+          </span>
+        </a>
+        <p class="brand-description" data-i18n="brand.description">From ICP hypothesis to evidence-backed partner discovery for Growth &amp; GTM teams.</p>
+
+        <nav class="primary-nav" aria-label="Primary navigation" data-i18n-aria="nav.aria">
+          <span class="nav-indicator" id="nav-indicator" aria-hidden="true"></span>
+          <button type="button" data-page="overview" data-i18n-aria="nav.overview" aria-label="Overview">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg></span>
+            <span data-i18n="nav.overview">Overview</span>
+          </button>
+          <button type="button" data-page="icp" data-i18n-aria="nav.icp" aria-label="ICP">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-4.7 14.5L6 21l4.5-1.6A8 8 0 1 0 12 2Zm0 2a6 6 0 1 1-3 11.2l-.7-.4-.7 2.6.2-.8A6 6 0 0 1 12 4Zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg></span>
+            <span data-i18n="nav.icp">ICP</span>
+          </button>
+          <button type="button" class="active" data-page="discover" data-i18n-aria="nav.discover" aria-label="Discover">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2Zm7 14 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/></svg></span>
+            <span data-i18n="nav.discover">Discover</span>
+          </button>
+          <button type="button" data-page="partners" data-i18n-aria="nav.partners" aria-label="Review">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0H5Zm14.5-8.5a3 3 0 1 0 0-6 5.4 5.4 0 0 1 0 6Zm1.5 2c1.8.8 3 2.5 3 4.5h-3.2c-.2-1.7-.9-3.2-2-4.4.7-.2 1.4-.2 2.2-.1Z"/></svg></span>
+            <span data-i18n="nav.partners">Review</span>
+          </button>
+          <button type="button" data-page="insights" data-i18n-aria="nav.insights" aria-label="Runs">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 5h10V6H7v2Zm0 5h10v-2H7v2Zm0 5h7v-2H7v2Z"/></svg></span>
+            <span data-i18n="nav.insights">Runs</span>
+          </button>
+          <button type="button" data-page="sources" data-i18n-aria="nav.sources" aria-label="Data Sources">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c4.4 0 8 1.3 8 3v12c0 1.7-3.6 3-8 3s-8-1.3-8-3V6c0-1.7 3.6-3 8-3Zm0 2c-3.5 0-6 .9-6 1s2.5 1 6 1 6-.9 6-1-2.5-1-6-1Zm6 4.6c-1.5.7-3.7 1-6 1s-4.5-.3-6-1V12c.2.3 2.6 1.2 6 1.2s5.8-.9 6-1.2V9.6Zm0 5.4c-1.5.7-3.7 1-6 1s-4.5-.3-6-1V18c.2.3 2.6 1.2 6 1.2s5.8-.9 6-1.2v-3Z"/></svg></span>
+            <span data-i18n="nav.sources">Data Sources</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="preference-block">
+            <span class="preference-label" data-i18n="prefs.language">Language</span>
+            <div class="segmented-control language-switch" role="group" aria-label="Language">
+              <button type="button" data-lang="en" class="active" aria-pressed="true">EN</button>
+              <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+            </div>
+          </div>
+          <div class="preference-block">
+            <span class="preference-label" data-i18n="prefs.appearance">Appearance</span>
+            <div class="segmented-control theme-switch" role="group" aria-label="Theme" data-i18n-aria="prefs.themeAria">
+              <button type="button" data-theme-choice="light" class="active" aria-pressed="true"><span aria-hidden="true">☀</span><span data-i18n="prefs.light">Light</span></button>
+              <button type="button" data-theme-choice="dark" aria-pressed="false"><span aria-hidden="true">☾</span><span data-i18n="prefs.dark">Dark</span></button>
+            </div>
+          </div>
+          <div class="mode-indicator"><span></span><span data-i18n="workspace.local">Local workspace</span></div>
+          <p data-i18n="workspace.guardrail">Human approval remains the execution gate. Draft ≠ permission to retrieve.</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="page active" id="page-discover" aria-labelledby="discover-title">
+          <header class="page-header discover-header">
+            <div>
+              <p class="eyebrow" data-i18n="discover.eyebrow">Campaign workspace</p>
+              <h1 id="discover-title" data-i18n="discover.title">Turn a brief into an approved discovery run.</h1>
+              <p class="lede" data-i18n="discover.lede">Describe the partners you want to find. The system structures the campaign, proposes queries per channel, and keeps a human in control before retrieval.</p>
+            </div>
+            <div class="context-badge"><span class="status-dot"></span><span data-i18n="discover.ready">Controlled Demo ready</span></div>
+          </header>
+
+          <ol class="workflow-steps" aria-label="Discovery workflow" data-i18n-aria="workflow.aria">
+            <li class="active"><span>1</span><strong data-i18n="workflow.brief">Campaign brief</strong><small data-i18n="workflow.briefNote">Describe the audience</small></li>
+            <li><span>2</span><strong data-i18n="workflow.review">Query review</strong><small data-i18n="workflow.reviewNote">Approve, edit, reject</small></li>
+            <li><span>3</span><strong data-i18n="workflow.run">Discovery run</strong><small data-i18n="workflow.runNote">Retrieve and process</small></li>
+          </ol>
+
+          <section class="campaign-card operational-surface">
+            <div class="campaign-card-heading">
+              <div>
+                <p class="section-kicker" data-i18n="brief.kicker">01 · Describe campaign</p>
+                <h2 data-i18n="brief.title">Who should this campaign discover?</h2>
+              </div>
+              <span class="provider-chip" data-i18n="brief.provider">Deterministic planning · offline</span>
+            </div>
+            <label class="sr-only" for="campaign-brief" data-i18n="brief.label">Campaign brief</label>
+            <textarea id="campaign-brief" rows="5">I want active partners in the US and Canada who create content around web design, portfolios, freelancing and AI website tools. Their audiences should ideally include designers and freelancers.</textarea>
+            <div class="brief-footer">
+              <p><strong data-i18n="brief.tipStrong">Keep it concrete.</strong> <span data-i18n="brief.tip">Include markets, themes, and who the partners should reach.</span></p>
+              <button class="button primary" id="generate-plan" type="button"><span data-i18n="brief.generate">Generate Search Plan</span><span aria-hidden="true">→</span></button>
+            </div>
+            <div class="brief-footer"><button class="button mini" id="import-case-brief" type="button" data-i18n="case.import">Import next-run case brief</button><input type="file" id="case-brief-file" accept=".json,application/json" hidden></div><div class="inline-alert success" id="case-brief-origin" hidden></div>
+            <div class="inline-alert" id="plan-alert" role="status" hidden></div>
+          </section>
+
+          <section class="plan-section operational-surface" id="plan-section" hidden>
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker" data-i18n="plan.kicker">02 · Human query review</p>
+                <h2 data-i18n="plan.title">Draft Search Plan</h2>
+                <p data-i18n="plan.explanation">These queries are proposals only. Review is required before execution.</p>
+              </div>
+              <span class="draft-chip" data-i18n="plan.draft">Draft · not executable</span>
+            </div>
+            <div class="icp-plan-origin" id="icp-plan-origin" hidden></div>
+            <div class="campaign-definition" id="campaign-definition"></div>
+            <div class="query-groups" id="query-groups"></div>
+            <div class="review-toolbar">
+              <div><strong id="review-progress">0 of 0 reviewed</strong><span data-i18n="plan.everyDecision">Every query needs a decision.</span></div>
+              <button class="button secondary" id="approve-all" type="button" data-i18n="plan.approveRemaining">Approve remaining</button>
+            </div>
+
+            <section class="execution-panel">
+              <div class="execution-copy">
+                <p class="section-kicker" data-i18n="execution.kicker">03 · Choose execution mode</p>
+                <h2 data-i18n="execution.title">Run only the approved plan.</h2>
+                <p data-i18n="execution.explanation">Controlled Demo is offline and repeatable. Live retrieval uses configured providers and can incur external provider costs.</p>
+              </div>
+
+              <div class="mode-picker" role="radiogroup" aria-label="Discovery mode" data-i18n-aria="execution.modeAria">
+                <label class="mode-card selected">
+                  <input type="radio" name="discovery-mode" value="controlled" checked />
+                  <span class="mode-icon controlled" aria-hidden="true">◇</span>
+                  <span><strong data-i18n="execution.controlled">Controlled Demo</strong><small data-i18n="execution.controlledNote">Offline fixtures · safe default</small></span>
+                </label>
+                <label class="mode-card">
+                  <input type="radio" name="discovery-mode" value="live" />
+                  <span class="mode-icon live" aria-hidden="true">↗</span>
+                  <span><strong data-i18n="execution.live">Live Retrieval</strong><small id="live-readiness">Checking providers…</small></span>
+                </label>
+              </div>
+
+              <div class="pipeline-visual" id="pipeline-visual" aria-live="polite">
+                <div class="pipeline-stage" data-stage="retrieval"><span class="pipeline-number">1</span><strong data-i18n="pipeline.retrieval">Retrieval</strong><small data-i18n="pipeline.retrievalNote">Approved queries only</small></div>
+                <span class="pipeline-arrow" aria-hidden="true">→</span>
+                <div class="pipeline-stage" data-stage="dedup"><span class="pipeline-number">2</span><strong data-i18n="pipeline.dedup">Dedup</strong><small data-i18n="pipeline.dedupNote">Same-platform identity</small></div>
+                <span class="pipeline-arrow" aria-hidden="true">→</span>
+                <div class="pipeline-stage" data-stage="signals"><span class="pipeline-number">3</span><strong data-i18n="pipeline.signals">Signal Extraction</strong><small data-i18n="pipeline.signalsNote">Observed evidence</small></div>
+                <span class="pipeline-arrow" aria-hidden="true">→</span>
+                <div class="pipeline-stage" data-stage="audience"><span class="pipeline-number">4</span><strong data-i18n="pipeline.audience">AI Audience Inference</strong><small data-i18n="pipeline.audienceNote">Audience hypothesis</small></div>
+                <span class="pipeline-arrow" aria-hidden="true">→</span>
+                <div class="pipeline-stage" data-stage="priority"><span class="pipeline-number">5</span><strong data-i18n="pipeline.priority">Priority</strong><small data-i18n="pipeline.priorityNote">Explainable decision</small></div>
+              </div>
+
+              <label class="live-confirmation" id="live-confirmation" hidden><input type="checkbox" id="confirm-live" /><span data-i18n="execution.liveConfirm">I understand this will call configured external providers and may incur usage costs.</span></label>
+              <div class="execution-footer">
+                <p id="execution-note" data-i18n="execution.locked">Review all proposed queries to unlock execution.</p>
+                <button class="button primary" id="run-discovery" type="button" disabled><span data-i18n="execution.runControlled">Run Controlled Discovery</span><span aria-hidden="true">→</span></button>
+              </div>
+              <div class="inline-alert" id="run-alert" role="status" hidden></div>
+            </section>
+          </section>
+          <section class="run-result operational-surface" id="run-result" hidden></section>
+        </section>
+
+        <section class="page" id="page-overview" aria-labelledby="overview-title">
+          <header class="command-header operational-surface">
+            <div class="command-title">
+              <div class="command-title-row">
+                <p class="eyebrow" data-i18n="dashboard.eyebrow">Growth operations</p>
+                <span class="data-mode-badge" id="dashboard-data-mode"></span>
+              </div>
+              <h1 id="overview-title" data-i18n="dashboard.title">Growth Command Center</h1>
+              <p class="lede" data-i18n="dashboard.lede">See who is being tested, where evidence is moving, and what needs a human decision.</p>
+            </div>
+            <div class="command-context" id="command-context"></div>
+          </header>
+
+          <section class="dashboard-empty operational-surface" id="dashboard-empty" hidden></section>
+
+          <div id="dashboard-content" hidden>
+            <section class="dashboard-filterbar operational-surface" aria-label="Dashboard filters">
+              <label><span data-i18n="dashboard.filterDate">Date range</span><select id="dashboard-date-filter"><option value="30" data-i18n="dashboard.last30">Last 30 days</option><option value="7" data-i18n="dashboard.last7">Last 7 days</option><option value="all" data-i18n="dashboard.allTime">All available data</option></select></label>
+              <label><span data-i18n="dashboard.filterIcp">ICP</span><select id="dashboard-icp-filter"></select></label>
+              <label><span data-i18n="dashboard.filterSource">Channel</span><select id="dashboard-source-filter"></select></label>
+              <label><span data-i18n="dashboard.filterRun">Run</span><select id="dashboard-run-filter"></select></label>
+              <button class="filter-reset" id="dashboard-filter-reset" type="button" data-i18n="dashboard.reset">Reset</button>
+            </section>
+
+            <section class="command-kpis" id="command-kpis" aria-label="Growth operations metrics"></section>
+
+            <section class="command-primary-grid">
+              <article class="command-panel funnel-panel" id="dashboard-funnel"></article>
+              <aside class="command-panel attention-panel" id="dashboard-attention"></aside>
+            </section>
+
+            <section class="command-panel current-icp-command" id="dashboard-current-icp"></section>
+
+            <section class="command-section">
+              <div class="command-section-heading"><div><p class="section-kicker" data-i18n="dashboard.qualityKicker">Discovery quality</p><h2 data-i18n="dashboard.sourceTitle">Which directions produce useful candidates?</h2></div><p data-i18n="dashboard.qualityNote">Discovery evidence, not customer conversion.</p></div>
+              <article class="command-panel table-panel" id="dashboard-source-performance"></article>
+              <article class="command-panel table-panel" id="dashboard-query-performance"></article>
+            </section>
+
+            <section class="command-dual-grid">
+              <article class="command-panel" id="dashboard-human-review"></article>
+              <article class="command-panel" id="dashboard-system-health"></article>
+            </section>
+
+            <section class="command-dual-grid trend-run-grid">
+              <article class="command-panel" id="dashboard-trend"></article>
+              <article class="command-panel" id="dashboard-recent-runs"></article>
+            </section>
+
+            <section class="command-dual-grid closing-grid">
+              <article class="command-panel" id="dashboard-learnings"></article>
+              <article class="next-action-panel" id="dashboard-next-action"></article>
+            </section>
+          </div>
+        </section>
+
+        <section class="page" id="page-icp" aria-labelledby="icp-title">
+          <header class="page-header compact-header">
+            <div>
+              <p class="eyebrow" data-i18n="icp.eyebrow">Market hypothesis workspace</p>
+              <h1 id="icp-title" data-i18n="icp.title">Who should we target?</h1>
+              <p class="lede" data-i18n="icp.lede">Turn product and market context into three testable customer hypotheses. You—not the AI—choose what to validate.</p>
+            </div>
+            <div class="context-badge"><span class="status-dot"></span><span data-i18n="icp.humanOwned">Human-selected</span></div>
+          </header>
+          <section id="icp-current"></section>
+          <section class="icp-entry-grid" id="icp-entry">
+            <article class="icp-entry-card operational-surface">
+              <span class="icp-entry-number">01</span>
+              <p class="section-kicker" data-i18n="icp.knownKicker">Direct path</p>
+              <h2 data-i18n="icp.knownTitle">I already know my ICP</h2>
+              <p data-i18n="icp.knownText">Move straight to the existing discovery workflow and define the partners who can reach that audience.</p>
+              <button class="button secondary" type="button" data-go="discover"><span data-i18n="icp.openDiscovery">Open Discovery</span><span aria-hidden="true">→</span></button>
+            </article>
+            <article class="icp-entry-card featured operational-surface">
+              <span class="icp-entry-number">02</span>
+              <p class="section-kicker" data-i18n="icp.helpKicker">Guided hypothesis</p>
+              <h2 data-i18n="icp.helpTitle">Help me discover my ICP</h2>
+              <p data-i18n="icp.helpText">Capture business context, compare exactly three hypotheses, then translate one into reviewable discovery criteria.</p>
+              <button class="button primary" id="start-icp" type="button"><span data-i18n="icp.start">Start ICP Discovery</span><span aria-hidden="true">→</span></button>
+            </article>
+          </section>
+
+          <section class="business-context-panel operational-surface" id="business-context-panel" hidden>
+            <div class="section-heading">
+              <div><p class="section-kicker" data-i18n="icp.contextKicker">01 · Business context</p><h2 data-i18n="icp.contextTitle">Give the system facts, not a persona guess.</h2><p data-i18n="icp.contextText">The offline demo uses your manual description. A website URL is optional and is never silently treated as analyzed.</p></div>
+              <span class="provider-chip" data-i18n="icp.offlineProvider">Deterministic demo · offline</span>
+            </div>
+            <form id="business-context-form">
+              <fieldset class="context-group context-product">
+                <legend data-i18n="icp.product">Product</legend>
+                <label><span data-i18n="icp.productName">Product name</span><input name="product_name" value="SiteSprint AI" required /></label>
+                <label><span data-i18n="icp.website">Website URL · optional</span><input name="website_url" type="url" placeholder="https://example.com" /></label>
+                <label class="wide"><span data-i18n="icp.description">What does the product do?</span><textarea name="product_description" rows="3" required>AI website and no-code portfolio workspace that helps independent designers turn project material into a clear personal website.</textarea></label>
+              </fieldset>
+              <fieldset class="context-group">
+                <legend data-i18n="icp.problemValue">Problem &amp; value</legend>
+                <label><span data-i18n="icp.problem">What painful problem does it solve?</span><textarea name="problem" rows="3" required>Publishing a credible design portfolio is slow because freelancers must structure case studies, write copy, and build a website at the same time.</textarea></label>
+                <label><span data-i18n="icp.value">What is the strongest value?</span><textarea name="strongest_value" rows="3" required>Turn existing project material into a clear portfolio website without coordinating a copywriter and developer.</textarea></label>
+              </fieldset>
+              <fieldset class="context-group context-pair">
+                <legend data-i18n="icp.usersAlternatives">Users &amp; alternatives</legend>
+                <label><span data-i18n="icp.users">Who uses or might use it?</span><input name="current_users" value="independent designers and freelancers" required /></label>
+                <label><span data-i18n="icp.alternatives">Current alternatives · comma separated</span><input name="current_alternatives" value="Framer templates, Webflow, hiring a freelance developer" /></label>
+              </fieldset>
+              <fieldset class="context-group context-pair">
+                <legend data-i18n="icp.marketSignals">Signals &amp; market</legend>
+                <label><span data-i18n="icp.signals">Observable pain signals · comma separated</span><input name="pain_signals" value="asking for portfolio feedback, sharing a website rebuild, comparing no-code website tools" /></label>
+                <label><span data-i18n="icp.markets">Target markets · optional, comma separated</span><input name="target_markets" value="United States, Canada" /></label>
+                <label><span data-i18n="icp.stage">Company stage</span><select name="stage"><option value="pre-launch" data-i18n="icp.prelaunch">Pre-launch</option><option value="early" selected data-i18n="icp.early">Early</option><option value="growing" data-i18n="icp.growing">Growing</option><option value="scaling" data-i18n="icp.scaling">Scaling</option></select></label>
+              </fieldset>
+              <div class="form-actions"><button class="button secondary" type="button" id="cancel-icp" data-i18n="general.cancel">Cancel</button><button class="button primary" type="submit"><span data-i18n="icp.generate">Generate 3 ICP Hypotheses</span><span aria-hidden="true">→</span></button></div>
+              <div class="inline-alert" id="icp-alert" role="status" hidden></div>
+            </form>
+          </section>
+
+          <section class="icp-hypotheses" id="icp-hypotheses" hidden>
+            <div class="section-heading">
+              <div><p class="section-kicker" data-i18n="icp.compareKicker">02 · Compare hypotheses</p><h2 data-i18n="icp.compareTitle">Three starting points—not an AI verdict.</h2><p data-i18n="icp.disclaimer">Scores are AI-estimated comparison aids. Validate every assumption with real market evidence.</p></div>
+              <button class="button mini" type="button" id="regenerate-icp" data-i18n="icp.regenerate">Generate a new set</button>
+            </div>
+            <div class="hypothesis-grid" id="hypothesis-grid"></div>
+          </section>
+
+          <section class="criteria-panel operational-surface" id="criteria-panel" hidden>
+            <div class="section-heading"><div><p class="section-kicker" data-i18n="icp.criteriaKicker">03 · Human confirmation</p><h2 data-i18n="icp.criteriaTitle">Customer ICP → Partner Discovery Criteria</h2><p data-i18n="icp.criteriaText">The customer ICP describes who may buy or use. These criteria describe partners who may help you reach them. Edit before any query planning.</p></div><span class="draft-chip" data-i18n="icp.notPermission">Draft · not permission to retrieve</span></div>
+            <form id="criteria-form" class="criteria-form"></form>
+            <div class="inline-alert" id="criteria-alert" role="status" hidden></div>
+          </section>
+        </section>
+
+        <section class="page" id="page-partners" aria-labelledby="partners-title">
+          <header class="page-header compact-header">
+            <div><p class="eyebrow" data-i18n="partners.eyebrow">Evidence workspace</p><h1 id="partners-title" data-i18n="nav.partners">Review</h1><p class="lede" data-i18n="partners.lede">Creators, KOLs, affiliates, communities, media and experts — compared on observed facts, derived signals, AI audience inference, and the human decision.</p></div>
+            <div class="header-count" id="partner-count">0 partners</div>
+          </header>
+
+          <section class="operational-surface" style="padding:22px;margin-bottom:22px"><div class="section-heading"><div><p class="section-kicker" data-i18n="case.title">Eazo · Growth Learning case</p><p data-i18n="case.note">Carry public research into an experiment proposal.</p></div><a class="button mini" href="./eazo-case.html" target="_blank" rel="noopener" data-i18n="case.open">Open interview case ↗</a></div><button class="button primary mini" id="export-case" type="button" data-i18n="case.export">Export all approved candidates</button></section>
+          <section class="pool-metrics" aria-labelledby="pool-metrics-title">
+            <div class="section-heading compact"><div><p class="section-kicker" data-i18n="partners.poolKicker">Partner pool</p><h2 id="pool-metrics-title" data-i18n="partners.poolTitle">What the pool holds now</h2></div></div>
+            <div class="metric-grid" id="partner-metrics"></div>
+            <div class="channel-distribution" id="channel-distribution"></div>
+          </section>
+
+          <div class="creator-filters operational-surface">
+            <label class="search-field"><span aria-hidden="true">⌕</span><input id="creator-search" type="search" placeholder="Search partner, handle, bio…" data-i18n-placeholder="partners.search" /></label>
+            <label><span class="sr-only" data-i18n="partners.channelFilter">Filter by channel</span><select id="platform-filter"><option value="all" data-i18n="partners.allChannels">All channels</option><option value="instagram">Instagram</option><option value="x">X</option><option value="youtube">YouTube</option><option value="web" data-i18n="channel.web">Web</option></select></label>
+            <label><span class="sr-only" data-i18n="partners.typeFilter">Filter by partner type</span><select id="type-filter"><option value="all" data-i18n="partners.allTypes">All partner types</option></select></label>
+            <label><span class="sr-only" data-i18n="partners.priorityFilter">Filter by priority</span><select id="priority-filter"><option value="all" data-i18n="partners.allPriorities">All priorities</option><option value="P1">P1</option><option value="P2">P2</option><option value="P3">P3</option><option value="Needs Review" data-i18n="status.needsReview">Needs Review</option></select></label>
+            <label><span class="sr-only" data-i18n="partners.reviewFilter">Filter by review state</span><select id="review-filter"><option value="all" data-i18n="partners.allReviewStates">All review states</option><option value="unreviewed" data-i18n="status.unreviewed">Unreviewed</option><option value="approve" data-i18n="status.approved">Approved</option><option value="reject" data-i18n="status.rejected">Rejected</option><option value="needs_review" data-i18n="status.needsReview">Needs Review</option></select></label>
+          </div>
+          <div class="creator-list" id="creator-list"></div>
+          <div class="empty-state operational-surface" id="creator-empty" hidden><span>◎</span><h2 data-i18n="partners.emptyTitle">No partners match this view.</h2><p data-i18n="partners.emptyText">Adjust the filters or run a Controlled Demo from Discover.</p><button class="button primary" type="button" data-go="discover" data-i18n="partners.openDiscover">Open Discover</button></div>
+        </section>
+
+        <section class="page" id="page-insights" aria-labelledby="insights-title">
+          <header class="page-header compact-header insights-header">
+            <div><p class="eyebrow" data-i18n="insights.eyebrow">Discovery freshness</p><h1 id="insights-title" data-i18n="nav.insights">Runs</h1><p class="lede" data-i18n="insights.lede">How much of the latest discovery produced partners the system had not seen before — and which search directions are going quiet.</p></div>
+            <div class="header-count" id="run-count">0 discoveries</div>
+          </header>
+          <section id="latest-discovery"></section>
+          <section id="query-insights"></section>
+          <details class="history-details operational-surface" id="history-details" hidden>
+            <summary><span><strong data-i18n="insights.viewHistory">View discovery history</strong><small data-i18n="insights.viewHistoryNote">Compare earlier discoveries to see saturation building.</small></span><b aria-hidden="true">＋</b></summary>
+            <div id="history-body"></div>
+          </details>
+          <section id="technical-runs"></section>
+          <div class="empty-state operational-surface" id="history-empty" hidden><span>▤</span><h2 data-i18n="insights.emptyTitle">No discovery evidence yet.</h2><p data-i18n="insights.emptyText">Run the Controlled Demo to produce the first real discovery evidence.</p><button class="button primary" type="button" data-go="discover" data-i18n="insights.start">Start first discovery</button></div>
+        </section>
+
+        <section class="page" id="page-sources" aria-labelledby="sources-title">
+          <header class="page-header compact-header">
+            <div><p class="eyebrow" data-i18n="sources.eyebrow">Channel connectivity</p><h1 id="sources-title" data-i18n="nav.sources">Data Sources</h1><p class="lede" data-i18n="sources.lede">Which channels this workspace can discover partners on. Credentials live server-side and are never sent to the browser.</p></div>
+            <div class="header-count" id="source-count">0 connected</div>
+          </header>
+          <div class="source-grid" id="source-grid"></div>
+          <details class="technical-details operational-surface" id="source-technical">
+            <summary><span><strong data-i18n="sources.developer">Developer configuration</strong><small data-i18n="sources.developerNote">Variable names only — no value is ever displayed or sent to the browser.</small></span><b aria-hidden="true">＋</b></summary>
+            <div id="source-technical-body"></div>
+          </details>
+        </section>
+
+      </main>
+    </div>
+
+    <dialog class="creator-dialog" id="creator-dialog">
+      <div class="dialog-shell">
+        <header class="dialog-header">
+          <div id="dialog-identity"></div>
+          <button class="icon-button" type="button" id="close-dialog" aria-label="Close partner evidence" data-i18n-aria="detail.close">×</button>
+        </header>
+        <div class="detail-loading" id="detail-loading" data-i18n="detail.loading">Loading partner evidence…</div>
+        <div id="detail-content" hidden></div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script src="./app.js" defer></script>
+    <script src="./effects.js" defer></script>
+  </body>
+</html>

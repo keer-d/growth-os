@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An independent interview prototype by Keer: from growth hypothesis to product activation and learning. Public research with a separate optional synthetic scenario.">
+<meta name="theme-color" content="#f8f5f0">
+<link rel="icon" href="data:image/png;base64,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">
+<title>Eazo Growth Learning OS — Interview Prototype</title>
+<style>
+/* ============================================================
+   Eazo Growth Learning OS — visual system
+   Warm Eazo ground + brand orange, structured with the Growth OS
+   language: spectrum hairline, mono eyebrows, soft card depth,
+   segmented EN / 中文 control.
+
+   One stylesheet for one page. Evidence status is carried by a
+   fixed vocabulary: green = observed in public, amber = proposed
+   or not measured, violet = simulation, stone = comparison arm.
+   ============================================================ */
+:root{
+  color-scheme:light;
+
+  /* ground + paper (Eazo warm neutrals) */
+  --ground:#f8f5f0; --ground-2:#f2ece3;
+  --surface:#ffffff; --surface-2:#fdfaf6;
+  --glass:rgba(255,253,250,.82);
+
+  /* ink */
+  --ink:#191512; --body:#463d36; --muted:#6d6259; --faint:#7a7066;
+  --rule:#ebe2d7; --rule-strong:#dccfbd;
+
+  /* Eazo brand */
+  --brand:#ee5c2a; --brand-ink:#b1431f; --brand-soft:#ffeee6;
+  --brand-line:rgba(238,92,42,.30); --brand-glow:rgba(238,92,42,.16);
+
+  /* comparison counterpart (deliberately neutral, not "bad") */
+  --stone:#5a524a; --stone-ink:#403a34; --stone-soft:#f2eee8; --stone-line:rgba(90,82,74,.22);
+
+  /* Growth OS system accents */
+  --ai:#8a34d6; --ai-soft:#f5ecfe; --ai-line:rgba(138,52,214,.24);
+  --info:#1a5fc0; --info-soft:#e8f0fe;
+  --good:#127a3c; --good-soft:#e6f4ea;
+  --warn:#8f4b03; --warn-soft:#fdf0da;
+  --danger:#b23320; --danger-soft:#fcecea;
+
+  --spectrum:linear-gradient(92deg,#4285f4,#8a34d6 18%,#e52592 36%,#ee5c2a 58%,#f9ab00 78%,#34a853);
+
+  --shadow:0 1px 2px rgba(84,62,44,.06),0 10px 28px rgba(84,62,44,.07);
+  --shadow-lift:0 2px 6px rgba(84,62,44,.08),0 22px 50px rgba(238,92,42,.13);
+  --ring:inset 0 0 0 1px var(--rule);
+
+  --r-hero:26px; --r-panel:20px; --r-card:16px; --r-sm:12px; --r-pill:999px;
+
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Segoe UI","PingFang SC","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","PingFang SC","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",Roboto,system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,"Cascadia Mono","Liberation Mono",monospace;
+
+  --header-h:76px;
+  --wrap:1240px;
+}
+html[lang="zh"]{
+  --display:"PingFang SC","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --sans:"PingFang SC","Source Han Sans SC","Noto Sans SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 20px)}
+body{
+  margin:0;background:var(--ground);color:var(--body);
+  font:15.5px/1.62 var(--sans);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+html[lang="zh"] body{font-size:15px;line-height:1.78}
+
+/* decorative ground: warm aurora + faint dot grid */
+.ground{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.ground::before{
+  content:"";position:absolute;inset:-20%;
+  background:
+    radial-gradient(46% 38% at 12% 4%,rgba(238,92,42,.15),transparent 62%),
+    radial-gradient(40% 34% at 88% 2%,rgba(138,52,214,.09),transparent 64%),
+    radial-gradient(52% 40% at 78% 46%,rgba(249,171,0,.09),transparent 66%),
+    radial-gradient(46% 40% at 8% 74%,rgba(66,133,244,.07),transparent 66%),
+    radial-gradient(40% 30% at 62% 96%,rgba(52,168,83,.06),transparent 64%);
+  filter:blur(4px);
+}
+.ground::after{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(96,74,54,.09) .8px,transparent .8px);
+  background-size:22px 22px;opacity:.45;
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.22) 46%,transparent 88%);
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.22) 46%,transparent 88%);
+}
+
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer}
+button:disabled{cursor:default}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2.5px solid var(--brand);outline-offset:3px;border-radius:6px}
+p,h1,h2,h3,h4,h5{margin:0}
+h1,h2,h3,h4{font-family:var(--display);color:var(--ink);letter-spacing:-.022em;line-height:1.18}
+html[lang="zh"] h1,html[lang="zh"] h2,html[lang="zh"] h3,html[lang="zh"] h4{letter-spacing:0;line-height:1.38}
+p{color:var(--muted)}
+ul,ol{margin:0;padding:0;list-style:none}
+[hidden]{display:none!important}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 34px}
+.skip{position:absolute;left:-9999px;top:0;z-index:60;background:var(--ink);color:#fff;padding:12px 18px;border-radius:0 0 12px 0;font-weight:600}
+.skip:focus{left:0}
+main:focus-visible,section:focus-visible{outline:none}
+
+/* ---------- shared atoms ---------- */
+.eyebrow{
+  font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.15em;color:var(--faint);display:inline-flex;align-items:center;gap:7px;
+}
+html[lang="zh"] .eyebrow{letter-spacing:.09em;font-size:11px;font-family:var(--sans)}
+.eyebrow.brand{color:var(--brand-ink)}
+.eyebrow.ai{color:var(--ai)}
+
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 11px;border-radius:var(--r-pill);
+  font-size:11.5px;font-weight:650;line-height:1.45;
+  background:var(--stone-soft);color:var(--stone-ink);
+  box-shadow:inset 0 0 0 1px var(--stone-line);
+}
+html[lang="zh"] .chip{font-size:12px}
+.chip.brand{background:var(--brand-soft);color:var(--brand-ink);box-shadow:inset 0 0 0 1px var(--brand-line)}
+.chip.ai{background:var(--ai-soft);color:var(--ai);box-shadow:inset 0 0 0 1px var(--ai-line)}
+.chip.good{background:var(--good-soft);color:var(--good);box-shadow:inset 0 0 0 1px rgba(18,122,60,.24)}
+.chip.warn{background:var(--warn-soft);color:var(--warn);box-shadow:inset 0 0 0 1px rgba(143,75,3,.26)}
+.chip.danger{background:var(--danger-soft);color:var(--danger);box-shadow:inset 0 0 0 1px rgba(178,51,32,.24)}
+
+.card{background:var(--surface);border-radius:var(--r-panel);box-shadow:var(--ring),var(--shadow)}
+.row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
+
+.button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 19px;border:0;border-radius:var(--r-pill);
+  background:linear-gradient(180deg,#f4703f,var(--brand));color:#fff;
+  font-size:14px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;
+  box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 6px 18px rgba(238,92,42,.26);
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+}
+.button:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 10px 24px rgba(238,92,42,.32)}
+.button:active:not(:disabled){transform:translateY(0)}
+.button.secondary{
+  background:var(--surface);color:var(--body);
+  box-shadow:inset 0 0 0 1px var(--rule-strong);
+  padding:9px 16px;font-size:13.5px;
+}
+.button.secondary:hover:not(:disabled){background:var(--surface-2);color:var(--ink);box-shadow:inset 0 0 0 1px var(--brand-line);transform:none}
+/* A disabled control here means "not available yet", never "broken". */
+.button:disabled{
+  background:transparent;color:var(--faint);box-shadow:none;
+  border:1px dashed var(--rule-strong);transform:none;
+}
+.button:disabled:not(.secondary){padding:10px 18px}
+.button.secondary:disabled{padding:8px 15px}
+.text-button{
+  display:inline-flex;align-items:center;gap:7px;background:none;border:0;padding:4px 0;
+  color:var(--brand-ink);font-size:13.5px;font-weight:650;
+}
+.text-button:hover{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- top chrome ---------- */
+.spectrum-bar{height:3px;background:var(--spectrum);position:relative;z-index:31}
+.topbar{
+  position:sticky;top:0;z-index:30;
+  background:var(--glass);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-inner{min-height:72px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:10px 34px}
+.logo{display:flex;align-items:center;gap:10px;margin-right:auto;flex:none}
+.logo-mark{height:26px;width:auto;flex:none;display:block}
+.logo-divider{width:1px;height:22px;flex:none;background:var(--rule-strong)}
+.logo-sub{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;line-height:1.35;max-width:88px;
+}
+html[lang="zh"] .logo-sub{letter-spacing:.06em;font-size:11px;font-family:var(--sans);max-width:none;white-space:nowrap}
+
+.nav{display:flex;gap:3px;align-items:center;flex:none}
+.nav a{
+  font-size:13.5px;font-weight:600;padding:8px 13px;border-radius:var(--r-pill);
+  color:var(--muted);transition:background .15s ease,color .15s ease;white-space:nowrap;
+}
+.nav a:hover{background:var(--ground-2);color:var(--ink)}
+.nav a.active{color:var(--brand-ink);background:var(--brand-soft);box-shadow:inset 0 0 0 1px var(--brand-line)}
+
+.chrome-right{display:flex;align-items:center;gap:12px;flex:none;margin-left:auto}
+.lang{display:flex;gap:2px;padding:3px;border-radius:var(--r-pill);background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--rule);flex:none}
+.lang-btn{
+  border:0;background:none;border-radius:var(--r-pill);padding:5px 12px;
+  font-size:12px;font-weight:650;color:var(--muted);
+  transition:background .15s ease,color .15s ease,box-shadow .15s ease;
+}
+.lang-btn:hover{color:var(--ink)}
+.lang-btn[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(84,62,44,.14)}
+
+.disclaimer{position:relative;flex:none}
+.demo-badge{
+  display:inline-flex;gap:8px;align-items:center;border:0;
+  background:var(--brand-soft);color:var(--brand-ink);
+  box-shadow:inset 0 0 0 1px var(--brand-line);
+  border-radius:var(--r-pill);padding:6px 12px;text-align:left;
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  line-height:1.35;white-space:nowrap;
+}
+html[lang="zh"] .demo-badge{letter-spacing:.04em;font-size:11px;font-family:var(--sans);font-weight:650}
+.demo-badge:hover{background:#ffe4d8}
+.info-icon{
+  width:14px;height:14px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:var(--brand);color:#fff;font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:0;
+}
+.tip{
+  position:absolute;right:0;top:calc(100% + 10px);width:min(340px,80vw);z-index:40;
+  background:var(--surface);border-radius:14px;padding:14px 16px;
+  box-shadow:var(--ring),0 14px 40px rgba(84,62,44,.18);
+  font-size:13px;line-height:1.6;color:var(--muted);
+}
+
+/* ---------- page rhythm ---------- */
+main{padding-bottom:8px}
+main > section{padding-top:60px;scroll-margin-top:calc(var(--header-h) + 20px)}
+main > section#overview{padding-top:44px}
+.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:26px;margin-bottom:22px}
+.section-head h2{margin:9px 0 9px;font-size:clamp(24px,2.6vw,31px);letter-spacing:-.03em}
+.section-head p{max-width:74ch;font-size:14.5px}
+.section-head > .button,.section-head > .chip{flex:none;margin-top:4px}
+.case-note{font-size:13.2px;line-height:1.62;color:var(--faint)}
+
+/* ---------- overview ---------- */
+.intro{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;flex-wrap:wrap;margin-bottom:22px}
+.intro h1{font-size:clamp(31px,4.2vw,47px);letter-spacing:-.035em;line-height:1.05;margin-top:11px}
+.intro .lede{margin-top:11px;font-size:clamp(15px,1.4vw,17.5px);max-width:52ch}
+.intro > .chip{margin-bottom:6px}
+
+.hero{
+  display:grid;grid-template-columns:1.12fr .88fr;
+  background:var(--surface);border-radius:var(--r-hero);overflow:hidden;
+  box-shadow:var(--ring),var(--shadow-lift);
+}
+.hypothesis{
+  padding:34px 36px;display:flex;flex-direction:column;
+  background:linear-gradient(158deg,#fff6f1,#fffdfb 62%);
+  border-right:1px solid var(--rule);
+}
+.hypothesis h2{
+  margin-top:15px;font-size:clamp(20px,2.15vw,27px);line-height:1.34;
+  letter-spacing:-.025em;font-weight:640;text-wrap:balance;
+}
+html[lang="zh"] .hypothesis h2{line-height:1.6;font-size:clamp(19px,2vw,24px)}
+.hypothesis .case-note{margin-top:14px;max-width:52ch;color:var(--muted)}
+.hypothesis .button{margin-top:auto;align-self:flex-start;padding-top:11px}
+.hypothesis .case-note + .button{margin-top:26px}
+
+/* The evidence boundary is the credibility of the whole page: give it
+   its own surface and a fixed colour vocabulary. */
+.comparison{padding:30px 32px;background:var(--surface-2);display:flex;flex-direction:column}
+.comparison h3{margin:11px 0 6px;font-size:19px;letter-spacing:-.02em}
+.truth-row{
+  display:grid;grid-template-columns:132px minmax(0,1fr);gap:16px;align-items:start;
+  padding:15px 0;border-top:1px solid var(--rule);font-size:13.4px;line-height:1.6;color:var(--muted);
+}
+.truth-row:first-of-type{margin-top:12px}
+.truth-row > .chip{justify-self:start;text-align:center}
+
+/* pulse strip — one card, hairline dividers, tabular numbers */
+.case-pulse{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:16px;
+  background:var(--rule);border-radius:var(--r-card);overflow:hidden;
+  box-shadow:var(--ring),var(--shadow);
+}
+.pulse-cell{background:var(--surface);padding:17px 20px;min-width:0}
+.pulse-cell strong{
+  display:block;font-family:var(--display);font-size:31px;font-weight:680;line-height:1;
+  letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.pulse-cell span{
+  display:block;margin-top:9px;font-family:var(--mono);font-size:9.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);line-height:1.4;
+}
+html[lang="zh"] .pulse-cell span{font-family:var(--sans);font-size:11.5px;letter-spacing:.04em}
+/* the measured-results cell is deliberately empty until a real run exists */
+.pulse-cell:last-child strong{color:var(--faint);font-size:26px}
+.pulse-cell:last-child span{color:var(--faint)}
+
+.case-strip{
+  display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;
+  margin-top:14px;padding:15px 20px;border-radius:var(--r-card);
+  background:var(--brand-soft);box-shadow:inset 0 0 0 1px var(--brand-line);
+  font-size:13.4px;color:var(--brand-ink);
+}
+
+/* ---------- candidates ---------- */
+.case-creators{display:grid;gap:16px}
+.case-creator{
+  display:grid;grid-template-columns:246px minmax(0,1fr) 292px;
+  gap:0;padding:0;overflow:hidden;align-items:stretch;
+}
+.case-creator > div{padding:24px 26px;min-width:0}
+.case-creator > div:nth-child(2){border-left:1px solid var(--rule);border-right:1px solid var(--rule)}
+.case-creator h3{font-size:21px;margin:13px 0 10px;letter-spacing:-.025em}
+.source-link{
+  display:block;margin:6px 0;font-size:13px;font-weight:600;color:var(--info);
+  overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:2px;
+  text-decoration-color:rgba(26,95,192,.35);
+}
+.source-link:hover{text-decoration-color:currentColor}
+.case-creator > div:first-child .case-note{margin-top:14px}
+
+/* evidence: a readable stack, never a squeezed column grid */
+.evidence-row{display:block;padding:0;margin-top:14px}
+.evidence-row + .evidence-row{margin-top:16px;padding-top:16px;border-top:1px solid var(--rule)}
+.evidence-row .source-link{margin:0 0 7px;font-size:13.6px}
+.evidence-row p{font-size:13.8px;line-height:1.62;color:var(--body)}
+.evidence-row small{
+  display:block;margin-top:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;
+  color:var(--faint);overflow-wrap:anywhere;
+}
+html[lang="zh"] .evidence-row small{font-family:var(--sans);font-size:12px}
+/* an evidence limitation is part of the claim, so it is shown, not hidden */
+.evidence-row .case-note{
+  margin-top:10px;padding:9px 12px;border-radius:10px;
+  background:var(--warn-soft);color:var(--warn);
+  box-shadow:inset 0 0 0 1px rgba(143,75,3,.18);font-size:12.8px;
+}
+
+/* human review is the action zone */
+.case-review{background:linear-gradient(180deg,#fdf7f2,var(--surface-2) 58%)}
+.case-review > strong{
+  display:block;font-family:var(--display);font-size:15px;color:var(--ink);letter-spacing:-.015em;
+}
+.case-review > p{margin-top:10px}
+.case-label,.case-review label{
+  display:block;font-size:12.6px;font-weight:650;color:var(--muted);margin:16px 0 7px;
+}
+.case-review textarea,#next-markets{
+  width:100%;font:inherit;font-size:13.4px;color:var(--ink);background:var(--surface);
+  border:1px solid var(--rule-strong);border-radius:var(--r-sm);padding:10px 12px;
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+.case-review textarea{resize:vertical;min-height:76px}
+.case-review textarea:focus,#next-markets:focus{
+  outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-glow);
+}
+.review-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0 0}
+.review-buttons .button{padding:9px 6px;font-size:12.8px;width:100%}
+.review-buttons .approve[aria-pressed="true"]{background:var(--good-soft);color:var(--good);box-shadow:inset 0 0 0 1.5px rgba(18,122,60,.42)}
+.review-buttons .hold[aria-pressed="true"]{background:var(--warn-soft);color:var(--warn);box-shadow:inset 0 0 0 1.5px rgba(143,75,3,.42)}
+.review-buttons .reject[aria-pressed="true"]{background:var(--danger-soft);color:var(--danger);box-shadow:inset 0 0 0 1.5px rgba(178,51,32,.42)}
+.cohort-check{
+  display:flex!important;gap:10px;align-items:flex-start;margin:16px 0 0;
+  font-size:13px;font-weight:600;color:var(--body);cursor:pointer;
+}
+.cohort-check input{accent-color:var(--brand);width:16px;height:16px;margin:2px 0 0;flex:none}
+.cohort-check:has(input:disabled){color:var(--faint);cursor:default}
+
+/* ---------- proposal + results ---------- */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.case-panel{padding:26px 28px;min-width:0}
+.case-panel h3{font-size:20px;margin:9px 0 16px;letter-spacing:-.025em}
+.case-panel > p{font-size:14px}
+.case-actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+.case-actions + .case-note,.case-actions + p{margin-top:14px}
+.cohort-list{margin:0 0 14px}
+.cohort-list li{
+  padding:10px 0;border-bottom:1px solid var(--rule);font-size:14px;font-weight:600;color:var(--ink);
+}
+.cohort-list li:only-child{font-weight:500;color:var(--faint)}
+
+/* "—" is not zero: render it as an explicit unmeasured slot */
+.pending-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0 18px}
+.pending-metrics > div{padding-top:14px;border-top:2px dashed var(--rule-strong)}
+.pending-metrics strong{
+  display:block;font-family:var(--display);font-size:30px;line-height:1;color:var(--rule-strong);font-weight:680;
+}
+.pending-metrics span{
+  display:block;margin-top:9px;font-size:12.4px;color:var(--faint);line-height:1.4;
+}
+
+/* ---------- teaching simulation (never mixed with real people) ---------- */
+.scenario{
+  margin-top:16px;background:linear-gradient(165deg,var(--ai-soft),#fdfaff 70%);
+  box-shadow:inset 0 0 0 1px var(--ai-line),var(--shadow);
+}
+.scenario h3{margin:12px 0 8px}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:22px 0 18px}
+.scenario-stat{
+  font-family:var(--display);font-size:44px;font-weight:680;line-height:1;letter-spacing:-.045em;
+  color:var(--brand);margin-top:10px;font-variant-numeric:tabular-nums;
+}
+.scenario-stat.stone{color:var(--stone)}
+.case-bar{height:9px;background:var(--surface);border-radius:var(--r-pill);margin:12px 0 10px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--rule)}
+.case-bar span{display:block;height:100%;border-radius:var(--r-pill);background:linear-gradient(90deg,#ff8a4c,var(--brand))}
+.case-bar.stone span{background:var(--stone)}
+.scenario-grid p{font-size:12.8px;color:var(--muted)}
+
+/* ---------- criteria + next brief ---------- */
+.criteria-list{counter-reset:c;display:grid;gap:7px;margin:0 0 14px}
+.criteria-list li{
+  counter-increment:c;display:flex;gap:11px;align-items:baseline;
+  font-size:14px;font-weight:600;color:var(--ink);line-height:1.5;
+  padding:10px 13px;border-radius:var(--r-sm);background:var(--surface-2);
+  box-shadow:inset 0 0 0 1px var(--rule);border-bottom:0;
+}
+.criteria-list li::before{
+  content:counter(c);flex:none;font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--brand-ink);background:var(--brand-soft);border-radius:6px;
+  width:19px;height:19px;display:grid;place-items:center;position:relative;top:2px;
+}
+.criteria-list li::after{content:none}
+
+.case-loop{
+  display:flex;flex-wrap:wrap;align-items:center;gap:11px;
+  margin-top:20px;padding:20px 24px;border-radius:var(--r-card);
+  background:var(--surface);box-shadow:var(--ring),var(--shadow);
+}
+.case-loop span{
+  padding:7px 14px;border-radius:var(--r-pill);background:var(--ground-2);
+  box-shadow:inset 0 0 0 1px var(--rule);font-size:12.8px;font-weight:600;color:var(--body);
+}
+.case-loop span:first-child{background:var(--brand-soft);color:var(--brand-ink);box-shadow:inset 0 0 0 1px var(--brand-line)}
+.case-loop b{color:var(--rule-strong);font-size:13px}
+
+/* ---------- footer, toast, dialog ---------- */
+.case-footer{
+  margin-top:52px;padding:26px 0 44px;border-top:1px solid var(--rule-strong);
+  font-size:13.4px;color:var(--muted);
+}
+.case-footer strong{display:block;color:var(--ink);font-family:var(--display);font-size:14.5px;letter-spacing:-.015em}
+.case-footer p{margin-top:9px;font-size:12.6px;color:var(--faint);max-width:96ch}
+
+.case-toast{
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:100;
+  background:var(--ink);color:#fff;padding:13px 22px;border-radius:14px;
+  max-width:min(92vw,620px);font-size:13.6px;line-height:1.5;
+  box-shadow:0 12px 34px rgba(25,21,18,.34);
+}
+
+#measurement-dialog{
+  width:min(720px,94vw);max-height:86vh;padding:0;border:0;border-radius:var(--r-hero);
+  background:var(--surface);color:var(--body);box-shadow:0 30px 80px rgba(60,44,32,.34);
+}
+#measurement-dialog::backdrop{background:rgba(25,21,18,.42);backdrop-filter:blur(4px)}
+#measurement-dialog .case-panel{padding:26px 30px 30px;max-height:86vh;overflow-y:auto}
+#measurement-dialog .row{align-items:flex-start;margin-bottom:6px}
+#measurement-dialog h2{font-size:23px;letter-spacing:-.028em}
+.measurement-copy h3{
+  margin-top:22px;font-size:12px;font-family:var(--mono);font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--brand-ink);
+}
+html[lang="zh"] .measurement-copy h3{font-family:var(--sans);letter-spacing:.05em;font-size:13px}
+.measurement-copy p{margin:8px 0 0;font-size:14px;line-height:1.65;color:var(--body)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){
+  .case-creator{grid-template-columns:230px minmax(0,1fr)}
+  .case-review{grid-column:1/-1;border-top:1px solid var(--rule)}
+  .case-creator > div:nth-child(2){border-right:0}
+}
+@media (max-width:1080px){
+  .hero{grid-template-columns:1fr}
+  .hypothesis{border-right:0;border-bottom:1px solid var(--rule)}
+  .case-grid{grid-template-columns:1fr}
+  .case-pulse{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:980px){
+  .wrap,.topbar-inner{padding-left:24px;padding-right:24px}
+  .topbar-inner{gap:12px;min-height:0}
+  .nav{order:5;width:100%;overflow-x:auto;gap:4px;padding-bottom:2px;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .chrome-right{margin-left:auto;flex:1 1 auto;min-width:0;justify-content:flex-end;flex-wrap:wrap;row-gap:8px}
+  .disclaimer{min-width:0}
+  .demo-badge{white-space:normal;max-width:100%;font-size:8.5px;letter-spacing:.08em;padding:6px 10px}
+  html[lang="zh"] .demo-badge{font-size:10.5px}
+}
+@media (max-width:720px){
+  .wrap,.topbar-inner{padding-left:18px;padding-right:18px}
+  .topbar-inner{gap:9px;padding-top:8px;padding-bottom:8px}
+  .logo{margin-right:0}
+  .chrome-right{order:4;width:100%;margin-left:0;justify-content:space-between}
+  .logo-mark{height:23px}
+  .nav a{padding:7px 11px;font-size:13px}
+  main > section{padding-top:44px}
+  .case-creator{grid-template-columns:1fr}
+  .case-creator > div:nth-child(2){border-left:0;border-right:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .case-review{border-top:0}
+  .case-creator > div{padding:20px 22px}
+  .hypothesis,.comparison,.case-panel{padding:22px 22px}
+  .section-head{flex-direction:column;align-items:flex-start;gap:14px}
+  .truth-row{grid-template-columns:1fr;gap:8px}
+  .scenario-grid{grid-template-columns:1fr;gap:18px}
+  .case-strip{flex-direction:column;align-items:flex-start;gap:10px}
+  .pending-metrics{grid-template-columns:1fr}
+  .intro h1{font-size:31px}
+  .review-buttons{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .case-pulse{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="ground" aria-hidden="true"></div>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<div class="spectrum-bar" aria-hidden="true"></div>
+<header class="topbar"><div class="wrap topbar-inner">
+  <a href="#overview" class="logo" data-i18n-aria="brand.aria" aria-label="Eazo Growth Learning OS overview">
+    <img class="logo-mark" src="data:image/png;base64,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" alt="" width="96" height="26">
+    <span class="logo-divider" aria-hidden="true"></span>
+    <small class="logo-sub" data-i18n="brand.sub">Growth Learning OS</small>
+  </a>
+  <nav class="nav" data-i18n-aria="nav.aria" aria-label="Page sections">
+    <a href="#overview" class="active" aria-current="location" data-i18n="nav.overview">Overview</a>
+    <a href="#creators" data-i18n="nav.creators">Creators</a>
+    <a href="#experiment" data-i18n="nav.experiment">Experiment</a>
+    <a href="#learning" data-i18n="nav.learning">Learning</a>
+  </nav>
+  <div class="chrome-right">
+    <div class="lang" role="group" data-i18n-aria="lang.group" aria-label="Language">
+      <button type="button" class="lang-btn" id="lang-en" data-lang="en" aria-pressed="true" lang="en">EN</button>
+      <button type="button" class="lang-btn" id="lang-zh" data-lang="zh" aria-pressed="false" lang="zh">中文</button>
+    </div>
+    <div class="disclaimer">
+      <button class="demo-badge" id="disclaimer-button" aria-expanded="false" aria-controls="disclaimer-tip"><span data-i18n="badge">INTERVIEW PROTOTYPE · PUBLIC EVIDENCE + SIMULATION</span> <span class="info-icon" aria-hidden="true">i</span></button>
+      <div class="tip" id="disclaimer-tip" data-i18n="badge.tip" hidden>Public research and synthetic scenarios are separate. No Eazo internal data, partnership or endorsement is claimed.</div>
+    </div>
+  </div>
+</div></header>
+
+<main id="main" class="wrap" tabindex="-1">
+<section id="overview" tabindex="-1" aria-labelledby="page-title">
+  <div class="intro"><div><div class="eyebrow brand">GROWTH OS / EAZO CASE WORKSPACE</div><h1 id="page-title">Eazo Growth Learning OS</h1><p class="lede" data-i18n="hero.lede"></p></div><span class="chip warn" data-i18n="proposed"></span></div>
+  <div class="hero">
+    <div class="hypothesis"><div class="eyebrow brand" data-i18n="hypothesis.label"></div><h2 data-i18n="hypothesis"></h2><p class="case-note" data-i18n="hypothesis.note"></p><a class="button" href="#creators" data-i18n="start"></a></div>
+    <div class="comparison"><div class="eyebrow" data-i18n="truth.label"></div><h3 data-i18n="truth.title"></h3><div class="truth-row"><span class="chip good" data-i18n="public"></span><span data-i18n="truth.public"></span></div><div class="truth-row"><span class="chip warn" data-i18n="pending"></span><span data-i18n="truth.results"></span></div><div class="truth-row"><span class="chip ai" data-i18n="simulation"></span><span data-i18n="truth.simulation"></span></div></div>
+  </div>
+  <div class="case-pulse" id="case-pulse"></div>
+  <div class="case-strip"><span data-i18n="connection"></span><a class="text-button" href="./index.html#partners" id="growth-return" data-i18n="open.growth"></a></div>
+</section>
+<section id="creators" tabindex="-1" aria-labelledby="creators-title">
+  <div class="section-head"><div><span class="eyebrow brand" data-i18n="creators.label"></span><h2 id="creators-title" data-i18n="creators.title"></h2><p data-i18n="creators.note"></p></div><button class="button secondary" id="import-button" data-i18n="import"></button><input type="file" id="candidate-file" accept=".json,application/json" hidden></div>
+  <p class="case-note" data-i18n="sources.note"></p>
+  <div class="case-creators" id="case-creators"></div>
+</section>
+<section id="experiment" tabindex="-1" aria-labelledby="experiment-title">
+  <div class="section-head"><div><span class="eyebrow brand" data-i18n="experiment.label"></span><h2 id="experiment-title" data-i18n="experiment.title"></h2><p data-i18n="experiment.note"></p></div><span class="chip warn" data-i18n="proposed"></span></div>
+  <div class="case-grid">
+    <article class="card case-panel"><h3 data-i18n="cohort.title"></h3><div id="cohort"></div><div class="case-actions"><button class="button" id="save-proposal" data-i18n="proposal.save"></button><button class="button secondary" id="measurement-open" data-i18n="measurement"></button></div><div id="proposal-status" class="case-note"></div></article>
+    <article class="card case-panel"><span class="eyebrow" data-i18n="real.results"></span><h3 data-i18n="waiting"></h3><div class="pending-metrics"><div><strong>—</strong><span data-i18n="metric.signup"></span></div><div><strong>—</strong><span data-i18n="metric.create"></span></div><div><strong>—</strong><span data-i18n="metric.d7"></span></div></div><p data-i18n="results.note"></p><div class="case-actions"><button class="button secondary" id="scenario-toggle" aria-expanded="false" data-i18n="scenario.open"></button></div></article>
+  </div>
+  <div id="scenario" class="card case-panel scenario" hidden></div>
+</section>
+<section id="learning" tabindex="-1" aria-labelledby="learning-title">
+  <div class="section-head"><div><span class="eyebrow brand" data-i18n="learning.label"></span><h2 id="learning-title" data-i18n="learning.title"></h2><p data-i18n="learning.note"></p></div><span class="chip brand" id="criteria-active"></span></div>
+  <div class="case-grid"><article class="card case-panel"><h3 data-i18n="criteria.title"></h3><div id="criteria"></div><div class="case-actions"><button class="button" id="criteria-accept" data-i18n="criteria.accept"></button><button class="button secondary" id="criteria-revert" data-i18n="criteria.revert"></button></div><p class="case-note" id="criteria-basis"></p></article>
+  <article class="card case-panel"><h3 data-i18n="next.title"></h3><p data-i18n="next.note"></p><label class="case-label" for="next-markets" data-i18n="next.markets"></label><input id="next-markets" placeholder="US, Canada" maxlength="160"><p class="case-note" data-i18n="next.markets.note"></p><div class="case-actions"><button class="button" id="next-export" data-i18n="next.export"></button></div><p class="case-note" data-i18n="next.guardrail"></p></article></div>
+  <div class="case-loop"><span>Growth OS</span><b>→</b><span data-i18n="loop.evidence"></span><b>→</b><span data-i18n="loop.review"></span><b>→</b><span data-i18n="loop.proposal"></span><b>→</b><span data-i18n="loop.measure"></span><b>→</b><span data-i18n="loop.next"></span></div>
+</section>
+<footer class="case-footer"><strong data-i18n="footer.disclaimer"></strong><p data-i18n="footer.note"></p><p>Keer · Eazo Growth Learning OS</p></footer>
+</main>
+<div id="case-status" class="case-toast" role="status" aria-live="polite" hidden></div>
+<dialog id="measurement-dialog" aria-labelledby="measurement-title"><div class="case-panel"><div class="row"><h2 id="measurement-title" data-i18n="measurement"></h2><button class="button secondary" id="measurement-close" data-i18n="close"></button></div><div class="measurement-copy" id="measurement-copy"></div></div></dialog>
+<script>
+'use strict';
+const COPY = {
+'skip':['Skip to content','跳到正文'],'brand.aria':['Eazo Growth Learning OS overview','Eazo Growth Learning OS 概览'],'brand.sub':['Growth Learning OS','Growth Learning OS'],'nav.aria':['Page sections','页面导航'],'nav.overview':['Overview','概览'],'nav.creators':['Creators','创作者'],'nav.experiment':['Experiment','实验'],'nav.learning':['Learning','学习'],'lang.group':['Language','语言'],
+'badge':['INTERVIEW PROTOTYPE · PUBLIC EVIDENCE + SIMULATION','面试原型 · 公开证据 + 模拟演示'],'badge.tip':['Independent interview case. Public creator research is separate from synthetic scenarios. No Eazo internal data or partnership is claimed.','独立面试案例。公开创作者研究与模拟场景分开；不声称拥有 Eazo 内部数据或合作关系。'],
+'hero.lede':['From Growth Hypothesis to Product Activation and Learning','从增长假设，到产品激活与学习'],
+'proposed':['Experiment not run','实验尚未执行'],'hypothesis.label':['CURRENT HYPOTHESIS · UNVALIDATED','当前假设 · 未验证'],
+'hypothesis':['Does showing one meaningful creation decision help viewers move from inspiration to making something?','展示一个关键创作决策，能否帮助观众从获得灵感走向亲手创作？'],
+'hypothesis.note':['Compare two formats around the same artifact: lead with the finished result, or lead with how it was made. Both are valid comparison arms.','围绕同一作品比较两种内容：先呈现成品，或先解释如何制作。两者均为有效对照方案。'],
+'start':['Review public evidence →','审核公开证据 →'],'truth.label':['WHAT WE ACTUALLY KNOW','我们实际知道什么'],'truth.title':['Evidence has a boundary.','证据有明确边界。'],
+'public':['Public sources','公开来源'],'pending':['Not measured','尚未测量'],'simulation':['Simulation only','仅模拟'],
+'truth.public':['Real identities and linked content examples, checked on 8 September 2026. Imported records retain their own provenance.','真实身份与内容链接，于 2026 年 9 月 8 日核验。导入记录保留原始来源信息。'],
+'truth.results':['No Eazo signup, creation, retention, outreach or partnership results are connected.','未接入 Eazo 注册、创作、留存、触达或合作结果。'],
+'truth.simulation':['Optional anonymous numbers explain how a future decision could be made.','可选的匿名模拟数字，用来讲解未来如何做决策。'],
+'pulse.candidates':['Research candidates','研究候选'],'pulse.approved':['Case approvals','本案例已通过'],'pulse.cohort':['Selected for proposal','提案已选候选'],'pulse.results':['Measured experiments','已测量实验'],
+'connection':['Growth OS hands off approved research; this case prepares a test and returns a draft brief.','Growth OS 交接已审核研究；本案例准备实验，再返回下一轮简报草稿。'],'open.growth':['Open Growth OS ↗','打开 Growth OS ↗'],
+'creators.label':['01 / EVIDENCE → HUMAN REVIEW','01 / 证据 → 人工审核'],'creators.title':['Choose who is worth a conversation.','选择值得进一步沟通的人。'],
+'creators.note':['These are public research candidates, not Eazo partners. Review each source, record your reason and select a proposed cohort.','这些是公开研究候选，不是 Eazo 合作伙伴。查看来源、记录理由，再选择实验提案候选组。'],
+'sources.note':['Older content proves a past example, not recent activity. Market, audience intent, availability and follower counts remain unverified. No video is embedded or claimed as watched.','较早内容只能证明过去的案例，不能证明近期活跃度。市场、受众行动意愿、合作意向和粉丝数均未核验。未嵌入视频，也不声称已观看视频。'],
+'import':['Import Growth OS approvals','导入 Growth OS 已审核候选'],'profile':['Open profile ↗','打开主页 ↗'],'source':['Source ↗','查看来源 ↗'],'checked':['Checked','核验日期'],'published':['Published','发布日期'],'unknown.date':['Date unavailable','日期未提供'],'upstream':['Growth OS approved · case review required','Growth OS 已通过 · 仍需本案例审核'],
+'review':['Case decision','本案例判断'],'review.none':['Not reviewed','未审核'],'review.approve':['Approve','通过'],'review.hold':['Hold','暂缓'],'review.reject':['Reject','拒绝'],'review.reason':['Reason / evidence limitation','判断理由 / 证据限制'],'review.reason.required':['Write a short reason before making a decision.','请先填写简短理由，再做决定。'],'review.saved':['Case decision recorded. No outreach was sent.','已记录本案例判断，未发送任何触达。'],
+'select':['Include in proposed cohort','加入提案候选组'],'select.note':['Approve first. This records research interest, not consent to participate.','先通过审核。这仅记录研究意向，不代表对方同意参与。'],'imported.limit':['Imported snapshot, not independently re-verified in this case. Review the linked source.','导入的来源快照，尚未在本案例重新核验；请审核链接内容。'],'observed.label':['Observed from source','来源可观察内容'],'curator.label':['Curated public research','人工整理公开研究'],
+'experiment.label':['02 / REVIEW → EXPERIMENT PROPOSAL','02 / 审核 → 实验提案'],'experiment.title':['A testable proposal, with results left open.','可执行的实验提案，结果保持待测。'],
+'experiment.note':['Each willing creator would produce both formats. Keep artifact, CTA and distribution comparable; avoid confusing creator differences with a format effect.','计划请每位自愿参与的创作者制作两种形式。保持作品、行动引导和分发条件可比，避免把创作者差异误判为内容形式效果。'],
+'cohort.title':['Proposed cohort','提案候选组'],'cohort.empty':['No creators selected. Approve and select at least one candidate above.','尚未选择创作者。请在上方通过并选择至少一位候选人。'],'cohort.paired':['Each selected creator: result-led + process-led versions. No creator is assigned a permanent “type”.','每位入选者：成品优先版 + 过程优先版；不会把创作者永久归为某一类型。'],
+'proposal.save':['Save proposal snapshot','保存提案快照'],'proposal.saved':['Proposal saved locally in page memory. Participation and launch remain unconfirmed.','提案已保存在页面内存中。参与及启动仍未确认。'],'proposal.changed':['Selection or review changed. The saved proposal is preserved; save a new snapshot before proceeding.','选择或审核已改变。旧提案保留不变，请保存新快照后继续。'],'proposal.none':['No saved proposal yet.','尚未保存提案。'],'measurement':['Measurement assumptions','测量假设'],'close':['Close','关闭'],
+'real.results':['REAL RESULTS · NOT CONNECTED','真实结果 · 未接入'],'waiting':['Waiting for a real experiment.','等待真实实验。'],'metric.signup':['Attributed signups','归因注册'],'metric.create':['Create / Remix conversion','创作 / Remix 转化'],'metric.d7':['D7 return','D7 回访'],
+'results.note':['“—” means not observed, not zero. Create / Remix is a proposed proxy, not Eazo’s official activation definition.','“—”表示尚未观察，不是零。创作 / Remix 是建议替代指标，并非 Eazo 官方激活定义。'],
+'scenario.open':['Open synthetic learning scenario','打开模拟学习场景'],'scenario.close':['Close synthetic scenario','关闭模拟场景'],
+'scenario.title':['Anonymous example · not this cohort','匿名示例 · 不属于此候选组'],'scenario.note':['The following numbers are invented for demonstration. They are never attached to the real creators above and cannot validate the hypothesis.','以下数字为演示虚构，不会关联上方真实创作者，也不能验证假设。'],
+'group.how':['PROCESS-LED','过程优先'],'group.result':['RESULT-LED','成品优先'],'scenario.denominator':['completed creations / signups','完成首次创作 / 注册'],
+'scenario.learning':['In this example, the process-led arm has fewer signups but higher post-signup creation. This illustrates a decision tradeoff, not a real finding or a causal effect.','这个模拟示例中，过程优先组注册较少，但注册后的创作转化更高。它用于展示决策权衡，不是真实发现或因果效果。'],
+'learning.label':['03 / LEARNING → NEXT DISCOVERY','03 / 学习 → 下一轮发现'],'learning.title':['Version the decision. Keep the evidence.','保留证据，让决策可追溯。'],
+'learning.note':['No real outcome supports changing eligibility today. V2 is an optional, provisional research priority informed by the teaching scenario.','目前没有真实结果支持更改准入规则。V2 只是受教学场景启发的可选、临时研究优先级。'],
+'criteria.title':['Research priorities','研究优先级'],'criteria.base':['V1 · Baseline research','V1 · 基础研究'],'criteria.v2':['V2 · Provisional scenario priorities','V2 · 模拟场景临时优先级'],
+'criteria.fit':['Product / creative fit','产品 / 创意契合度'],'criteria.activity':['Recent activity — verify current evidence','近期活跃度 — 需要补充当前证据'],'criteria.tools':['Tool experimentation','工具尝试'],'criteria.publishing':['Publishing consistency','发布稳定性'],'criteria.process':['Process sharing — a comparison variable','过程分享 — 用作对比变量'],'criteria.intent':['Audience Action Intent — verify before judging','受众行动意愿 — 核验后再判断'],
+'criteria.secondary':['Secondary: publishing consistency, audience size, past collaborations. Unknown stays unknown.','次要：发布稳定性、受众规模、历史合作。未知项保持未知。'],
+'criteria.accept':['Adopt provisional V2','采用临时 V2'],'criteria.revert':['Revert to V1','恢复 V1'],'criteria.basis.v1':['Baseline retained. Open the synthetic scenario to preview the provisional update.','保留基础版。打开模拟场景可查看临时更新。'],'criteria.basis.v2':['Basis: synthetic scenario + human judgment. V1 is preserved. Both content formats remain in the experiment.','依据：模拟场景 + 人工判断。V1 保留，两种内容形式都继续参与实验。'],'criteria.accepted':['Provisional V2 adopted. This is not validated learning.','已采用临时 V2。这不是已验证的学习结论。'],
+'next.title':['Prepare the next discovery brief','准备下一轮发现简报'],'next.note':['Choose the markets to research. Export a draft for Growth OS; approval and retrieval stay in its existing workflow.','填写要研究的市场，导出草稿给 Growth OS；审批与检索仍在原有流程完成。'],
+'next.markets':['Target markets (required)','目标市场（必填）'],'next.markets.note':['This is your campaign choice, not a claim about the candidates’ location.','这是你的活动选择，不是在断言候选人的所在地。'],
+'next.export':['Export next-run draft','导出下一轮草稿'],'next.guardrail':['Only a brief is transferred back. Research priorities are attached for human review, not silently applied to the backend. No retrieval or outreach starts.','仅将简报带回；研究优先级附上供人工审核，不会悄悄写入后端规则，也不会启动检索或触达。'],
+'next.required':['Save a current proposal and enter target markets first.','请先保存当前提案，并填写目标市场。'],'next.exported':['Draft downloaded. Import it in Growth OS → Discover.','草稿已下载，请在 Growth OS → 发现 中导入。'],
+'loop.evidence':['Public evidence','公开证据'],'loop.review':['Human review','人工审核'],'loop.proposal':['Proposed test','实验提案'],'loop.measure':['Await measurement','等待测量'],'loop.next':['Next-run draft','下一轮草稿'],
+'footer.disclaimer':['Independent interview prototype by Keer. Not an official Eazo product; not commissioned or endorsed by Eazo.','Keer 的独立面试原型。非 Eazo 官方产品，未受 Eazo 委托或认可。'],
+'footer.note':['No outreach, live retrieval or analytics connection. Page state resets on refresh. Public candidates have not agreed to participate.','没有触达、实时检索或分析系统连接。刷新会重置页面状态。公开候选人尚未同意参与。'],
+'error.import':['Import rejected. Use a Growth OS approved-candidate JSON export (up to 50 records / 1 MB). Existing work was preserved.','导入被拒绝。请使用 Growth OS 已审核候选 JSON（最多 50 条 / 1 MB）；现有工作已保留。'],'import.success':['Approved research imported. Case decisions still require your review.','已导入通过审核的研究，仍需你做本案例判断。'],'error.identity':['An existing record has a different profile identity. Import was stopped.','已有记录的主页身份不匹配，已停止导入。']
+};
+const MEASUREMENT = [
+['Design','设计','Within-creator comparison: each consenting creator makes A (result-led) and B (process-led) around the same artifact. Match CTA, distribution, duration and incentive. Randomize comparable audiences where feasible; otherwise call it observational.','同一创作者内对比：每位同意参与者围绕同一作品制作 A（成品优先）和 B（过程优先）。保持行动引导、分发、时长和激励可比；条件允许时随机分配可比受众，否则标注为观察性对比。'],
+['Attribution proposal','归因提案','Use creator_id + format_id campaign links. Propose first eligible campaign click within 7 days before signup; deduplicate by account and record cross-format exposure. This requires instrumentation and consent/privacy review before launch.','采用 creator_id + format_id 活动链接。建议以注册前 7 天内首次有效活动点击归因，按账户去重并记录跨版本曝光。启动前需完成埋点及隐私审核。'],
+['Proposed activation proxy','建议激活替代指标','Unique new signups completing their first Create / Remix within 7 days ÷ eligible new signups whose full 7-day window has matured. Publish is a separate downstream action. Confirm this definition with Eazo before any real test.','7 天内完成首次创作 / Remix 的新注册账户数 ÷ 已完整经历 7 天观察窗的有效新注册账户数。发布是另一个下游行为。真实实验前须与 Eazo 确认定义。'],
+['Retention and guardrails','留存与护栏','D7 return: a separate return event on day 7 after signup (UTC), among cohorts with a mature observation window. Agree on tracking, cost cap, creator consent and content quality checks before launch. No analytics are connected here.','D7 回访：注册后第 7 天（UTC）的独立回访事件，分母仅包含观察窗成熟的注册账户。启动前确认埋点、费用上限、创作者同意及内容质量检查。本原型未接入分析数据。'],
+['How to interpret','如何解读','Report counts and denominators per creator and format. Different audiences, small creator clusters and cross-exposure limit inference. The anonymous scenario demonstrates the workflow only; it is not a pilot result.','按创作者和版本报告计数及分母。受众差异、创作者样本少和跨组曝光均限制结论。匿名模拟仅展示流程，不是试验结果。']
+];
+const localize = value => Array.isArray(value) ? value[state.language==='zh'?1:0] : String(value??'');
+const t = key => localize(COPY[key] || [key,key]);
+const esc = value => String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clone = value => JSON.parse(JSON.stringify(value));
+const safeURL = value => { try { const u=new URL(value); return ['https:','http:'].includes(u.protocol)&&!u.username&&!u.password ? u.href : null; } catch { return null; } };
+const BASE_CRITERIA=['criteria.fit','criteria.activity','criteria.tools','criteria.publishing'];
+const V2_CRITERIA=['criteria.process','criteria.intent','criteria.fit','criteria.activity','criteria.tools'];
+const CREATORS=[
+ {record_id:'demo_creator_001',display_name:'Jesse Showalter',platform:'instagram',profile_url:'https://www.instagram.com/imjesseshow/',official_url:'https://www.jesseshowalter.com/',origin:'curated_public_research',evidence:[
+ {url:'https://www.jesseshowalter.com/articles/an-actual-ai-design-workflow-figma-claude-vercel-supabase',title:'An actual AI design workflow',published_at:'2026-07-17',checked_at:'2026-09-08',observed:['Describes building and iterating a party game through Figma, Claude, GitHub, Vercel and Supabase.','描述通过 Figma、Claude、GitHub、Vercel 和 Supabase 制作并迭代派对游戏的过程。'],limitations:['Article text reviewed; page includes image/video placeholders. No product-performance claims are included.','已审核文章文字；页面含图片 / 视频占位符。未引用产品业绩声明。']}]},
+ {record_id:'demo_creator_004',display_name:'Charli Marie',platform:'instagram',profile_url:'https://www.instagram.com/charliprangley/',official_url:'https://charlimarie.com/',origin:'curated_public_research',evidence:[
+ {url:'https://charlimarie.com/blog/interview-series',title:'Creating and running an interview series',published_at:'2021-08-13',checked_at:'2026-09-08',observed:['Documents guest selection, preparation, recording, editing and changes between seasons of Inside Marketing Design.','记录 Inside Marketing Design 的嘉宾选择、准备、录制、剪辑及不同季之间的改进。'],limitations:['An older process-storytelling example. Does not establish current activity, availability or AI-tool adoption.','较早的过程叙事案例，不证明当前活跃度、合作意向或 AI 工具使用情况。']}]},
+ {record_id:'demo_creator_011',display_name:'Dann Petty',platform:'instagram',profile_url:'https://www.instagram.com/dannpetty/',official_url:'https://www.dannpetty.com/',origin:'curated_public_research',evidence:[
+ {url:'https://dribbble.com/shots/4161482-InVision-Studio-Prototype',title:'InVision Studio Prototype',published_at:null,checked_at:'2026-09-08',observed:['The caption pairs a prototype showcase with a making-of timelapse link and describes using two artboards.','说明文字在原型展示旁附制作延时视频链接，并描述使用两个画板。'],limitations:['Publication date unavailable. The linked video was not watched or independently reviewed.','发布日期未提供。未观看或独立审核链接视频。']},
+ {url:'https://dribbble.com/shots/12277089-Fever-Free-Track-your-body-temperature',title:'Fever Free — Track your body temperature',published_at:null,checked_at:'2026-09-08',observed:['A finished-product showcase presents interface images and user-facing features.','成品展示包含界面图片与面向用户的功能说明。'],limitations:['Shows a past content format, not current app availability or performance.','仅证明过去的内容形式，不证明应用现状或业绩。']}]}
+];
+const state={language:'en',creators:clone(CREATORS),reviews:{},reasonDrafts:{},selected:[],proposals:[],criteriaHistory:[{version:1,basis:'baseline'}],activeCriteria:1,scenario:false,markets:''};
+const $=id=>document.getElementById(id);
+function notify(message){$('case-status').textContent=message;$('case-status').hidden=false;clearTimeout(notify.timer);notify.timer=setTimeout(()=>$('case-status').hidden=true,6500);}
+function reviewed(id){return state.reviews[id]?.decision||'none';}
+function selectionSnapshot(){return state.selected.map(id=>{const c=state.creators.find(c=>c.record_id===id);return {record_id:id,display_name:c.display_name,profile_url:c.profile_url,upstream_record_id:c.upstream_record_id||null,upstream_review:clone(c.upstream_review||null),upstream_provenance:clone(c.upstream_provenance||null),origin:c.origin,review:clone(state.reviews[id]),evidence:clone(c.evidence)};});}
+function currentProposal(){return state.proposals.at(-1)||null;}
+function proposalIsCurrent(){const p=currentProposal();return !!p&&JSON.stringify(p.cohort)===JSON.stringify(selectionSnapshot());}
+function decide(id,decision){
+ if(!state.creators.some(c=>c.record_id===id)||!['approve','hold','reject'].includes(decision))return;
+ const reason=(state.reasonDrafts[id]??state.reviews[id]?.reason??'').trim();if(!reason){notify(t('review.reason.required'));return;}
+ delete state.reasonDrafts[id];
+ state.reviews[id]={decision,reason,reviewed_at:new Date().toISOString(),criteria_version:state.activeCriteria};
+ if(decision!=='approve')state.selected=state.selected.filter(x=>x!==id);
+ render();notify(t('review.saved'));
+}
+function selectCandidate(id,include){if(reviewed(id)!=='approve')return;state.selected=state.selected.filter(x=>x!==id);if(include)state.selected.push(id);render();}
+function saveProposal(){if(!state.selected.length)return;state.proposals.push({proposal_id:'eazo-proposal-'+(state.proposals.length+1),status:'proposed',created_at:new Date().toISOString(),criteria_version:state.activeCriteria,cohort:selectionSnapshot(),design:'within_creator_paired_formats',real_results:{status:'not_connected',signups:null,completed_creations:null,d7_return:null}});render();notify(t('proposal.saved'));}
+function adoptCriteria(){if(!state.scenario||state.activeCriteria===2)return;if(!state.criteriaHistory.some(c=>c.version===2))state.criteriaHistory.push({version:2,basis:'synthetic_scenario_and_human_judgment',created_at:new Date().toISOString(),priority:[...V2_CRITERIA],secondary:['criteria.publishing']});state.activeCriteria=2;render();notify(t('criteria.accepted'));}
+function candidateFromImport(c){
+ const text=v=>typeof v==='string'&&v.trim()&&v.length<=6000;
+ if(!c||!text(c.record_id)||!/^[A-Za-z0-9][A-Za-z0-9_-]{0,119}$/.test(c.record_id)||['constructor','prototype','__proto__'].includes(c.record_id)||!text(c.display_name)||!safeURL(c.profile_url)||!['instagram','x','youtube','web'].includes(c.platform)||c.review?.decision!=='approve'||!text(c.review.reviewed_at)||Number.isNaN(Date.parse(c.review.reviewed_at))||!Array.isArray(c.evidence)||!c.evidence.length||c.evidence.length>12)throw Error('invalid');
+ const evidence=c.evidence.map(e=>{if(!safeURL(e.url)||!text(e.title)||!text(e.observed)||!(e.checked_at===null||(text(e.checked_at)&&!Number.isNaN(Date.parse(e.checked_at)))))throw Error('invalid');return {url:safeURL(e.url),title:e.title,observed:e.observed,checked_at:e.checked_at,published_at:null,limitations:COPY['imported.limit']};});
+ const provenance={};for(const k of ['discovery_mode','source_connector','retrieved_at','run_id','query_id']){const v=c.provenance?.[k];if(v!=null&&!text(v))throw Error('invalid');provenance[k]=v||null;}
+ return {record_id:c.record_id,display_name:c.display_name,profile_url:safeURL(c.profile_url),platform:c.platform,origin:'growth_os_import',upstream_record_id:c.record_id,upstream_review:{decision:'approve',reviewed_at:c.review.reviewed_at},upstream_provenance:provenance,evidence};
+}
+function importCandidates(payload){
+ if(payload?.schema!=='growth-os.case-candidates/v1'||!Array.isArray(payload.candidates)||!payload.candidates.length||payload.candidates.length>50)throw Error('invalid');
+ const incoming=payload.candidates.map(candidateFromImport);
+ if(new Set(incoming.map(c=>c.record_id)).size!==incoming.length)throw Error('duplicate');
+ const urlKey=v=>{const u=new URL(v);const host=u.hostname.replace(/^www\./,'');if(['instagram.com','x.com'].includes(host))return host+u.pathname.replace(/\/$/,'').toLowerCase();u.hash='';return u.href;};
+ if(new Set(incoming.map(c=>urlKey(c.profile_url))).size!==incoming.length)throw Error('duplicate');
+ const next=clone(state.creators);
+ for(const c of incoming){
+  const index=next.findIndex(x=>x.record_id===c.record_id), alias=next.find(x=>urlKey(x.profile_url)===urlKey(c.profile_url)&&x.record_id!==c.record_id);
+  if(index>=0&&urlKey(next[index].profile_url)!==urlKey(c.profile_url))throw Error('identity');
+  if(alias){alias.upstream_record_id=c.record_id;alias.upstream_review=c.upstream_review;alias.upstream_provenance=c.upstream_provenance;continue;}
+  if(index>=0){if(urlKey(next[index].profile_url)!==urlKey(c.profile_url))throw Error('identity');next[index]={...next[index],upstream_record_id:c.record_id,upstream_review:c.upstream_review,upstream_provenance:c.upstream_provenance};}
+  else next.push(c);
+ }
+ if(next.length>53)throw Error('size');
+ state.creators=next;render();notify(t('import.success'));
+}
+function nextBrief(){
+ if(!proposalIsCurrent()||!state.markets.trim())throw Error('incomplete');
+ const criteria=state.activeCriteria===2?V2_CRITERIA:BASE_CRITERIA;
+ return {schema:'growth-os.case-brief/v1',case_id:'eazo-growth-learning-os',created_at:new Date().toISOString(),proposal_id:currentProposal().proposal_id,criteria_version:state.activeCriteria,basis:state.activeCriteria===2?'synthetic_scenario_and_human_judgment':'baseline_research',status:'draft_not_permission_to_retrieve',original_brief:'I want active creators in '+state.markets.trim()+' who create content around web design, portfolios and AI website tools. Their audiences should ideally include designers and freelancers. Research candidates willing to demonstrate both a finished result and the creation process in a proposed Eazo experiment. Participation is unconfirmed.',research_priorities:criteria.map(k=>COPY[k][0]),requires_human_query_review:true};
+}
+function download(value,name){const u=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+function render(){
+ const focused=document.activeElement?.dataset,focusQuery=focused?.decision?'[data-decision="'+focused.decision+'"][data-record="'+focused.record+'"]':focused?.select?'[data-select="'+focused.select+'"]':null;
+ $('case-status').hidden=true;
+ document.documentElement.lang=state.language;
+ document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
+ document.querySelectorAll('[data-i18n-aria]').forEach(el=>el.setAttribute('aria-label',t(el.dataset.i18nAria)));
+ document.querySelectorAll('[data-lang]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.lang===state.language)));
+ $('case-pulse').innerHTML=[[state.creators.length,'pulse.candidates'],[Object.values(state.reviews).filter(r=>r.decision==='approve').length,'pulse.approved'],[state.selected.length,'pulse.cohort'],['—','pulse.results']].map(([n,k])=>'<div class="pulse-cell"><strong>'+n+'</strong><span>'+t(k)+'</span></div>').join('');
+ $('case-creators').innerHTML=state.creators.map(c=>{
+  const r=state.reviews[c.record_id]||{},decision=r.decision||'none';
+  return '<article class="card case-creator"><div><span class="chip '+(c.upstream_review?'ai':'good')+'">'+t(c.upstream_review?'upstream':'curator.label')+'</span><h3>'+esc(c.display_name)+'</h3><a class="source-link" href="'+esc(c.profile_url)+'" target="_blank" rel="noopener noreferrer">'+esc(c.platform)+' · '+t('profile')+'</a>'+(c.official_url?'<a class="source-link" href="'+esc(c.official_url)+'" target="_blank" rel="noopener noreferrer">'+esc(new URL(c.official_url).hostname)+' ↗</a>':'')+'<p class="case-note">'+t('select.note')+'</p></div><div><span class="eyebrow">'+t('observed.label')+'</span>'+c.evidence.map(e=>'<div class="evidence-row"><a class="source-link" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+esc(e.title)+' ↗</a><p>'+esc(localize(e.observed))+'</p><small>'+t('published')+': '+esc(e.published_at||t('unknown.date'))+' · '+t('checked')+': '+esc(e.checked_at||t('unknown.date'))+'</small><p class="case-note">'+esc(localize(e.limitations))+'</p></div>').join('')+'</div><div class="case-review"><strong>'+t('review')+'</strong><p><span class="chip '+({approve:'good',hold:'warn',reject:'danger'}[decision]||'')+'">'+t('review.'+decision)+'</span></p><label for="reason-'+esc(c.record_id)+'">'+t('review.reason')+'</label><textarea id="reason-'+esc(c.record_id)+'" data-reason="'+esc(c.record_id)+'" rows="3" maxlength="1000">'+esc(state.reasonDrafts[c.record_id]??r.reason??'')+'</textarea><div class="review-buttons">'+['approve','hold','reject'].map(d=>'<button class="button secondary '+d+'" data-decision="'+d+'" data-record="'+esc(c.record_id)+'" aria-pressed="'+(decision===d)+'">'+t('review.'+d)+'</button>').join('')+'</div><label class="cohort-check"><input type="checkbox" data-select="'+esc(c.record_id)+'" '+(decision!=='approve'?'disabled ':'')+(state.selected.includes(c.record_id)?'checked':'')+'>'+t('select')+'</label></div></article>';
+ }).join('');
+ $('cohort').innerHTML='<ul class="cohort-list">'+(state.selected.length?state.selected.map(id=>'<li>'+esc(state.creators.find(c=>c.record_id===id).display_name)+'</li>').join(''):'<li>'+t('cohort.empty')+'</li>')+'</ul><p>'+t('cohort.paired')+'</p>';
+ $('save-proposal').disabled=!state.selected.length||proposalIsCurrent();
+ $('proposal-status').textContent=t(!currentProposal()?'proposal.none':proposalIsCurrent()?'proposal.saved':'proposal.changed');
+ $('scenario').hidden=!state.scenario;$('scenario-toggle').textContent=t(state.scenario?'scenario.close':'scenario.open');$('scenario-toggle').setAttribute('aria-expanded',String(state.scenario));
+ $('scenario').innerHTML=state.scenario?'<span class="chip ai">'+t('simulation')+'</span><h3>'+t('scenario.title')+'</h3><p>'+t('scenario.note')+'</p><div class="scenario-grid">'+[[420,168,'how'],[610,92,'result']].map(([signups,creates,group])=>'<div><span class="eyebrow">'+t('group.'+group)+'</span><div class="scenario-stat '+(group==='result'?'stone':'')+'">'+Math.round(creates/signups*100)+'%</div><div class="case-bar '+(group==='result'?'stone':'')+'"><span style="width:'+Math.round(creates/signups*100)+'%"></span></div><p>'+creates+' / '+signups+' · '+t('scenario.denominator')+'</p></div>').join('')+'</div><p>'+t('scenario.learning')+'</p>':'';
+ $('criteria-active').textContent=t(state.activeCriteria===2?'criteria.v2':'criteria.base');
+ $('criteria').innerHTML='<ul class="criteria-list">'+(state.activeCriteria===2?V2_CRITERIA:BASE_CRITERIA).map(k=>'<li>'+t(k)+'</li>').join('')+'</ul>'+(state.activeCriteria===2?'<p class="case-note">'+t('criteria.secondary')+'</p>':'');
+ $('criteria-accept').disabled=!state.scenario||state.activeCriteria===2;$('criteria-revert').disabled=state.activeCriteria===1;
+ $('criteria-basis').textContent=t(state.activeCriteria===2?'criteria.basis.v2':'criteria.basis.v1');
+ $('next-markets').value=state.markets;$('next-export').disabled=!proposalIsCurrent();
+ $('measurement-copy').innerHTML=MEASUREMENT.map(r=>'<h3>'+esc(r[state.language==='zh'?1:0])+'</h3><p>'+esc(r[state.language==='zh'?3:2])+'</p>').join('');
+ $('growth-return').hidden=location.protocol==='file:'||!location.pathname.endsWith('/eazo-case.html');
+ $('growth-return').href=['127.0.0.1','localhost'].includes(location.hostname)?'./index.html#partners':'./growth-os.html#partners';
+ if(focusQuery)document.querySelector(focusQuery)?.focus();
+ requestAnimationFrame(()=>document.documentElement.style.setProperty('--header-h',document.querySelector('.topbar').offsetHeight+'px'));
+}
+document.addEventListener('click',event=>{
+ const b=event.target.closest('button');if(!b)return;
+ if(b.dataset.lang){state.language=b.dataset.lang;render();}
+ if(b.dataset.decision)decide(b.dataset.record,b.dataset.decision);
+ if(b.id==='save-proposal')saveProposal();
+ if(b.id==='scenario-toggle'){state.scenario=!state.scenario;render();}
+ if(b.id==='criteria-accept')adoptCriteria();
+ if(b.id==='criteria-revert'){state.activeCriteria=1;render();}
+ if(b.id==='import-button')$('candidate-file').click();
+ if(b.id==='next-export'){try{download(nextBrief(),'eazo-next-run-draft.json');notify(t('next.exported'));}catch{notify(t('next.required'));}}
+ if(b.id==='disclaimer-button'){const open=$('disclaimer-tip').hidden;$('disclaimer-tip').hidden=!open;b.setAttribute('aria-expanded',String(open));}
+ if(b.id==='measurement-open')$('measurement-dialog').showModal();
+ if(b.id==='measurement-close')$('measurement-dialog').close();
+});
+document.addEventListener('input',event=>{
+ if(event.target.dataset.reason){const id=event.target.dataset.reason;state.reasonDrafts[id]=event.target.value;}
+ if(event.target.id==='next-markets')state.markets=event.target.value;
+});
+document.addEventListener('change',event=>{if(event.target.dataset.select)selectCandidate(event.target.dataset.select,event.target.checked);});
+$('candidate-file').addEventListener('change',async event=>{
+ const file=event.target.files[0];if(!file)return;
+ try{if(file.size>1024*1024)throw Error('size');importCandidates(JSON.parse(await file.text()));}catch(error){notify(t(error.message==='identity'?'error.identity':'error.import'));}finally{event.target.value='';}
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){$('disclaimer-tip').hidden=true;$('disclaimer-button').setAttribute('aria-expanded','false');}});
+$('measurement-dialog').addEventListener('close',()=>$('measurement-open').focus());
+document.querySelectorAll('.nav a').forEach(link=>link.addEventListener('click',()=>{document.querySelectorAll('.nav a').forEach(a=>{a.classList.toggle('active',a===link);if(a===link)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}));
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(()=>document.documentElement.style.setProperty('--header-h',document.querySelector('.topbar').offsetHeight+'px')).observe(document.querySelector('.topbar'));
+render();
+</script>
+</body>
+</html>
